@@ -1,0 +1,37 @@
+---
+pagination:
+  data: posts
+  size: 2
+title: Latest Posts
+layout: layouts/base.njk
+---
+
+<ol>
+  {%- for item in pagination.items %}
+    <li>
+      <a href="/blog/{{ item.slug }}">
+        {{ item.title.rendered }}</li>
+    </a>
+  {% endfor -%}
+</ol>
+
+<nav>
+  <ol>
+    <li>
+      {% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}">Previous</a>
+      {% else %}Previous{% endif %}
+    </li>
+    {%- for pageEntry in pagination.pages %}
+      <li>
+        <a href="{{ pagination.hrefs[ loop.index0 ] }}" {% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page" {% endif %}>Page
+          {{ loop.index }}</a>
+      </li>
+    {%- endfor %}
+    <li>
+      {% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}">Next</a>
+      {% else %}Next{% endif %}
+    </li>
+  </ol>
+</nav>

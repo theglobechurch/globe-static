@@ -1,0 +1,16 @@
+---
+  pagination:
+    data: "preaching"
+    size: 1
+    alias: preaching
+  permalink: "resources/{{ preaching.slug }}/index.html"
+  layout: layouts/base.njk
+---
+
+<h1 class="text-2xl">{{ preaching.title.rendered }}</h1>
+
+<div class="mainContent">
+    {{preaching.content.rendered | safe}}
+</div>
+
+{{ preaching.sermon_series[2] }}

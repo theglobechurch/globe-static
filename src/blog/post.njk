@@ -1,0 +1,15 @@
+---
+pagination:
+    data: posts
+    size: 1
+    alias: posts
+permalink: "blog/{{ posts.slug }}/"
+layout: layouts/base.njk
+---
+
+<article class="prose lg:prose-xl">
+  <h1>{{ posts.title.rendered }}</h1>
+  <div class="mainContent">
+      {{ posts.content.rendered | safe }}
+  </div>
+</article>
