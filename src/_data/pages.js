@@ -14,11 +14,11 @@ module.exports = () => {
   let wpPages = new AssetCache("pages");
 
   if (ENABLE_11TY_CACHE && wpPages.isCacheValid("1d")) {
-    console.log("Serving pages from the cache…");
+    console.log("📃 Serving pages from the cache…");
     return wpPages.getCachedValue();
   }
 
-  console.log("Fetching pages");
+  console.log("📃 Fetching pages");
 
   return fetch(base)
     .then((res) => res.json())

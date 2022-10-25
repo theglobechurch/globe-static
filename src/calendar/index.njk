@@ -1,0 +1,14 @@
+---
+title: Calendar
+layout: layouts/base.njk
+---
+<p>
+  {% for event in events %}
+    <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.title | slug }}/">
+      {{ event.title }}
+      {{ event.startDate }} - {{ event.endDate }}
+      {{ event.duration }}
+      {{ event.location }}
+    </a>
+  {% endfor %}
+</p>

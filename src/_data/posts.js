@@ -14,11 +14,11 @@ module.exports = () => {
   let asset = new AssetCache("posts");
 
   if (ENABLE_11TY_CACHE && asset.isCacheValid("1d")) {
-    console.log("Serving posts from the cache…");
+    console.log("✏️  Serving posts from the cache…");
     return asset.getCachedValue();
   }
 
-  console.log("Fetching posts…");
+  console.log("✏️  Fetching posts");
 
   return fetch(base)
     .then((res) => res.json())

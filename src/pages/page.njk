@@ -1,10 +1,10 @@
 ---
-  pagination:
-    data: "pages"
-    size: 1
-    alias: pages
-  permalink: "{{ pages.slug }}/index.html"
-  layout: layouts/base.njk
+pagination:
+  data: "pages"
+  size: 1
+  alias: pages
+permalink: "{{ pages.slug }}/index.html"
+layout: layouts/base.njk
 ---
 
 <h1 class="text-2xl">{{ pages.title.rendered }}</h1>

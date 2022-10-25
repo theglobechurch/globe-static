@@ -4,10 +4,11 @@ layout: layouts/base.njk
 ---
 
 <ol>
-  {%- for item in pages %}
+  {% for item in pages %}
     <li>
       <a href="/{{ item.slug }}">
-        {{ item.title.rendered }}</li>
-    </a>
+        {{ item.title.rendered }}
+      </a>
+    </li>
   {% endfor -%}
 </ol>

@@ -14,11 +14,11 @@ module.exports = () => {
   let wpSermons = new AssetCache("preaching");
 
   if (ENABLE_11TY_CACHE && wpSermons.isCacheValid("1d")) {
-    console.log("Serving sermons from the cache…");
+    console.log("🎤 Serving sermons from the cache…");
     return wpSermons.getCachedValue();
   }
 
-  console.log("Fetching sermons");
+  console.log("🎤 Fetching sermons");
 
   return fetch(base)
     .then((res) => res.json())
@@ -37,10 +37,3 @@ module.exports = () => {
     });
 };
 
-// Loop through all the pages to find a parent page
-function parentSlug(allPages, parentId) {
-  const parent = allPages.find(o => o.id === parentId);
-  if (parent) {
-    return parent.slug
-  }
-}
