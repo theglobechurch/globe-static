@@ -3,7 +3,7 @@ pagination:
   data: events
   size: 1
   alias: event
-permalink: "calendar/{{ event.startDate | formatDate }}/{{ event.title | slug }}/index.html"
+permalink: "calendar/{{ event.startDate | formatDate }}/{{ event.slug }}/index.html"
 layout: layouts/base.njk
 ---
 

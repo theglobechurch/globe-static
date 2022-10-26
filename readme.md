@@ -3,6 +3,7 @@
 ## In the box
 
 - Eleventy
+- Tailwind
 
 ## Data sources
 
