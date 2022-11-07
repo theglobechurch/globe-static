@@ -1,0 +1,14 @@
+---
+title: Preaching
+layout: layouts/base.njk
+---
+
+<ol>
+  {% for item in preaching %}
+    <li>
+      <a href="/resources/{{ item.slug }}">
+        {{ item.title.rendered }}
+      </a>
+    </li>
+  {% endfor -%}
+</ol>

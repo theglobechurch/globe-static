@@ -33,3 +33,12 @@ npm run dev
 - `API_BASE` - Base URL for Wordpress API
 - `EVENTS_ICAL_FEED` - iCal feed for where we'll be pulling all the events from
 - `ENABLE_11TY_CACHE` - When enabled (`TRUE`) 11ty will pull in data just once and then store it, this will make the site build a bit quicker. Don't enable in production.
+
+## To Do
+
+### Critical before launch
+
+- Add the RSS feed for the blog
+- Add Podcast feed for the sermons
+
+### Post launch
