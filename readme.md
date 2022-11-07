@@ -1,5 +1,7 @@
 # Globe Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/efe4b1e3-abc3-4d40-8c3c-ed27fd8365c0/deploy-status)](https://app.netlify.com/sites/tgc-static/deploys)
+
 ## In the box
 
 - Eleventy
