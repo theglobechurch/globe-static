@@ -23,6 +23,11 @@
 
 @layer base {
   html {
+    @apply text-blue;
     font-family: 'brandon-grotesque', sans-serif;
+  }
+
+  a {
+    @apply text-orange underline hover:no-underline
   }
 }
