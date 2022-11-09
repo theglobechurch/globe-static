@@ -1,7 +1,15 @@
-<header class="mx-4 border-b border-orange p-4 flex justify-between">
-  <a href="/" class="uppercase font-bold no-underline">The Globe Church</a>
+<div class="bg-blue text-white p-4 text-center tracking-wide">
+  ⚠️ This site is work in progress. Please see <a href="https://globe.church">globe.church</a> for the current site.
+</div>
 
-  <nav class="flex gap-4">
+<header class="mx-4 border-b border-orange p-4 flex justify-between relative">
+  <div>
+    <a href="/" class="uppercase font-bold no-underline absolute -top-12">
+      {% svg "tgcLogoFilled", "" %}
+    </a>
+  </div>
+
+  <nav class="flex gap-4 uppercase font-bold">
     <a href="/about">About</a>
     <a href="/sundays">Sundays</a>
     <a href="/calendar">Calendar</a>
