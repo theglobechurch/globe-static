@@ -4,7 +4,7 @@ const shortcodes = require("./src/_utils/11ty.shortcodes.js");
 const filters = require("./src/_utils/11ty.filters.js");
 
 module.exports = function (eleventyConfig) {
-  // eleventyConfig.setQuietMode(true);
+  eleventyConfig.setQuietMode(true);
 
   // Plugins
   // eleventyConfig.addPlugin(directoryOutputPlugin);
@@ -20,6 +20,13 @@ module.exports = function (eleventyConfig) {
   Object.keys(filters).forEach((filterName) => {
     eleventyConfig.addFilter(filterName, filters[filterName]);
   });
+
+  const layouts = [
+    {name: 'default', path: 'layouts/base.njk'},
+    {name: 'textPage', path: 'layouts/textPage.njk'},
+  ];
+  layouts.forEach(layout => eleventyConfig.addLayoutAlias(layout.name, layout.path));
+
 
   return {
     templateFormats: ["html", "njk", "md"],
