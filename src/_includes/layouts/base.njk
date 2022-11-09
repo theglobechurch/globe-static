@@ -16,13 +16,16 @@
     #}
 
     <meta name="generator" content="{{ eleventy.generator }}" />
+    <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
   </head>
 
   <body>
     {% svgsprite %}
     {% include 'blocks/header.njk' %}
 
-    {{ layoutContent | safe }}
+    <div id="site-content" class="ml-16 p-4">
+      {{ layoutContent | safe }}
+    </div>
 
     {% include 'blocks/footer.njk' %}
 

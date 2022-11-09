@@ -1,20 +1,49 @@
-<div class="bg-blue text-white p-4 text-center tracking-wide">
-  ⚠️ This site is work in progress. Please see <a href="https://globe.church">globe.church</a> for the current site.
-</div>
+<a class="sr-only" href="#site-content">
+  Skip to site content
+</a>
 
-<header class="mx-4 border-b border-orange p-4 flex justify-between relative">
-  <div>
-    <a href="/" class="uppercase font-bold no-underline absolute -top-12">
-      {% svg "tgcLogoFilled", "" %}
+{# <div class="text-blue bg-gold p-4 text-center tracking-wide">
+  ⚠️ This site is work in progress. Please see <a class="text-blue" href="https://globe.church">globe.church</a> for the current site.
+</div> #}
+
+<header class="relative" x-data="{ navOpen: false }">
+
+  <div class="bg-blue fixed left-0 top-0 bottom-0 w-16 p-4 z-10">
+    <a
+      href="#footer"
+      @click.prevent="navOpen = ! navOpen"
+      x-text="navOpen ? 'Close' : 'Menu'"
+      class="block text-white uppercase rotate-90 no-underline hover:underline"
+    >
+      Menu
     </a>
   </div>
 
-  <nav class="flex gap-4 uppercase font-bold">
-    <a href="/about">About</a>
-    <a href="/sundays">Sundays</a>
-    <a href="/calendar">Calendar</a>
-    <a href="/preaching">Preaching</a>
-    <a href="/get-involved">Get Involved</a>
-    <a href="/contact">Contact</a>
-  </nav>
+  <a href="/" class="uppercase font-bold no-underline fixed -top-12 right-4">
+    {% svg "tgcLogoFilled", "" %}
+  </a>
+
+  <div x-show="navOpen" x-transition.opacity class="bg-white/75 absolute z-0 w-screen h-screen">
+  </div>
+
+  <div x-show="navOpen" x-transition.opacity class="ml-16 absolute z-10">
+    <div class="w-full max-w-xs flex flex-col justify-between bg-blue border-l border-l-white text-white h-screen">
+      <nav class="flex flex-col gap-8 uppercase p-4">
+        <a class="text-white text-xl no-underline hover:underline" href="/about">About</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/sundays">Sundays</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/calendar">Calendar</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/preaching">Preaching</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/get-involved">Get Involved</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/contact">Contact</a>
+      </nav>
+
+      <div class="bg-green text-white p-4 m-4">
+        <p class="font-bold">Sundays at The Globe Church</p>
+        <p class="my-2">Join The Globe Church this Sunday, 4pm at Globe Ark Accademy.</p>
+        <p><a href="/sundays" class="text-white">Find out more</a></p>
+      </div>
+    </div>
+  </div>
 </header>
+
+
