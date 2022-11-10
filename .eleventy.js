@@ -10,11 +10,13 @@ module.exports = function (eleventyConfig) {
   // eleventyConfig.addPlugin(directoryOutputPlugin);
 
   eleventyConfig.addPlugin(svgSprite, {
-    path: "./src/_assets/svg"
+    path: "./src/_assets/svg",
+    outputFilepath: "./dist/_assets/svgSprite.svg"
   });
 
   // Shortcodes
   eleventyConfig.addNunjucksAsyncShortcode("image", shortcodes.testImg);
+  eleventyConfig.addNunjucksShortcode("svgIcon", shortcodes.svgIcon);
 
   // Filters
   Object.keys(filters).forEach((filterName) => {
