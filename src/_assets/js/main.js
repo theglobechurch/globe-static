@@ -1,7 +1,7 @@
-import Alpine from 'alpinejs'
+import Alpine from 'alpinejs';
+import coreNav from './alpine/navigation.js';
 
-window.Alpine = Alpine
 
-Alpine.start()
-
-console.log('hello world');
+window.Alpine = Alpine;
+Alpine.data('coreNav', coreNav)
+Alpine.start();

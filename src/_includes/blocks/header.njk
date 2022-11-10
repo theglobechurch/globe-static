@@ -6,27 +6,29 @@
   ⚠️ This site is work in progress. Please see <a class="text-blue" href="https://globe.church">globe.church</a> for the current site.
 </div> #}
 
-<header class="relative" x-data="{ navOpen: false }">
+<header class="relative" x-data="coreNav">
 
-  <div class="bg-blue fixed left-0 top-0 bottom-0 w-16 p-4 z-10">
+  <a href="/" title="The Globe Church" class="w-[175px] h-[110px] -top-12 uppercase font-bold no-underline fixed right-4 sm:w-fit sm:-top-12">
+    <h1 class="sr-only">The Globe Church</h1>
+    {% svgIcon "tgcLogoFilled", "w-full" %}
+  </a>
+
+  <div class="fixed left-0 top-0 bottom-0 p-4 z-10 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
     <a
       href="#footer"
-      @click.prevent="navOpen = ! navOpen"
-      x-text="navOpen ? 'Close' : 'Menu'"
-      class="block text-white uppercase rotate-90 no-underline hover:underline"
+      @click.prevent="toggle"
+      x-text="menuLabel"
+      class="border rounded-sm px-1 text-sm block uppercase no-underline hover:underline sm:text-base sm:rotate-90 sm:border-0 sm:p-0"
     >
       Menu
     </a>
   </div>
 
-  <a href="/" class="uppercase font-bold no-underline fixed -top-12 right-4">
-    {% svgIcon "tgcLogoFilled", "" %}
-  </a>
 
-  <div x-show="navOpen" x-transition.opacity class="bg-white/75 absolute z-0 w-screen h-screen">
+  <div class="bg-white/75 fixed z-0 inset-0" x-show="navOpen" x-transition.opacity x-cloak>
   </div>
 
-  <div x-show="navOpen" x-transition.opacity class="ml-16 absolute z-10">
+  <div class="ml-16 fixed z-10 top-0 bottom-0" x-show="navOpen" x-transition.opacity x-cloak>
     <div class="w-full max-w-xs flex flex-col justify-between bg-blue border-l border-l-white text-white h-screen">
       <nav class="flex flex-col gap-8 uppercase p-4">
         <a class="text-white text-xl no-underline hover:underline" href="/about">About</a>

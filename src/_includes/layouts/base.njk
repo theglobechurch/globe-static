@@ -20,10 +20,9 @@
   </head>
 
   <body>
-    {% svgsprite %}
     {% include 'blocks/header.njk' %}
 
-    <div id="site-content" class="ml-16 p-4">
+    <div id="site-content" class="p-4 mt-8 sm:ml-16">
       {{ layoutContent | safe }}
 
       {% include 'blocks/footer.njk' %}

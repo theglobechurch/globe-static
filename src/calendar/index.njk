@@ -2,13 +2,13 @@
 title: Calendar
 layout: layouts/base.njk
 ---
-<p>
+<div class="grid gap-4">
   {% for event in events %}
-    <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" class="block border p-4 m-4 hover:border-red-400">
+    <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" class="block border p-4 hover:border-red-400">
       {{ event.title }}
       {{ event.startDate }} - {{ event.endDate }}
       {{ event.duration }}
       {{ event.location }}
     </a>
   {% endfor %}
-</p>
+</div>
