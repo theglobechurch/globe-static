@@ -7,7 +7,12 @@
 
     <link rel="stylesheet" href="/_assets/css/tw.css?v={{ data.buildRef }}" media="screen" type="text/css">
 
-    <title>TGC</title>
+    <title>
+      {% if title %}
+        {{ title }} &middot;
+      {% endif %}
+      The Globe Church
+    </title>
 
     {#TODO: OG TAGS#}
 
