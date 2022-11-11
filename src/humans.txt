@@ -1,0 +1,26 @@
+/* TEAM */
+
+Name: James Doc
+Role: Developer
+URL: jamesdoc.com
+
+Name: Jonty Allcock
+Role: Writer
+Twitter: https://twitter.com/jontyallcock
+
+/* PREVIOUS TEAM */
+
+Name: Melody Raines
+Role: Editor
+URL: moregreat.com
+
+Name: Phil Tinker
+Role: Writer
+Twitter: https://twitter.com/phil_tinker
+
+/* SITE */
+
+- Eleventy
+- Tailwind CSS
+- AlpineJS
+- Hosted with Netlify

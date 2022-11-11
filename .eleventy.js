@@ -29,8 +29,9 @@ module.exports = function (eleventyConfig) {
   ];
   layouts.forEach(layout => eleventyConfig.addLayoutAlias(layout.name, layout.path));
 
-  // Copy the favicons through to the root
-  eleventyConfig.addPassthroughCopy({ "src/_assets/favicon/": "." });
+  // Copy the files to the right place
+  eleventyConfig.addPassthroughCopy({ "src/_assets/favicon/": "" });
+  eleventyConfig.addPassthroughCopy({ "src/humans.txt": "" });
 
   return {
     templateFormats: ["html", "njk", "md", "11ty.js"],
