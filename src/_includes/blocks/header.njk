@@ -13,12 +13,12 @@
     {% svgIcon "tgcLogoFilled", "w-full" %}
   </a>
 
-  <div class="fixed left-0 top-0 bottom-0 p-4 z-20 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
+  <div class="fixed left-0 top-0 sm:bottom-0 p-4 z-20 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
     <a
       href="#footer"
       @click.prevent="toggle"
       x-text="menuLabel"
-      class="border rounded-sm px-1 text-sm block uppercase no-underline hover:underline sm:text-base sm:rotate-90 sm:border-0 sm:p-0"
+      class="border bg-white rounded-sm px-1 text-sm block uppercase no-underline hover:underline sm:text-base sm:rotate-90 sm:border-0 sm:p-0 sm:bg-transparent"
     >
       Menu
     </a>
@@ -29,7 +29,7 @@
   </div>
 
   <div
-    class="ml-16 fixed z-10 top-0 bottom-0 transition-transform"
+    class="sm:ml-16 fixed z-10 top-0 bottom-0 transition-transform"
     x-show="navOpen"
     x-cloak
     x-transition:enter="transition duration-300 -translate-x-32"
@@ -39,8 +39,8 @@
     x-transition:leave-start="opacity-100"
     x-transition:leave-end="opacity-0 -translate-x-32"
   >
-    <div class="w-full max-w-xs flex flex-col justify-between bg-blue border-l border-l-white text-white h-screen">
-      <nav class="flex flex-col gap-8 uppercase p-4">
+    <div class="h-full w-full sm:max-w-xs flex flex-col justify-between bg-blue sm:border-l border-l-white text-white">
+      <nav class="mt-10 flex flex-col gap-8 uppercase p-4 sm:mt-0">
         <a class="text-white text-xl no-underline hover:underline" href="/about">About</a>
         <a class="text-white text-xl no-underline hover:underline" href="/sundays">Sundays</a>
         <a class="text-white text-xl no-underline hover:underline" href="/calendar">Calendar</a>
