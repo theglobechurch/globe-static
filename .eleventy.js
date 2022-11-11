@@ -4,7 +4,7 @@ const shortcodes = require("./src/_utils/11ty.shortcodes.js");
 const filters = require("./src/_utils/11ty.filters.js");
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.setQuietMode(true);
+  // eleventyConfig.setQuietMode(true);
 
   // Plugins
   // eleventyConfig.addPlugin(directoryOutputPlugin);
@@ -30,8 +30,12 @@ module.exports = function (eleventyConfig) {
   layouts.forEach(layout => eleventyConfig.addLayoutAlias(layout.name, layout.path));
 
   // Copy the files to the right place
-  eleventyConfig.addPassthroughCopy({ "src/_assets/favicon/": "" });
-  eleventyConfig.addPassthroughCopy({ "src/humans.txt": "" });
+  const passThroughFiles = [
+    "src/humans.txt",
+    "src/robots.txt",
+  ];
+  eleventyConfig.addPassthroughCopy({"src/_assets/favicon/**": "."});
+  passThroughFiles.forEach(f => eleventyConfig.addPassthroughCopy(f, ""));
 
   return {
     templateFormats: ["html", "njk", "md", "11ty.js"],
