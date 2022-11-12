@@ -7,7 +7,12 @@
 
     <link rel="stylesheet" href="/_assets/css/tw.css?v={{ data.buildRef }}" media="screen" type="text/css">
 
-    <title>TGC</title>
+    <title>
+      {% if title %}
+        {{ title }} &middot;
+      {% endif %}
+      The Globe Church
+    </title>
 
     {#TODO: OG TAGS#}
 
@@ -15,16 +20,24 @@
     <link rel="alternate" type="application/rss+xml" title="The Globe Church Blog" href="/blog/feed.xml" />
     #}
 
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="/site.webmanifest">
+
     <meta name="generator" content="{{ eleventy.generator }}" />
+    <link rel="author" href="/humans.txt" />
+
+    <script defer src="/_assets/js/main.js"></script>
   </head>
 
   <body>
-
     {% include 'blocks/header.njk' %}
 
-    {{ layoutContent | safe }}
+    <div id="site-content" class="p-4 mt-8 sm:ml-16">
+      {{ layoutContent | safe }}
 
-    {% include 'blocks/footer.njk' %}
+      {% include 'blocks/footer.njk' %}
+    </div>
 
   </body>
 </html>

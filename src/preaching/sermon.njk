@@ -1,13 +1,15 @@
 ---
-  pagination:
-    data: "preaching"
-    size: 1
-    alias: preaching
-  permalink: "resources/{{ preaching.slug }}/index.html"
-  layout: layouts/base.njk
+pagination:
+  data: "preaching"
+  size: 1
+  alias: preaching
+permalink: "resources/{{ preaching.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ preaching.title.rendered }}"
 ---
 
-<h1 class="text-2xl">{{ preaching.title.rendered }}</h1>
+<h1 class="text-2xl">{{ title }}</h1>
 
 <div class="mainContent">
     {{preaching.content.rendered | safe}}

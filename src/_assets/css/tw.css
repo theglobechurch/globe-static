@@ -30,4 +30,8 @@
   a {
     @apply text-orange underline hover:no-underline
   }
+
+  [x-cloak] {
+    display: none !important;
+  }
 }

@@ -6,6 +6,7 @@ module.exports = function () {
   const buildTime = currentTime.valueOf();
 
   return {
+    url: 'https://next.globe.church',
     buildRef: buildTime,
     updatedTime: currentTimeHuman,
     currentYear: new Date().getFullYear(),

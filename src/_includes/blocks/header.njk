@@ -1,12 +1,66 @@
-<header class="mx-4 border-b border-orange p-4 flex justify-between">
-  <a href="/" class="uppercase font-bold no-underline">The Globe Church</a>
+<a class="sr-only" href="#site-content">
+  Skip to site content
+</a>
 
-  <nav class="flex gap-4">
-    <a href="/about">About</a>
-    <a href="/sundays">Sundays</a>
-    <a href="/calendar">Calendar</a>
-    <a href="/preaching">Preaching</a>
-    <a href="/get-involved">Get Involved</a>
-    <a href="/contact">Contact</a>
-  </nav>
+{# <div class="text-blue bg-gold p-4 text-center tracking-wide">
+  ⚠️ This site is work in progress. Please see <a class="text-blue" href="https://globe.church">globe.church</a> for the current site.
+</div> #}
+
+<header class="relative" x-data="coreNav">
+
+  <a href="/" title="The Globe Church" class="w-[175px] h-[110px] -top-12 uppercase font-bold no-underline fixed right-4 sm:w-fit sm:-top-12">
+    <h1 class="sr-only">The Globe Church</h1>
+    {% svgIcon "tgcLogoFilled", "w-full" %}
+  </a>
+
+  <div class="fixed left-0 top-0 sm:bottom-0 p-4 z-20 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
+    <a
+      href="#footer"
+      @click.prevent="toggle"
+      x-text="menuLabel"
+      class="border bg-white rounded-sm px-1 text-sm block uppercase no-underline hover:underline sm:text-base sm:rotate-90 sm:border-0 sm:p-0 sm:bg-transparent"
+    >
+      Menu
+    </a>
+  </div>
+
+
+  <div
+    class="bg-white/75 fixed z-0 inset-0"
+    x-show="navOpen"
+    x-transition.opacity
+    x-cloak
+    @click.prevent="toggle">
+  </div>
+
+  <div
+    class="sm:ml-16 fixed z-10 top-0 bottom-0 transition-transform"
+    x-show="navOpen"
+    x-cloak
+    x-transition:enter="transition duration-300 -translate-x-32"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100 -translate-x-0"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0 -translate-x-32"
+  >
+    <div class="h-full w-full sm:max-w-xs flex flex-col justify-between bg-blue sm:border-l border-l-white text-white">
+      <nav class="mt-10 flex flex-col gap-8 uppercase p-4 sm:mt-0">
+        <a class="text-white text-xl no-underline hover:underline" href="/about">About</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/sundays">Sundays</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/calendar">Calendar</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/preaching">Preaching</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/get-involved">Get Involved</a>
+        <a class="text-white text-xl no-underline hover:underline" href="/contact">Contact</a>
+      </nav>
+
+      <div class="bg-green text-white p-4 m-4">
+        <p class="font-bold">Sundays at The Globe Church</p>
+        <p class="my-2">Join The Globe Church this Sunday, 4pm at Globe Ark Accademy.</p>
+        <p><a href="/sundays" class="text-white">Find out more</a></p>
+      </div>
+    </div>
+  </div>
 </header>
+
+

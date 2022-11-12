@@ -5,6 +5,8 @@ pagination:
   alias: event
 permalink: "calendar/{{ event.startDate | formatDate }}/{{ event.slug }}/index.html"
 layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ event.title }}"
 ---
 
 <h1>{{ event.title }}</h1>

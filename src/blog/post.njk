@@ -5,10 +5,12 @@ pagination:
     alias: posts
 permalink: "blog/{{ posts.slug }}/"
 layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ posts.title.rendered }}"
 ---
 
 <article class="prose lg:prose-xl">
-  <h1>{{ posts.title.rendered }}</h1>
+  <h1>{{ title }}</h1>
   <div class="mainContent">
       {{ posts.content.rendered | safe }}
   </div>

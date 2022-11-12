@@ -4,11 +4,17 @@ pagination:
   size: 1
   alias: pages
 permalink: "{{ pages.slug }}/index.html"
-layout: layouts/base.njk
+layout: textPage
+eleventyComputed:
+  title: "{{ pages.title.rendered }}"
 ---
 
-<h1 class="text-2xl">{{ pages.title.rendered }}</h1>
+<main class="container mx-auto py-4">
+  <header class="mx-auto">
+    <h1 class="text-2xl">{{ title }}</h1>
+  </header>
 
-<div class="mainContent">
+  <article class="prose prose-globeBlue lg:prose-xl mx-auto">
     {{pages.content.rendered | safe}}
-</div>
+  </article>
+</main>

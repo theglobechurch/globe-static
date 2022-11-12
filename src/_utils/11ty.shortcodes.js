@@ -19,5 +19,9 @@ module.exports = {
       sizes: sizes || "(min-width: 22em) 30vw, 100vw",
       class: classes,
     });
+  },
+
+  svgIcon: function(name, cls = null) {
+    return `<svg class="${cls}"><use xlink:href="/_assets/svgSprite.svg#svg-${name}"></use></svg>`;
   }
 }
