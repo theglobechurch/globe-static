@@ -48,7 +48,7 @@ module.exports = () => {
 
 function parseEvents(icalRaw) {
   const rangeStart = moment("2020-01-01");
-  const rangeEnd = moment().add(2, 'years');;
+  const rangeEnd = moment().add(3, 'months');;
 
   const events = ical.parseICS(icalRaw);
   const returnEvents = [];

@@ -3,8 +3,27 @@ title: Calendar
 layout: layouts/base.njk
 ---
 <div class="grid gap-4">
-  {% for event in events %}
+  <h2>Events this week</h2>
+
+  {% for event in events | thisWeek | sortEvents %}
     <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" class="block border p-4 hover:border-red-400">
+      <date class="block text-xs">{{ event.startDate | formatDate('dddd, D MMMM YYYY, h:mma') }}</date>
+      {{ event.title}}
+    </a>
+  {% endfor %}
+
+  <hr />
+
+  <h2>Future events</h2>
+  {% for event in events | futureEvents(7, 'day') | sortEvents %}
+    <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" class="block border p-4 no-underline hover:border-blue">
+      {% if event.data.tags %}
+      <div>
+        {% for tag in event.data.tags %}
+          <span class="rounded bg-orange px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
       {{ event.title }}
       {{ event.startDate }} - {{ event.endDate }}
       {{ event.duration }}

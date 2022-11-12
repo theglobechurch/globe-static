@@ -42,5 +42,8 @@ npm run dev
 
 - Add the RSS feed for the blog
 - Add Podcast feed for the sermons
+- Bring across Analytics
+- Make sure the URL mapping is correct
+- Double check timings for events (might be off by one errors)
 
 ### Post launch
