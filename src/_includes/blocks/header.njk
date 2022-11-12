@@ -25,7 +25,12 @@
   </div>
 
 
-  <div class="bg-white/75 fixed z-0 inset-0" x-show="navOpen" x-transition.opacity x-cloak>
+  <div
+    class="bg-white/75 fixed z-0 inset-0"
+    x-show="navOpen"
+    x-transition.opacity
+    x-cloak
+    @click.prevent="toggle">
   </div>
 
   <div
