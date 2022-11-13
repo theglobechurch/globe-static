@@ -47,3 +47,5 @@ npm run dev
 - Double check timings for events (might be off by one errors)
 
 ### Post launch
+
+- Sort out microdata on events, etc

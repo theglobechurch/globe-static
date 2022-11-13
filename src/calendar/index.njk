@@ -6,9 +6,20 @@ layout: layouts/base.njk
   <h2>Events this week</h2>
 
   {% for event in events | thisWeek | sortEvents %}
-    <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" class="block border p-4 hover:border-red-400">
-      <date class="block text-xs">{{ event.startDate | formatDate('dddd, D MMMM YYYY, h:mma') }}</date>
-      {{ event.title}}
+    <a
+      href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
+      class="block border p-4 hover:border-blue"
+      itemscope itemtype="https://schema.org/Event"
+    >
+      <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
+        {{ event.startDate | formatDate('dddd, D MMMM YYYY, h:mma') }} ({{ event.duration }})
+      </date>
+
+      <p itemprop="name">
+        {{ event.title }}
+      </p>
+
+      <p itemprop="location" itemscope itemtype="https://schema.org/Place">{{ event.location }}</p>
     </a>
   {% endfor %}
 
