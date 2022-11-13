@@ -2,11 +2,62 @@
 layout: default
 ---
 
-<h1 class="text-2xl">Hello world</h1>
+<section class="p-4 pt-12 bg-orange/10 grid sm:grid-cols-3 gap-4 sm:h-[80vh]">
+  <div class="col-span-2">
+    <h1 class="text-2xl font-bold">The Globe Church is all about Jesus, made up of all sorts of people, involved in the greatest mission…</h1>
+    <p>We’re a group of Christians gathering from across London near London Bridge.</p>
+    <p>
+      <a href="/sundays" class="px-2 py-1 rounded bg-orange text-white no-underline transition-colors hover:bg-blue">Join us this Sunday</a>
+      <a href="/about">Find out more about the church</a>
+    </p>
+  </div>
 
-<ul>
-  <li><a href="/calendar">Calendar</a></li>
-  <li><a href="/preaching">Preaching</a></li>
-  <li><a href="/blog">Blog</a></li>
-  <li><a href="/pages">Pages</a></li>
-</ul>
+  <div>
+    Hello world
+  </div>
+</section>
+
+<div class="p-4">
+<section class="p-4 border border-orange mb-4">
+  <h2>Sunday Services</h2>
+  <p>The Globe Church meets at 4pm every Sunday at Globe Ark Accademy. It's a few minutes walk from Elephant and Castle Tube station.</p>
+  <a href="/sundays" class="px-2 py-1 rounded bg-orange text-white no-underline transition-colors hover:bg-blue">Join us this Sunday</a>
+  <a href="https://goo.gl/maps/ZYWE7cPGxr9NWBB1A" target="_blank" rel="noopener">See a map</a>
+</section>
+
+<section class="mb-4">
+  <div class="flex justify-between items-center border-b p-2 gap-4">
+    <h2 class="font-bold text-lg uppercase">Upcoming events</h2>
+    <a href="/calendar" class="">See the church calendar</a>
+  </div>
+
+  <div class="flex justify-between items-center p-2 gap-4">
+    {% set oneOffEvents = events | eventsFuture | eventsOneOff | eventsSort %}
+    <a href="/calendar/{{ oneOffEvents[0].startDate | formatDate }}/{{ oneOffEvents[0].slug }}/" class="w-full group no-underline transition-colors">
+      IMG…
+      <div class="bg-orange/10 p-4">
+        {{ oneOffEvents[0].startDate | formatDate('dddd, D MMMM YYYY') }}<br />
+        <strong class="block">{{ oneOffEvents[0].title }}</strong>
+        <button class="rounded px-2 py-1 bg-orange text-white group-hover:bg-blue group-hover:text-white">More information</button>
+
+      </div>
+    </a>
+
+    <a href="/calendar/{{ oneOffEvents[1].startDate | formatDate }}/{{ oneOffEvents[1].slug }}/" class="w-full group no-underline transition-colors">
+      IMG…
+      <div class="bg-orange/10 p-4">
+        {{ oneOffEvents[1].startDate | formatDate('dddd, D MMMM YYYY') }}<br />
+        <strong class="block">{{ oneOffEvents[1].title }}</strong>
+        <button class="rounded px-2 py-1 bg-orange text-white group-hover:bg-blue group-hover:text-white">More information</button>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="p-4 border border-orange mb-4">
+  {% set sermon = preaching[0] %}
+  <h2>Listen back to the latest sermon</h2>
+  <p>{{ sermon.title.rendered }}</p>
+  <a href="/resources/{{ sermon.slug }}" class="px-2 py-1 rounded bg-orange text-white no-underline transition-colors hover:bg-blue">Go to the recording</a>
+</section>
+</div>

@@ -10,14 +10,14 @@ module.exports = {
     return dayjs(dateObj).format(format);
   },
 
-  thisWeek: (events) => {
+  eventThisWeek: (events) => {
     const today = dayjs();
     return events.filter(event => {
       return dayjs(event.startDate).isSameOrAfter(today, "day") && dayjs(event.endDate).isSameOrBefore(today.add(7, 'day'), "day");
     });
   },
 
-  futureEvents: (events, offset = 0, offsetUnit = 'days') => {
+  eventsFuture: (events, offset = 0, offsetUnit = 'days') => {
     startDate = dayjs().add(offset, offsetUnit);
 
     return events.filter(event => {
@@ -25,7 +25,7 @@ module.exports = {
     })
   },
 
-  sortEvents: (events) => {
+  eventsSort: (events) => {
     return events.sort((a, b) => {
       if (a.startDate > b.startDate) {
         return 1;
@@ -35,5 +35,9 @@ module.exports = {
       }
       return 0;
     });
+  },
+
+  eventsOneOff: (events) => {
+    return events.filter(event => event.reoccurring == false);
   }
 }

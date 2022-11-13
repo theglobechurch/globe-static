@@ -5,7 +5,7 @@ layout: layouts/base.njk
 <div class="grid gap-4">
   <h2>Events this week</h2>
 
-  {% for event in events | thisWeek | sortEvents %}
+  {% for event in events | eventThisWeek | eventsSort %}
     <a
       href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
       class="block border p-4 hover:border-blue"
@@ -26,7 +26,7 @@ layout: layouts/base.njk
   <hr />
 
   <h2>Future events</h2>
-  {% for event in events | futureEvents(7, 'day') | sortEvents %}
+  {% for event in events | eventsFuture(7, 'day') | eventsSort %}
     <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" class="block border p-4 no-underline hover:border-blue">
       {% if event.data.tags %}
       <div>

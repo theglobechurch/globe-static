@@ -33,10 +33,10 @@
   <body>
     {% include 'blocks/header.njk' %}
 
-    <div id="site-content" class="p-4 mt-8 sm:ml-16">
+    <div id="site-content" class="sm:ml-16">
       {{ layoutContent | safe }}
 
-      {% include 'blocks/footer.njk' %}
+      <div class="p-4">{% include 'blocks/footer.njk' %}</div>
     </div>
 
   </body>
