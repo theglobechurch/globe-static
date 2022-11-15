@@ -14,16 +14,7 @@
   </a>
 
   <div class="fixed left-0 top-0 sm:bottom-0 px-4 py-2 z-20 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
-    {# <a
-      href="#footer"
-      @click.prevent="toggle"
-      x-text="menuLabel"
-      class="border bg-white rounded-sm px-1 text-sm block uppercase font-bold no-underline transition-colors hover:text-white sm:text-base sm:rotate-90 sm:border-0 sm:p-0 sm:bg-transparent"
-    >
-      Menu
-    </a> #}
-
-    <a href="#footer" @click="toggle" class="rounded bg-white p-1 flex items-center no-underline sm:flex-col sm:bg-transparent sm:p-0 sm:mt-2 sm:text-white sm:hover:text-orange">
+    <a href="#footer" @click.prevent="toggle" class="rounded bg-white p-1 flex items-center no-underline sm:flex-col sm:bg-transparent sm:p-0 sm:mt-2 sm:text-white sm:hover:text-orange">
       <div class="w-6 h-6 flex items-center relative mr-1 sm:mb-2 sm:mr-0">
         <span x-bind:class="navOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'"
               class="transform transition w-full h-1 rounded bg-current absolute"></span>
