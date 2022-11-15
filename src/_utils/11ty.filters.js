@@ -7,7 +7,15 @@ dayjs.extend(isSameOrAfter);
 
 module.exports = {
   formatDate: (dateObj, format = 'YYYY-MM-DD') => {
-    return dayjs(dateObj).format(format);
+    if (!dateObj) { return; }
+
+    const parsedDate = dayjs(dateObj);
+
+    if (!parsedDate.isValid()){
+      return;
+    }
+
+    return parsedDate.format(format);
   },
 
   eventThisWeek: (events) => {
@@ -19,8 +27,8 @@ module.exports = {
 
   eventsFuture: (events, offset = 0, offsetUnit = 'days') => {
     startDate = dayjs().add(offset, offsetUnit);
-
     return events.filter(event => {
+      // console.log(startDate, event.endDate)
       return dayjs(event.endDate).isSameOrAfter(startDate, "day");
     })
   },

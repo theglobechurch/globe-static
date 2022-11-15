@@ -1,0 +1,61 @@
+[
+  {
+    "title": "Globe Weekend Away",
+    "slug": "globe-weekend-away",
+    "location": "",
+    "startDate": "2023-01-06T00:00:00+00:00",
+    "endDate": "2023-01-09T00:00:00+00:00",
+    "duration": "3 days",
+    "body": "",
+    "data": {
+      "tags": [
+        "Featured Event"
+      ]
+    },
+    "reoccurring": false
+  },
+  {
+    "title": "Event in the long grass",
+    "slug": "event-in-the-long-grass",
+    "location": "",
+    "startDate": "2024-04-27T10:30:00+01:00",
+    "endDate": "2024-04-27T15:20:00+01:00",
+    "duration": "5 hours",
+    "body": "This is a one off event in the long grass",
+    "data": {
+      "tags": [
+        "test event",
+        "wow",
+        "much test"
+      ],
+      "url": "https://test.com"
+    },
+    "reoccurring": false
+  },
+  {
+    "title": "Sunday Service",
+    "slug": "sunday-service",
+    "location": "Ark Globe Academy, Harper Rd, London SE1 6AF, UK",
+    "startDate": "2022-10-30T16:00:00+00:00",
+    "endDate": "2022-10-30T17:30:00+00:00",
+    "duration": "2 hours",
+    "body": "Test Description",
+    "data": {
+      "url": "https://google.com"
+    },
+    "reoccurring": true
+  },
+  {
+    "title": "Sunday Service",
+    "slug": "sunday-service",
+    "location": "Ark Globe Academy, Harper Rd, London SE1 6AF, UK",
+    "startDate": "2022-11-06T16:00:00+00:00",
+    "endDate": "2022-11-06T17:30:00+00:00",
+    "duration": "2 hours",
+    "body": "Test Description",
+    "data": {
+      "url": "https://google.com"
+    },
+    "reoccurring": true
+  }
+]
