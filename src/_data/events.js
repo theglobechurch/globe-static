@@ -98,16 +98,31 @@ function parseEvents(icalRaw) {
       const dates = event.rrule.between(rangeStart.toDate(), rangeEnd.toDate());
       if (dates.length === 0) continue;
 
-      // console.log('Summary:', event.summary);
+      console.log('Summary:', event.summary);
       // console.log('Original start:', event.start);
       // console.log('RRule start:', `${event.rrule.origOptions.dtstart} [${event.rrule.origOptions.tzid}]`);
 
       dates.forEach(date => {
-        let newDate = new Date(date.setHours(date.getHours() - ((event.start.getTimezoneOffset() - date.getTimezoneOffset()) / 60)))
+        let curEvent = event;
+        let dateLookupKey = date.toISOString().substring(0, 10);
+        let showRecurrence = true;
 
-        const start = moment(newDate)
-        // console.log('Recurrence start:', start)
+        // Check to see if there is a reoccurance override
+        if ((curEvent.recurrences != undefined) && (curEvent.recurrences[dateLookupKey] != undefined)) {
+          curEvent = curEvent.recurrences[dateLookupKey];
 
+        // Check to see if this is a skip
+        } else if ((curEvent.exdate != undefined) && (curEvent.exdate[dateLookupKey] != undefined)) {
+          showRecurrence = false;
+        }
+
+        if (showRecurrence) {
+          let start = curEvent.start;
+          let end = curEvent.end;
+
+          console.log(curEvent.summary, dayjs(start).format('YY-MM-DD HH:mm'), '–', dayjs(end).format('YY-MM-DD HH:mm'));
+          // console.log('Recurrence start:', start)
+        }
 
       });
     }
