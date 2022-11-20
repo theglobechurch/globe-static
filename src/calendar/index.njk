@@ -35,10 +35,11 @@ layout: layouts/base.njk
         {% endfor %}
       </div>
       {% endif %}
-      {{ event.title }}
-      {{ event.startDate }} - {{ event.endDate }}
-      {{ event.duration }}
-      {{ event.location }}
+      {{ event.title }}<br />
+      {{ event.startDate | formatDate('dddd, D MMMM YYYY') }}<br />
+      {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
+
+      <p>{{ event.location }}</p>
     </a>
   {% endfor %}
 </div>
