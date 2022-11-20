@@ -106,7 +106,7 @@ function parseEvents(icalRaw) {
           curEvent.start = start.toDate();
           curEvent.end = end.toDate();
 
-          returnEvents.push(eventBuilder(curEvent));
+          returnEvents.push(eventBuilder(curEvent), true);
         }
 
       });
