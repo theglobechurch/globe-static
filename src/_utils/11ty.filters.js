@@ -1,9 +1,16 @@
 const dayjs = require("dayjs");
 const isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
 const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
+const utc = require('dayjs/plugin/utc');
+const timezone = require('dayjs/plugin/timezone');
+const localTimezone = "Europe/London";
 
-dayjs.extend(isSameOrBefore);
-dayjs.extend(isSameOrAfter);
+dayjs
+  .extend(isSameOrBefore)
+  .extend(isSameOrAfter)
+  .extend(utc)
+  .extend(timezone)
+  .tz.setDefault(localTimezone);
 
 module.exports = {
   formatDate: (dateObj, format = 'YYYY-MM-DD') => {
