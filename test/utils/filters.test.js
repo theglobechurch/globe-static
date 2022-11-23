@@ -3,7 +3,7 @@ const filters = require('../../src/_utils/11ty.filters');
 const events = require('../data/events.json');
 
 describe('Format date', () => {
-  const dateStr = "2024-04-27T10:30:00+01:00";
+  const dateStr = "2024-04-27T10:30:00";
   const dateFormat = "dddd, D MMMM YYYY, h:mma";
 
   test('Format date defaults to year,month,day', () => {

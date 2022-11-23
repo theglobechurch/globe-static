@@ -128,8 +128,9 @@ function removeHtmlForParsing(input) {
 }
 
 function eventBuilder(event, recurring = false) {
-  start = dayjs(event.start);
-  end = dayjs(event.end);
+
+  start = dayjs(event.start).tz("Etc/UTC");
+  end = dayjs(event.end).tz("Etc/UTC");
 
   let eventDesc = removeHtmlForParsing(event.description);
   eventDesc = frontMatter(eventDesc);
