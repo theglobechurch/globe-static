@@ -3,66 +3,67 @@
   The Globe Church is all about Jesus, made up of all sorts of people, involved in the greatest mission...
 </div>
 
-<footer id="footer" class="border-t text-sm pt-4 mt-4 mx-4 md:max-w-[75%]">
-  <nav>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-5 md:max-w-[75%]">
-      <ul>
-        <li><a class="text-base " href="/about">About</a></li>
-        <li><a  href="/the-globe-church">The Globe Church</a></li>
-        <li><a  href="/the-team">The team</a></li>
-        <li><a  href="/what-we-believe">What we believe</a></li>
-        <li><a  href="/affiliations">Affiliations</a></li>
-        <li><a  href="/jobs">Jobs</a></li>
-        <li><a  href="/policies">Policies</a></li>
-      </ul>
+<footer id="footer" class="border-t text-sm pt-4 mt-4 mx-4 md:flex md:items-end md:justify-between">
+  <div>
+    <nav>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 gap-5 md:max-w-[75%]">
+        <ul>
+          <li><a class="text-base " href="/about">About</a></li>
+          <li><a  href="/the-globe-church">The Globe Church</a></li>
+          <li><a  href="/the-team">The team</a></li>
+          <li><a  href="/what-we-believe">What we believe</a></li>
+          <li><a  href="/affiliations">Affiliations</a></li>
+          <li><a  href="/jobs">Jobs</a></li>
+          <li><a  href="/policies">Policies</a></li>
+        </ul>
 
-      <ul>
-        <li><a class="text-base "href="/sundays">Sundays</a></li>
-        <li><a  href="/join-us-this-sunday">Join us this Sunday</a></li>
-        <li><a  href="/what-to-expect">What to expect</a></li>
-        <li><a  href="/when-and-where">When and where</a></li>
-      </ul>
+        <ul>
+          <li><a class="text-base "href="/sundays">Sundays</a></li>
+          <li><a  href="/join-us-this-sunday">Join us this Sunday</a></li>
+          <li><a  href="/what-to-expect">What to expect</a></li>
+          <li><a  href="/when-and-where">When and where</a></li>
+        </ul>
 
-      <ul>
-        <li><a class="text-base "href="/calendar">Calendar</a></li>
-        <li><a  href="/bible-studies">Bible studies</a></li>
-        <li><a  href="/prayer-meetings">Prayer meetings</a></li>
-        <li><a  href="/this-week">This week</a></li>
-        <li><a  href="/all-events">All events</a></li>
-      </ul>
+        <ul>
+          <li><a class="text-base "href="/calendar">Calendar</a></li>
+          <li><a  href="/bible-studies">Bible studies</a></li>
+          <li><a  href="/prayer-meetings">Prayer meetings</a></li>
+          <li><a  href="/this-week">This week</a></li>
+          <li><a  href="/all-events">All events</a></li>
+        </ul>
 
-      <ul>
-        <li><a class="text-base "href="/resources">Resources</a></li>
-        <li><a  href="/sermon-archive">Sermon archive</a></li>
-        <li><a  href="/church-blog">Church blog</a></li>
-      </ul>
+        <ul>
+          <li><a class="text-base "href="/resources">Resources</a></li>
+          <li><a  href="/sermon-archive">Sermon archive</a></li>
+          <li><a  href="/church-blog">Church blog</a></li>
+        </ul>
 
-      <ul>
-        <li><a class="text-base "href="/get-involved">Get involved</a></li>
-        <li><a  href="/students">Students</a></li>
-        <li><a  href="/serving-teams">Serving teams</a></li>
-        <li><a  href="/mission-partners">Mission partners</a></li>
-        <li><a  href="/membership">Membership</a></li>
-        <li><a  href="/training-scheme">Training scheme</a></li>
-        <li><a  href="/giving">Giving</a></li>
-      </ul>
+        <ul>
+          <li><a class="text-base "href="/get-involved">Get involved</a></li>
+          <li><a  href="/students">Students</a></li>
+          <li><a  href="/serving-teams">Serving teams</a></li>
+          <li><a  href="/mission-partners">Mission partners</a></li>
+          <li><a  href="/membership">Membership</a></li>
+          <li><a  href="/training-scheme">Training scheme</a></li>
+          <li><a  href="/giving">Giving</a></li>
+        </ul>
 
-      <ul>
-        <li><a class="text-base "href="/contact">Contact</a></li>
-        <li><a  href="/get-in-touch">Get in touch</a></li>
-        <li><a  href="/newsletter">Newsletter</a></li>
-      </ul>
+        <ul>
+          <li><a class="text-base "href="/contact">Contact</a></li>
+          <li><a  href="/get-in-touch">Get in touch</a></li>
+          <li><a  href="/newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="mt-8 pb-8">
+        &copy; Copyright 2015 - {{ data.currentYear }} The Globe Church &middot;
+        Registered Charity 1160195 &middot;
+        <a href="/about/our-privacy-policy">Privacy Policy</a>
     </div>
-  </nav>
+  </div>
 
-<div class="-rotate-90 scale-[1.04] hidden md:block absolute right-7">
-    {% svgIcon "tgcLogoOutline" %}
-</div>
-
-
-  <div class="mt-8 pb-8">
-      &copy; Copyright 2015 - {{ data.currentYear }} The Globe Church &middot;
-      Registered Charity 1160195 &middot;
-      <a href="/about/our-privacy-policy">Privacy Policy</a>
+  <div class="hidden md:block absolute right-0 mb-8">
+    {% svgIcon "tgcFooter", "w-[100px] h-[350px]" %}
   </div>
 </footer>
