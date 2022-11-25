@@ -5,6 +5,9 @@ layout: layouts/base.njk
 <div class="grid gap-4">
   <h2>Events this week</h2>
 
+{% svgIcon "pin", "h-16 w-16 text-orange" %}
+{% svgIcon "clock", "h-16 w-16 text-green" %}
+
   {% for event in events | eventThisWeek | eventsSort %}
     <a
       href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
