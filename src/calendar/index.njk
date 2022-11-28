@@ -2,31 +2,44 @@
 title: Calendar
 layout: layouts/base.njk
 ---
-<div class="grid gap-4">
+
+<div class="grid grid-flow-row gap-4">
+  <!-- ICON'S
+    {% svgIcon "pin", "h-16 w-16 text-orange" %}
+    {% svgIcon "clock", "h-16 w-16 text-green" %}
+  -->  
+
   <h2>Events this week</h2>
-
-{% svgIcon "pin", "h-16 w-16 text-orange" %}
-{% svgIcon "clock", "h-16 w-16 text-green" %}
-
   {% for event in events | eventThisWeek | eventsSort %}
+  <!-- BORDER & COLOUR -->  
     <a
       href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
       class="block border p-4 hover:border-blue"
       itemscope itemtype="https://schema.org/Event"
     >
-      <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
-        {{ event.startDate | formatDate('dddd, D MMMM YYYY, h:mma') }} ({{ event.duration }})
-      </date>
 
+  <!-- NAME OF EVENT --> 
       <p itemprop="name">
         {{ event.title }}
       </p>
 
-      <p itemprop="location" itemscope itemtype="https://schema.org/Place">{{ event.location }}</p>
+  <!-- DATE & TIME --> 
+      <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
+        {% svgIcon "clock", "h-3 w-3 text-green" %}
+        {{ event.startDate | formatDate('dddd, D MMMM YYYY, h:mma') }} ({{ event.duration }})
+      </date>
+   
+  <!-- LOCATION -->     
+      <p itemprop="location" itemscope itemtype="https://schema.org/Place">
+          {% svgIcon "pin", "h-3 w-3 text-orange" %}
+          {{ event.location}}
+      </p>
+
     </a>
   {% endfor %}
 
-  <hr />
+  <!-- HORIZONTAL BREAKPOINT -->  
+  <hr>
 
   <h2>Future events</h2>
   {% for event in events | eventsFuture(7, 'day') | eventsSort %}
