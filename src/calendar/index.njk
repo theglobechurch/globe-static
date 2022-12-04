@@ -6,109 +6,107 @@ layout: layouts/base.njk
 <div class="grid grid-flow-row gap-3">
   <h2 class="text-xl mt-5 mx-4">EVENTS THIS WEEK</h2>
   {% for event in events | eventThisWeek | eventsSort %}
-    <!-- BORDER, COLOUR & HREF LINK ??? -->  
-      <a
+    <!-- BORDER, COLOUR & HREF LINK ??? -->
+    <a
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
         class="p-4 no-underline"
         itemscope itemtype="https://schema.org/Event"
       >
 
-    <!-- DATE OF EVENT -->  
+      <!-- DATE OF EVENT -->
       <div class="text-lg text-black">
-        {{ event.startDate | formatDate('dddd D MMMM') }} 
+        {{ event.startDate | formatDate('dddd D MMMM') }}
       </div>
 
-    <!-- LINE -->  
+      <!-- LINE -->
       <hr class="pb-1 pt-1 text-black">
 
-    <!-- NAME OF EVENT --> 
-        <p itemprop="name">
-          {{ event.title }}
-        </p>
+      <!-- NAME OF EVENT -->
+      <p itemprop="name">
+        {{ event.title }}
+      </p>
 
-    <!-- TIME --> 
-        <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
-        <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
-          {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
+      <!-- TIME -->
+      <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
+      <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
+        {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
         </date>
-    
-    <!-- LOCATION -->     
-        <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
-        <p class="text-xs" itemprop="location" itemscope itemtype="https://schema.org/Place">
-            {{ event.location}}
-        </p>
-    
-    <!-- MORE INFORMATION -->  
-        <p class="text-xs hover:underline">
+
+      <!-- LOCATION -->
+      <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
+      <p class="text-xs" itemprop="location" itemscope itemtype="https://schema.org/Place">
+        {{ event.location}}
+      </p>
+
+      <!-- MORE INFORMATION -->
+      <p class="text-xs hover:underline">
           More information
         </p>
 
-    <!-- EVENT TAGS -->  
-        {% if event.data.tags %}
+      <!-- EVENT TAGS -->
+      {% if event.data.tags %}
         <div>
           {% for tag in event.data.tags %}
             <span class="rounded bg-orange px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
           {% endfor %}
         </div>
-        {% endif %}
-        
-      </a>
-  {% endfor %}
+      {% endif %}
 
+    </a>
+  {% endfor %}
 
   <h2 class="text-xl mt-6 mx-4">FUTURE EVENTS</h2>
   {% for event in events | eventsFuture(7, 'day') | eventsSort %}
-  <!-- BORDER, COLOUR & HREF LINK ??? -->  
-      <a 
+    <!-- BORDER, COLOUR & HREF LINK ??? -->
+    <a 
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" 
         class="p-4 no-underline"
       >
 
-  <!-- DATE OF EVENT -->  
-    <div class="text-lg text-black">
-      {{ event.startDate | formatDate('dddd D MMMM') }} 
-    </div>
+      <!-- DATE OF EVENT -->
+      <div class="text-lg text-black">
+        {{ event.startDate | formatDate('dddd D MMMM') }}
+      </div>
 
-  <!-- LINE -->  
-    <hr class="pb-1 pt-1 text-black">
+      <!-- LINE -->
+      <hr class="pb-1 pt-1 text-black">
 
-  <!-- NAME OF EVENT --> 
+      <!-- NAME OF EVENT -->
       <p itemprop="name">
         {{ event.title }}
       </p>
-      
-  <!-- TIME --> 
+
+      <!-- TIME -->
       <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
       <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
         {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
       </date>
 
-  <!-- LOCATION -->     
+      <!-- LOCATION -->
       <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
       <p class="text-xs">
         {{ event.location }}
       </p>
 
-  <!-- MORE INFORMATION -->  
+      <!-- MORE INFORMATION -->
       <p class="text-xs hover:underline">
         More information
-      </p> 
+      </p>
 
-  <!-- EVENT TAGS -->  
+      <!-- EVENT TAGS -->
       {% if event.data.tags %}
-      <div>
-        {% for tag in event.data.tags %}
-          <span class="rounded bg-orange px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
-        {% endfor %}
-      </div>
+        <div>
+          {% for tag in event.data.tags %}
+            <span class="rounded bg-orange px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
+          {% endfor %}
+        </div>
       {% endif %}
 
     </a>
   {% endfor %}
 </div>
 
-
- <!-- SEPERATING OUT DATE & TIME FORMAT - EXAMPLES
+<!-- SEPERATING OUT DATE & TIME FORMAT - EXAMPLES
   {{ event.startDate | formatDate('dddd, D MMMM YYYY') }}<br />
   {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
-  -->  
+  -->
