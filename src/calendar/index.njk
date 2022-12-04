@@ -5,18 +5,32 @@ layout: layouts/base.njk
 
 <div class="grid grid-flow-row gap-3">
   <h2 class="text-xl mt-5 mx-4">EVENTS THIS WEEK</h2>
+
   {% for event in events | eventThisWeek | eventsSort %}
-    <!-- BORDER, COLOUR & HREF LINK ??? -->
+
+    <!-- DATE OF EVENT WITHOUT IF STATEMENT 
+    <div class="p-4 -mb-11 text-lg text-black">
+      {{ event.startDate | formatDate('dddd D MMMM') }}
+    </div>
+    -->
+
+    <!-- DATE OF EVENT WITH AND IF STATEMENT -->
+    {% if event.startDate == date %}
+      <div> </div>
+    {% else event.startDate !== date %}
+      <div class="p-4 -mb-11 text-lg text-black">
+        {{ event.startDate | formatDate('dddd D MMMM') }}
+      </div>
+    {% endif %}
+
+
+
+    <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
     <a
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
         class="p-4 no-underline"
         itemscope itemtype="https://schema.org/Event"
       >
-
-      <!-- DATE OF EVENT -->
-      <div class="text-lg text-black">
-        {{ event.startDate | formatDate('dddd D MMMM') }}
-      </div>
 
       <!-- LINE -->
       <hr class="pb-1 pt-1 text-black">
@@ -57,16 +71,16 @@ layout: layouts/base.njk
 
   <h2 class="text-xl mt-6 mx-4">FUTURE EVENTS</h2>
   {% for event in events | eventsFuture(7, 'day') | eventsSort %}
-    <!-- BORDER, COLOUR & HREF LINK ??? -->
+    <!-- DATE OF EVENT -->
+    <div class="p-4 -mb-11 text-lg text-black">
+      {{ event.startDate | formatDate('dddd D MMMM') }}
+    </div>
+
+    <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
     <a 
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" 
         class="p-4 no-underline"
       >
-
-      <!-- DATE OF EVENT -->
-      <div class="text-lg text-black">
-        {{ event.startDate | formatDate('dddd D MMMM') }}
-      </div>
 
       <!-- LINE -->
       <hr class="pb-1 pt-1 text-black">
