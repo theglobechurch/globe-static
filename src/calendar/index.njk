@@ -6,17 +6,17 @@ layout: layouts/base.njk
 <div class="grid grid-flow-row gap-3">
   <h2 class="text-xl mt-5 mx-4">EVENTS THIS WEEK</h2>
 
-  {% set date = 'null' %}
+  {% set datevariable = "null" %}
   {% for event in events | eventThisWeek | eventsSort %}
 
-    {% if event.startDate !== date %}
+    {% if event.startDate !== datevariable %}
       <!-- DATE OF EVENT-->
       <div class="mx-4 text-lg text-black">
         {{ event.startDate | formatDate('dddd D MMMM') }}
       </div>
       <!-- LINE -->
       <hr class="mx-4 -mt-1 text-black"/>
-      {% set date = event.startDate %}
+      {% set datevariable = event.startDate %}
     {% endif %}
 
     <div class="mx-4 grid grid-flow-row grid-cols-2 gap-3">
@@ -65,17 +65,17 @@ layout: layouts/base.njk
 
 
   <h2 class="text-xl mt-6 mx-4">FUTURE EVENTS</h2>
-  {% set date = 'null' %}
+  {% set futuredate = "null" %}
   {% for event in events | eventsFuture(7, 'day') | eventsSort %}
 
-    {% if event.startDate !== date %}
+    {% if event.startDate !== futuredate %}
       <!-- DATE OF EVENT-->
       <div class="mx-4 text-lg text-black">
         {{ event.startDate | formatDate('dddd D MMMM') }}
       </div>
       <!-- LINE -->
       <hr class="mx-4 -mt-1 text-black"/>
-      {% set date = event.startDate %}
+      {% set futuredate = event.startDate %}
     {% endif %}
 
     <div class="mx-4 grid grid-flow-row grid-cols-2 gap-3">
