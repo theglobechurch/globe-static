@@ -9,7 +9,7 @@ layout: layouts/base.njk
   {% set datevariable = "null" %}
   {% for event in events | eventThisWeek | eventsSort %}
 
-    {% if event.startDate !== datevariable %}
+    {% if event.startDate != datevariable %}
       <!-- DATE OF EVENT-->
       <div class="mx-4 text-lg text-black">
         {{ event.startDate | formatDate('dddd D MMMM') }}
@@ -68,7 +68,7 @@ layout: layouts/base.njk
   {% set futuredate = "null" %}
   {% for event in events | eventsFuture(7, 'day') | eventsSort %}
 
-    {% if event.startDate !== futuredate %}
+    {% if event.startDate != futuredate %}
       <!-- DATE OF EVENT-->
       <div class="mx-4 text-lg text-black">
         {{ event.startDate | formatDate('dddd D MMMM') }}
