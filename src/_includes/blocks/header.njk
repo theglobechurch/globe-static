@@ -2,10 +2,6 @@
   Skip to site content
 </a>
 
-{# <div class="text-blue bg-gold p-4 text-center tracking-wide">
-  ⚠️ This site is work in progress. Please see <a class="text-blue" href="https://globe.church">globe.church</a> for the current site.
-</div> #}
-
 <header class="relative" x-data="coreNav">
 
   <a href="/" title="The Globe Church" class="w-[175px] h-[110px] top-[-3.2rem] uppercase font-bold no-underline fixed right-2 z-10 sm:w-fit sm:top-[-3.2rem] sm:right-4">
@@ -13,7 +9,7 @@
     {% svgIcon "tgcLogoFilled", "w-full" %}
   </a>
 
-  <div class="fixed left-0 top-0 sm:bottom-0 px-2 py-2 z-20 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
+  <div class="fixed left-0 top-0 sm:bottom-0 px-2 py-2 z-30 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
     <a href="#footer" @click.prevent="toggle" class="rounded bg-white p-1 flex items-center no-underline sm:flex-col sm:bg-transparent sm:p-0 sm:mt-2 sm:text-white sm:hover:text-orange">
       <div class="w-6 h-6 flex items-center relative mr-1 sm:mb-2 sm:mr-0">
         <span x-bind:class="navOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'"
@@ -35,7 +31,7 @@
 
 
   <div
-    class="bg-white/75 fixed z-0 inset-0"
+    class="bg-white/75 fixed z-10 inset-0"
     x-show="navOpen"
     x-transition.opacity
     x-cloak
@@ -43,7 +39,7 @@
   </div>
 
   <div
-    class="sm:ml-16 fixed z-10 top-0 bottom-0 transition-transform"
+    class="sm:ml-16 max-w-[90%] fixed z-20 top-0 bottom-0 transition-transform"
     x-show="navOpen"
     x-cloak
     x-transition:enter="transition duration-300 -translate-x-32"

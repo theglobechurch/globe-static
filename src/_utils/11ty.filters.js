@@ -53,6 +53,8 @@ module.exports = {
   },
 
   eventsOneOff: (events) => {
-    return events.filter(event => event.reoccurring == false);
+    return events.filter(event => {
+      return event.recurring === false
+    });
   }
 }

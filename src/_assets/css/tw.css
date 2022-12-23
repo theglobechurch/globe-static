@@ -33,4 +33,9 @@
   [x-cloak] {
     display: none !important;
   }
+
+  .glbHeading {
+    @apply uppercase font-bold tracking-wider text-xl;
+    color: theme('colors.blue.DEFAULT');
+  }
 }
