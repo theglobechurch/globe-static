@@ -15,7 +15,7 @@ module.exports = function (eleventyConfig) {
   });
 
   // Shortcodes
-  eleventyConfig.addNunjucksAsyncShortcode("image", shortcodes.testImg);
+  eleventyConfig.addNunjucksAsyncShortcode("rwdImg", shortcodes.rwdImg);
   eleventyConfig.addNunjucksShortcode("svgIcon", shortcodes.svgIcon);
 
   // Filters

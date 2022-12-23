@@ -8,12 +8,12 @@
 
 <header class="relative" x-data="coreNav">
 
-  <a href="/" title="The Globe Church" class="w-[175px] h-[110px] -top-12 uppercase font-bold no-underline fixed right-4 sm:w-fit sm:-top-12">
+  <a href="/" title="The Globe Church" class="w-[175px] h-[110px] top-[-3.2rem] uppercase font-bold no-underline fixed right-2 z-10 sm:w-fit sm:top-[-3.2rem] sm:right-4">
     <h1 class="sr-only">The Globe Church</h1>
     {% svgIcon "tgcLogoFilled", "w-full" %}
   </a>
 
-  <div class="fixed left-0 top-0 sm:bottom-0 px-4 py-2 z-20 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
+  <div class="fixed left-0 top-0 sm:bottom-0 px-2 py-2 z-20 sm:bg-blue sm:p-4 sm:text-white sm:w-16">
     <a href="#footer" @click.prevent="toggle" class="rounded bg-white p-1 flex items-center no-underline sm:flex-col sm:bg-transparent sm:p-0 sm:mt-2 sm:text-white sm:hover:text-orange">
       <div class="w-6 h-6 flex items-center relative mr-1 sm:mb-2 sm:mr-0">
         <span x-bind:class="navOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'"

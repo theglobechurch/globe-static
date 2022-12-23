@@ -20,11 +20,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   html {
     @apply text-blue;
-    font-family: 'brandon-grotesque', sans-serif;
+    font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
   }
 
   a {

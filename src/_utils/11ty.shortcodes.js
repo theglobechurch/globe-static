@@ -1,13 +1,13 @@
 const eleventyImage = require("@11ty/eleventy-img");
 
 module.exports = {
-  testImg: async function(filepath, alt, widths, classes, sizes) {
+  rwdImg: async function(filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw") {
 
     let options = {
       formats: ["avif", "webp", "png"],
       widths: widths || [null],
-      urlPath: "/img/built/",
-      outputDir: "./dist/img/built/",
+      urlPath: "_assets/img/built/",
+      outputDir: "./dist/_assets/img/built/",
     };
 
     let stats = await eleventyImage(filepath, options);
@@ -16,7 +16,7 @@ module.exports = {
       alt,
       loading: "lazy",
       decoding: "async",
-      sizes: sizes || "(min-width: 22em) 30vw, 100vw",
+      sizes: sizes,
       class: classes,
     });
   },
