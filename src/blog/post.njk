@@ -6,12 +6,12 @@ pagination:
 permalink: "blog/{{ posts.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
-  title: "{{ posts.title.rendered }}"
+  title: "{{ posts.title.rendered | safe }}"
 ---
 
 <main class="mt-12 px-4">
   <header class="m-4 mx-auto lg:container">
-    <h1 class="p-4 glbHeading md:text-2xl">{{ title }}</h1>
+    <h1 class="p-4 glbHeading md:text-2xl">{{ title | safe }}</h1>
   </head>
 
   <div class="mx-auto lg:container">

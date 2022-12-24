@@ -1,7 +1,7 @@
 ---
 pagination:
   data: posts
-  size: 2
+  size: 5
 title: Church blog
 layout: default
 ---
@@ -13,38 +13,60 @@ layout: default
     </h1>
   </header>
 
-
-  {%- for item in pagination.items %}
+  {% for item in pagination.items %}
     <a href="/blog/{{ item.slug }}" class="block mb-4 p-4 border border-orange text-blue no-underline lg:container mx-auto sm:mb-8 hover:border-blue">
-      <h2 class="uppercase font-bold">{{ item.title.rendered }}</h2>
+      <h2 class="uppercase font-bold">{{ item.title.rendered | safe }}</h2>
       <date class="text-sm mb-4 block">{{ item.date | formatDate('dddd, D MMMM YYYY') }}</date>
-      <p>{{ item.excerpt.rendered | striptags }}</p>
+      <p>{{ item.excerpt.rendered | striptags | safe }}</p>
     </a>
-  {% endfor -%}
+  {% endfor %}
 
   <nav class="m-4 mx-auto lg:container">
     <ol class="p-4 flex gap-4 justify-between">
-      <li>
+      <li class="flex gap-4">
+        {% if pagination.pages | length > 9 %}
+        {% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">First</a>{% endif %}
+        {% endif %}
         {% if pagination.href.previous %}
           <a href="{{ pagination.href.previous }}">Previous</a>
         {% else %}&nbsp;{% endif %}
       </li>
       <li>
-        <ol>
-        {% for pageEntry in pagination.pages %}
-          <li>
-            <a href="{{ pagination.hrefs[ loop.index0 ] }}" {% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page" {% endif %}>Page
-              {{ loop.index }}
-            </a>
-          </li>
-        {% endfor %}
+        <ol class="flex gap-2">
+        {% if pagination.pages | length > 9 %}
+          {% for pageEntry in pagination.pages %}
+            {% if loop.index0 >= pagination.pageNumber - 4 and loop.index0 <= pagination.pageNumber + 4 %}
+
+              <li>
+                <a href="{{ pagination.hrefs[ loop.index0 ] }}" {% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page" {% endif %}>
+                  Page {{ loop.index }}
+                </a>
+              </li>
+
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% for pageEntry in pagination.pages %}
+            <li>
+              <a href="{{ pagination.hrefs[ loop.index0 ] }}" {% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page" {% endif %}>
+                Page {{ loop.index }}
+              </a>
+            </li>
+          {% endfor %}
+        {% endif %}
         </ol>
       </li>
-      <li>
+
+      <li class="flex gap-4">
         {% if pagination.href.next %}
           <a href="{{ pagination.href.next }}">Next</a>
-        {% else %}&nbsp;{% endif %}
+        {% else %}<span>&nbsp;</span>{% endif %}
+
+        {% if pagination.pages | length > 9 %}
+        {% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}">Last</a>{% endif %}
+        {% endif %}
       </li>
+
     </ol>
   </nav>
 </main>

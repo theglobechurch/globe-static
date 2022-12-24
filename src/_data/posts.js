@@ -8,9 +8,11 @@ if (!process.env.API_BASE) {
   return false;
 }
 
-const base = `${process.env.API_BASE}posts`;
+const base = `${process.env.API_BASE}posts?per_page=50`;
+let thisPage = 1;
+let totalPages = 1;
 
-module.exports = () => {
+module.exports = async () => {
   let asset = new AssetCache("posts");
 
   if (ENABLE_11TY_CACHE && asset.isCacheValid("1d")) {
@@ -20,10 +22,36 @@ module.exports = () => {
 
   console.log("✏️  Fetching posts");
 
-  return fetch(base)
-    .then((res) => res.json())
-    .then((json) => {
-      asset.save(json, "json");
-      return json
-    });
+  return new Promise(async (resolve, reject) => {
+    // Get the first round of posts
+    let posts = await fetchPosts();
+
+    // Loop through rest of pages…
+    while (totalPages >= thisPage) {
+      t = await fetchPosts();
+      Array.prototype.push.apply(posts, t);
+    }
+
+    asset.save(posts, "json");
+    console.log(`✏️  Imported ${posts.length} posts`);
+    resolve(posts);
+  });
 };
+
+
+async function fetchPosts() {
+  const url = `${base}&page=${thisPage}`;
+  return fetch(url)
+    .then((res) => {
+      return {
+        statusCode: res.status,
+        headers: Object.fromEntries(res.headers.entries()),
+        data: res.json()
+      };
+    })
+    .then((res) => {
+      totalPages = res.headers['x-wp-totalpages'];
+      thisPage++;
+      return res.data;
+    });
+}

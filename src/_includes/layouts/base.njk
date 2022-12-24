@@ -9,7 +9,7 @@
 
     <title>
       {% if title %}
-        {{ title }} &middot;
+        {{ title | safe }} &middot;
       {% endif %}
       The Globe Church
     </title>
