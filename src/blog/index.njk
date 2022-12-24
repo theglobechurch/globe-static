@@ -2,36 +2,49 @@
 pagination:
   data: posts
   size: 2
-title: Latest Posts
-layout: layouts/base.njk
+title: Church blog
+layout: default
 ---
 
-<ol>
+<main class="mt-12 px-4">
+  <header class="m-4 mx-auto lg:container">
+    <h1 class="p-4 glbHeading md:text-2xl">
+      Church blog
+    </h1>
+  </header>
+
+
   {%- for item in pagination.items %}
-    <li>
-      <a href="/blog/{{ item.slug }}">
-        {{ item.title.rendered }}</li>
+    <a href="/blog/{{ item.slug }}" class="block mb-4 p-4 border border-orange text-blue no-underline lg:container mx-auto sm:mb-8 hover:border-blue">
+      <h2 class="uppercase font-bold">{{ item.title.rendered }}</h2>
+      <date class="text-sm mb-4 block">{{ item.date | formatDate('dddd, D MMMM YYYY') }}</date>
+      <p>{{ item.excerpt.rendered | striptags }}</p>
     </a>
   {% endfor -%}
-</ol>
 
-<nav>
-  <ol>
-    <li>
-      {% if pagination.href.previous %}
-        <a href="{{ pagination.href.previous }}">Previous</a>
-      {% else %}Previous{% endif %}
-    </li>
-    {%- for pageEntry in pagination.pages %}
+  <nav class="m-4 mx-auto lg:container">
+    <ol class="p-4 flex gap-4 justify-between">
       <li>
-        <a href="{{ pagination.hrefs[ loop.index0 ] }}" {% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page" {% endif %}>Page
-          {{ loop.index }}</a>
+        {% if pagination.href.previous %}
+          <a href="{{ pagination.href.previous }}">Previous</a>
+        {% else %}&nbsp;{% endif %}
       </li>
-    {%- endfor %}
-    <li>
-      {% if pagination.href.next %}
-        <a href="{{ pagination.href.next }}">Next</a>
-      {% else %}Next{% endif %}
-    </li>
-  </ol>
-</nav>
+      <li>
+        <ol>
+        {% for pageEntry in pagination.pages %}
+          <li>
+            <a href="{{ pagination.hrefs[ loop.index0 ] }}" {% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page" {% endif %}>Page
+              {{ loop.index }}
+            </a>
+          </li>
+        {% endfor %}
+        </ol>
+      </li>
+      <li>
+        {% if pagination.href.next %}
+          <a href="{{ pagination.href.next }}">Next</a>
+        {% else %}&nbsp;{% endif %}
+      </li>
+    </ol>
+  </nav>
+</main>

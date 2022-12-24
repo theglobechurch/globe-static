@@ -9,9 +9,14 @@ eleventyComputed:
   title: "{{ posts.title.rendered }}"
 ---
 
-<article class="prose lg:prose-xl">
-  <h1>{{ title }}</h1>
-  <div class="mainContent">
+<main class="mt-12 px-4">
+  <header class="m-4 mx-auto lg:container">
+    <h1 class="p-4 glbHeading md:text-2xl">{{ title }}</h1>
+  </head>
+
+  <div class="mx-auto lg:container">
+    <article class="px-4 prose prose-globeBlue lg:prose-xl">
       {{ posts.content.rendered | safe }}
+    </article>
   </div>
-</article>
+</main>
