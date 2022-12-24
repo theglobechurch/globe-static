@@ -96,6 +96,6 @@ describe('One off events', () => {
     const oneOffEvents = filters.eventsOneOff(events);
     expect(oneOffEvents).toBeInstanceOf(Array);
     expect(oneOffEvents.length).toEqual(2);
-    expect(oneOffEvents[0].reoccuring).toBeFalsy();
+    expect(oneOffEvents[0].recurring).toBeFalsy();
   });
 });

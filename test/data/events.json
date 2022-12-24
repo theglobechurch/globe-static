@@ -12,7 +12,7 @@
         "Featured Event"
       ]
     },
-    "reoccurring": false
+    "recurring": false
   },
   {
     "title": "Event in the long grass",
@@ -30,7 +30,7 @@
       ],
       "url": "https://test.com"
     },
-    "reoccurring": false
+    "recurring": false
   },
   {
     "title": "Sunday Service",
@@ -43,7 +43,7 @@
     "data": {
       "url": "https://google.com"
     },
-    "reoccurring": true
+    "recurring": true
   },
   {
     "title": "Sunday Service",
@@ -56,6 +56,6 @@
     "data": {
       "url": "https://google.com"
     },
-    "reoccurring": true
+    "recurring": true
   }
 ]
