@@ -9,12 +9,14 @@ eleventyComputed:
   title: "{{ pages.title.rendered }}"
 ---
 
-<main class="container mx-auto py-4">
-  <header class="mx-auto">
-    <h1 class="text-2xl">{{ title }}</h1>
+<main class="mt-12 px-4">
+  <header class="m-4 mx-auto lg:container">
+    <h1 class="p-4 glbHeading md:text-2xl">{{ title }}</h1>
   </header>
 
-  <article class="prose prose-globeBlue lg:prose-xl mx-auto">
-    {{pages.content.rendered | safe}}
-  </article>
+  <div class="mx-auto lg:container">
+    <article class="px-4 prose prose-globeBlue lg:prose-xl">
+      {{ pages.content.rendered | safe }}
+    </article>
+  </div>
 </main>
