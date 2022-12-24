@@ -38,4 +38,8 @@
     @apply uppercase font-bold tracking-wider text-xl;
     color: theme('colors.blue.DEFAULT');
   }
+
+  .glbBtn {
+    @apply px-2 py-1 mr-2 rounded bg-orange text-white no-underline transition-colors hover:bg-blue
+  }
 }
