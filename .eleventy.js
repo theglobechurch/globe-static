@@ -4,7 +4,7 @@ const shortcodes = require("./src/_utils/11ty.shortcodes.js");
 const filters = require("./src/_utils/11ty.filters.js");
 
 module.exports = function (eleventyConfig) {
-  // eleventyConfig.setQuietMode(true);
+  eleventyConfig.setQuietMode(true);
 
   // Plugins
   // eleventyConfig.addPlugin(directoryOutputPlugin);

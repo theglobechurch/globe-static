@@ -1,22 +1,63 @@
 ---
 pagination:
-    data: posts
-    size: 1
-    alias: posts
-permalink: "blog/{{ posts.slug }}/"
+  data: posts
+  size: 1
+  alias: post
+permalink: "blog/{{ post.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
-  title: "{{ posts.title.rendered | safe }}"
+  title: "{{ post.title.rendered | safe }}"
 ---
+{% set authorDetails = post.author | authorLookup(people) %}
 
 <main class="mt-12 px-4">
   <header class="m-4 mx-auto lg:container">
-    <h1 class="p-4 glbHeading md:text-2xl">{{ title | safe }}</h1>
-  </head>
+    <div class="p-4">
+      <a href="/blog">Back to all posts</a>
+      <h1 class="glbHeading md:text-2xl">
+        {{ title | safe }}
+      </h1>
+      <date class="text-sm mb-4 block">{{ post.date | formatDate('dddd, D MMMM YYYY') }}</date>
 
-  <div class="mx-auto lg:container">
-    <article class="px-4 prose prose-globeBlue lg:prose-xl">
-      {{ posts.content.rendered | safe }}
+      {% if post.featured_media %}
+      Featured img: {{ post.featured_media }}
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="mx-auto lg:container lg:grid gap-12 lg:grid-cols-4">
+    <article class="px-4 prose prose-globeBlue lg:prose-xl lg:col-span-3">
+      {{ post.content.rendered | safe }}
     </article>
+
+    <aside class="border-t border-b mt-4 pt-4 lg:mt-0 lg:pt-0 lg:border-0 leading-7 lg:text-lg lg:leading-loose">
+      <div class="sm:grid sm:gap-4 sm:grid-cols-2 lg:grid-cols-1 lg:sticky lg:top-24 divide-y sm:divide-y-0 lg:divide-y lg:gap-0">
+        <div class="px-4 pb-4">
+          <p class="block font-bold">Written by {{ authorDetails.name }}</p>
+          {% if authorDetails.description %}
+          <p>{{ authorDetails.description }}</p>
+          {% endif %}
+          {# {{ authorDetails.profile_photo_url }} #}
+        </div>
+
+        {# TODO: if other posts by author #}
+        {# <div class="px-4 py-4">
+          <p class="block font-bold">Other posts by {{ authorDetails.name }}</p>
+        </div> #}
+
+        {# else #}
+        <div class="py-4 px-4 sm:pt-0 lg:py-4">
+          <p class="block font-bold">Recent posts</p>
+          <ol class="ml-4 list-disc list-outside">
+            {% for p in posts.slice(0, 5) %}
+              <li><a href="/blog/{{ p.slug }}">{{ p.title.rendered | safe }}</a></li>
+            {% endfor %}
+          </ol>
+          <a href="/blog">All posts</a>
+        </div>
+        {# endif #}
+      </div>
+
+    </aside>
   </div>
 </main>

@@ -52,6 +52,13 @@ async function fetchPosts() {
     .then((res) => {
       totalPages = res.headers['x-wp-totalpages'];
       thisPage++;
+
+      // Loop through each of the responses
+
+      // Clean up the titles; replace HTML entities with actual things
+      // Match up the author info
+      // Pull in featured image
+
       return res.data;
     });
 }

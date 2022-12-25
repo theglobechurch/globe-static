@@ -56,5 +56,12 @@ module.exports = {
     return events.filter(event => {
       return event.recurring === false
     });
+  },
+
+  // TODO: When 11ty 2.0 released
+  // https://www.11ty.dev/docs/filters/#asynchronous-universal-filters
+  authorLookup: (authorId, allAuthors) => {
+    const author = allAuthors.find((author) => parseInt(author.id) === parseInt(authorId))
+    return author;
   }
 }

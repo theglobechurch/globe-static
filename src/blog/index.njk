@@ -22,25 +22,29 @@ layout: default
   {% endfor %}
 
   <nav class="m-4 mx-auto lg:container">
-    <ol class="p-4 flex gap-4 justify-between">
-      <li class="flex gap-4">
+    <ol class="p-4 flex gap-2 sm:gap-4 justify-between">
+      <li class="flex gap-2 sm:gap-4">
         {% if pagination.pages | length > 9 %}
         {% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">First</a>{% endif %}
         {% endif %}
         {% if pagination.href.previous %}
-          <a href="{{ pagination.href.previous }}">Previous</a>
+          <a href="{{ pagination.href.previous }}" aria-label="Previous">Prev</a>
         {% else %}&nbsp;{% endif %}
       </li>
-      <li>
-        <ol class="flex gap-2">
+      <li class="hidden sm:block">
+        <ol class="flex gap-2 sm:gap-4">
         {% if pagination.pages | length > 9 %}
           {% for pageEntry in pagination.pages %}
             {% if loop.index0 >= pagination.pageNumber - 4 and loop.index0 <= pagination.pageNumber + 4 %}
 
               <li>
+                {% if page.url == pagination.hrefs[ loop.index0 ] %}
+                  <span>{{ loop.index }}</span>
+                {% else %}
                 <a href="{{ pagination.hrefs[ loop.index0 ] }}" {% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page" {% endif %}>
-                  Page {{ loop.index }}
+                  {{ loop.index }}
                 </a>
+                {% endif %}
               </li>
 
             {% endif %}
@@ -48,16 +52,20 @@ layout: default
         {% else %}
           {% for pageEntry in pagination.pages %}
             <li>
+              {% if page.url == pagination.hrefs[ loop.index0 ] %}
+                <span>{{ loop.index }}</span>
+              {% else %}
               <a href="{{ pagination.hrefs[ loop.index0 ] }}" {% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page" {% endif %}>
-                Page {{ loop.index }}
+                {{ loop.index }}
               </a>
+              {% endif %}
             </li>
           {% endfor %}
         {% endif %}
         </ol>
       </li>
 
-      <li class="flex gap-4">
+      <li class="flex gap-2 sm:gap-4">
         {% if pagination.href.next %}
           <a href="{{ pagination.href.next }}">Next</a>
         {% else %}<span>&nbsp;</span>{% endif %}
