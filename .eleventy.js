@@ -2,6 +2,7 @@ const directoryOutputPlugin = require("@11ty/eleventy-plugin-directory-output");
 const svgSprite = require("eleventy-plugin-svg-sprite");
 const shortcodes = require("./src/_utils/11ty.shortcodes.js");
 const filters = require("./src/_utils/11ty.filters.js");
+const collections = require("./src/_utils/11ty.collections.js");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setQuietMode(true);
@@ -21,6 +22,11 @@ module.exports = function (eleventyConfig) {
   // Filters
   Object.keys(filters).forEach((filterName) => {
     eleventyConfig.addFilter(filterName, filters[filterName]);
+  });
+
+  // Collections
+  Object.keys(collections).forEach((collectionName) => {
+    eleventyConfig.addCollection(collectionName, collections[collectionName]);
   });
 
   const layouts = [
