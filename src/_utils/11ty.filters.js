@@ -61,7 +61,11 @@ module.exports = {
   // TODO: When 11ty 2.0 released
   // https://www.11ty.dev/docs/filters/#asynchronous-universal-filters
   authorLookup: (authorId, allAuthors) => {
-    const author = allAuthors.find((author) => parseInt(author.id) === parseInt(authorId))
-    return author;
+    return allAuthors.find((author) => parseInt(author.id) === parseInt(authorId))
+  },
+
+  augmentedPageCheck: (pages, slug) => {
+    return pages.find((page) => page.filePathStem.replace('/augmentedPages/', '') === slug)
   }
+
 }

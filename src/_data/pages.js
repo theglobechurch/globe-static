@@ -8,7 +8,7 @@ if (!process.env.API_BASE) {
   return false;
 }
 
-const base = `${process.env.API_BASE}pages`;
+const base = `${process.env.API_BASE}pages?per_page=50`;
 
 module.exports = () => {
   let wpPages = new AssetCache("pages");

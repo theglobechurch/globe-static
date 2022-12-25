@@ -1,0 +1,9 @@
+{% set aug = collections.augmented | augmentedPageCheck(pages.slug) %}
+
+{% if aug %}
+  {% if build.env !== "production" %}
+  <!-- Augmented Content from ./src/augmentedContent/{{pages.slug}} -->
+  {% endif %}
+  {{ aug.templateContent | safe }}
+
+{% endif %}
