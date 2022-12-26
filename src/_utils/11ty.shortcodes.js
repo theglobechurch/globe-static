@@ -8,6 +8,11 @@ module.exports = {
       widths: widths || [null],
       urlPath: "/_assets/img/built/",
       outputDir: "./dist/_assets/img/built/",
+      cacheOptions: {
+        duration: "2y",
+        directory: ".cache",
+        removeUrlQueryParams: false,
+      },
     };
 
     let stats = await eleventyImage(filepath, options);
