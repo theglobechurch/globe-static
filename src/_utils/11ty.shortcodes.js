@@ -2,7 +2,7 @@ const eleventyImage = require("@11ty/eleventy-img");
 
 module.exports = {
   rwdImg: async function(filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw") {
-
+    console.log(`Fetching: ${filepath}`)
     let options = {
       formats: ["avif", "webp", "jpg"],
       widths: widths || [null],

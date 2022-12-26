@@ -5,7 +5,7 @@ const filters = require("./src/_utils/11ty.filters.js");
 const collections = require("./src/_utils/11ty.collections.js");
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.setQuietMode(true);
+  // eleventyConfig.setQuietMode(true);
 
   // Plugins
   // eleventyConfig.addPlugin(directoryOutputPlugin);

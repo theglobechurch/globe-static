@@ -26,7 +26,7 @@ npm install
 # Get your own env file (see below for details)
 cp .env.example .env
 
-# Let's get goings
+# Let's get going (warning the first run will take a bit of time to pull in and cache all the data and images)
 npm run dev
 ```
 
