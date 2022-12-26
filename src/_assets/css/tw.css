@@ -42,4 +42,207 @@
   .glbBtn {
     @apply px-2 py-1 mr-2 rounded bg-orange text-white no-underline transition-colors hover:bg-blue
   }
+
+  .u-nobr{
+    white-space: nowrap
+  }
+}
+
+
+
+
+.c-church-value {
+  clear: both;
+  padding: 25px 0;
+  position: relative;
+  width: 100%;
+  color: #fff;
+}
+@media (min-width: 500px) {
+  .c-church-value {
+    margin-top: 50px;
+  }
+}
+.c-church-value__background div {
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+}
+@media (min-width: 500px) {
+  .c-church-value__background div {
+    margin: 0 75px;
+  }
+}
+@media (min-width: 1200px) {
+  .c-church-value__background div {
+    margin: 0 auto;
+  }
+}
+.c-church-value__background__blur {
+  display: none;
+}
+@media (min-width: 500px) {
+  .c-church-value__background__blur {
+    display: block;
+    filter: blur(10px) saturate(0.5);
+    position: absolute;
+    transform: scale(1.2);
+    top: 0;
+    width: 100%;
+    z-index: -2;
+  }
+}
+.c-church-value__background__img {
+  width: 100%;
+}
+@media (min-width: 500px) {
+  .c-church-value__background__img {
+    -webkit-filter: grayscale(85%);
+    filter: grayscale(85%);
+    float: right;
+    width: 66%;
+  }
+}
+@media (min-width: 500px) {
+  .c-church-value__background {
+    display: inline-block;
+    overflow: hidden;
+    padding: 75px 0;
+    position: relative;
+    width: 100%;
+  }
+  .c-church-value__background:before {
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+}
+.c-church-value__body {
+  margin: -100px auto 0;
+  max-width: 1200px;
+  padding: 0 20px;
+  position: relative;
+}
+.c-church-value__body div {
+  padding: 10px;
+}
+@media (min-width: 500px) {
+  .c-church-value__body {
+    margin: -30% auto 0;
+    padding: 0 75px 0;
+  }
+  .c-church-value__body div {
+    max-width: 60%;
+    padding: 15px 0;
+  }
+}
+@media (min-width: 1200px) {
+  .c-church-value__body {
+    margin-top: -20%;
+  }
+}
+.c-church-value__body__img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+@media (min-width: 500px) {
+  .c-church-value__body__img {
+    width: 75%;
+  }
+}
+.c-church-value__body__title {
+  font-size: 32px;
+  letter-spacing: 1px;
+  line-height: 36px;
+}
+@media (min-width: 768px) {
+  .c-church-value__body__title {
+    font-size: 48px;
+    letter-spacing: 2.56px;
+    line-height: 58px;
+  }
+}
+.c-church-value__body__tag {
+  font-size: 24px;
+  letter-spacing: 1.3px;
+  line-height: 44px;
+}
+@media (min-width: 768px) {
+  .c-church-value__body__tag {
+    font-size: 30px;
+    letter-spacing: 2.59px;
+    line-height: 52px;
+  }
+}
+.c-church-value__body__detail {
+  font-size: 20px;
+  font-style: italic;
+  letter-spacing: 1.2px;
+  line-height: 38px;
+}
+@media (min-width: 768px) {
+  .c-church-value__body__detail {
+    font-size: 26px;
+    letter-spacing: 1.4px;
+    line-height: 44px;
+  }
+}
+.c-church-value__hugged-text {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  display: inline;
+}
+.c-church-value__hugged-text__padded {
+  padding: 10px;
+}
+@media (min-width: 500px) {
+  .c-church-value--discipling .c-church-value__background__img,
+  .c-church-value--generous .c-church-value__background__img {
+    float: left;
+  }
+  .c-church-value--discipling .c-church-value__body,
+  .c-church-value--generous .c-church-value__body {
+    text-align: right;
+  }
+  .c-church-value--discipling .c-church-value__body div,
+  .c-church-value--generous .c-church-value__body div {
+    clear: both;
+    float: right;
+  }
+}
+.c-church-value--relational .c-church-value__background:before {
+  background-image: linear-gradient(-225deg, rgba(165, 88, 70, 0.59) 39%, rgba(108, 53, 41, 0.89) 97%);
+}
+.c-church-value--relational .c-church-value__hugged-text {
+  background-color: #bf8a7f;
+  box-shadow: -5px 9px 0 #bf8a7f, -5px -10px 0 #bf8a7f, 5px 9px 0 #bf8a7f, 5px -10px 0 #bf8a7f;
+}
+.c-church-value--discipling .c-church-value__background:before {
+  background-image: linear-gradient(-226deg, rgba(67, 67, 67, 0.7) 37%, rgba(35, 29, 29, 0.8) 74%);
+}
+.c-church-value--discipling .c-church-value__hugged-text {
+  background-color: #434343;
+  box-shadow: -5px 9px 0 #434343, -5px -10px 0 #434343, 5px 9px 0 #434343, 5px -10px 0 #434343;
+}
+.c-church-value--missional .c-church-value__background:before {
+  background-image: linear-gradient(-225deg, rgba(122, 115, 69, 0.59) 39%, rgba(122, 115, 69, 0.89) 97%);
+}
+.c-church-value--missional .c-church-value__hugged-text {
+  background-color: #7a7345;
+  box-shadow: -5px 9px 0 #7a7345, -5px -10px 0 #7a7345, 5px 9px 0 #7a7345, 5px -10px 0 #7a7345;
+}
+.c-church-value--generous .c-church-value__background:before {
+  background-image: linear-gradient(-225deg, rgba(88, 141, 116, 0.59) 39%, rgba(54, 92, 74, 0.57) 96%);
+}
+.c-church-value--generous .c-church-value__hugged-text {
+  background-color: #588d74;
+  box-shadow: -5px 9px 0 #588d74, -5px -10px 0 #588d74, 5px 9px 0 #588d74, 5px -10px 0 #588d74;
 }
