@@ -6,7 +6,7 @@ module.exports = {
     let options = {
       formats: ["avif", "webp", "png"],
       widths: widths || [null],
-      urlPath: "_assets/img/built/",
+      urlPath: "/_assets/img/built/",
       outputDir: "./dist/_assets/img/built/",
     };
 
