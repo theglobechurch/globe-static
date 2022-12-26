@@ -4,7 +4,7 @@ layout: layouts/base.njk
 ---
 
 <div class="grid gap-4">
-  <h2 class="text-xl mt-5 mx-4">EVENTS THIS WEEK</h2>
+  <h2 class="text-xl mt-5 mx-4 uppercase">Events this week</h2>
 
   {% set d = null %}
   {% for event in events | eventThisWeek | eventsSort %}
@@ -60,7 +60,7 @@ layout: layouts/base.njk
     </div>
   {% endfor %}
 
-  <h2 class="text-xl mt-6 mx-4">FUTURE EVENTS</h2>
+  <h2 class="text-xl mt-5 mx-4 uppercase">Future events</h2>
 
   {% set futuredate = null %}
   {% for event in events | eventsFuture(7, 'day') | eventsSort %}
