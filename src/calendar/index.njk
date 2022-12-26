@@ -12,12 +12,12 @@ layout: layouts/base.njk
     {% if event.startDate | formatDate !== d %}
       <!-- DATE OF EVENT & BOTTOM LINE-->
       <h3 class="mx-4 text-lg text-black border-b-[1px]">
-        {{ event.startDate | formatDate('dddd D MMMM') }}
+        {{ event.startDate | formatDate('dddd D MMMM') }}3
       </h3>
       {% set d = event.startDate | formatDate %}
     {% endif %}
 
-    <div class="mx-4">
+    <div class="mx-4 grid grid-cols-2 gap-4">
       <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
       <a
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
@@ -73,7 +73,7 @@ layout: layouts/base.njk
       {% set futuredate = event.startDate | formatDate %}
     {% endif %}
 
-    <div class="mx-4">
+    <div class="mx-4 grid grid-cols-2 gap-4">
       <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
       <a 
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" 
