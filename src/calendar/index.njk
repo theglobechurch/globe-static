@@ -17,7 +17,7 @@ layout: layouts/base.njk
       {% set d = event.startDate | formatDate %}
     {% endif %}
 
-    <div class="mx-4 grid grid-flow-row grid-cols-2 gap-3">
+    <div class="mx-4">
       <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
       <a
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
@@ -61,6 +61,7 @@ layout: layouts/base.njk
   {% endfor %}
 
   <h2 class="text-xl mt-6 mx-4">FUTURE EVENTS</h2>
+
   {% set futuredate = null %}
   {% for event in events | eventsFuture(7, 'day') | eventsSort %}
 
@@ -72,47 +73,45 @@ layout: layouts/base.njk
       {% set futuredate = event.startDate | formatDate %}
     {% endif %}
 
-    <div class="grid grid-cols-2 gap-2">
-      <div class="mx-4">
-        <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
-        <a 
+    <div class="mx-4">
+      <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
+      <a 
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" 
         class="no-underline"
       >
 
-          <!-- NAME OF EVENT -->
-          <p itemprop="name">
-            {{ event.title }}
-          </p>
+        <!-- NAME OF EVENT -->
+        <p itemprop="name">
+          {{ event.title }}
+        </p>
 
-          <!-- TIME -->
-          <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
-          <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
-            {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
-      </date>
+        <!-- TIME -->
+        <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
+        <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
+          {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
+        </date>
 
-          <!-- LOCATION -->
-          <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
-          <p class="text-xs">
-            {{ event.location }}
-          </p>
+        <!-- LOCATION -->
+        <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
+        <p class="text-xs">
+          {{ event.location }}
+        </p>
 
-          <!-- MORE INFORMATION -->
-          <p class="text-xs hover:underline">
+        <!-- MORE INFORMATION -->
+        <p class="text-xs hover:underline">
             More information
           </p>
 
-          <!-- EVENT TAGS -->
-          {% if event.data.tags %}
-            <div>
-              {% for tag in event.data.tags %}
-                <span class="rounded bg-orange mb-4 px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
-              {% endfor %}
-            </div>
-          {% endif %}
+        <!-- EVENT TAGS -->
+        {% if event.data.tags %}
+          <div>
+            {% for tag in event.data.tags %}
+              <span class="rounded bg-orange mb-4 px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
 
-        </a>
-      </div>
+      </a>
     </div>
 
   {% endfor %}
