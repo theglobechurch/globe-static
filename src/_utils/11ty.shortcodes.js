@@ -4,7 +4,7 @@ module.exports = {
   rwdImg: async function(filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw") {
 
     let options = {
-      formats: ["avif", "webp", "png"],
+      formats: ["avif", "webp", "jpg"],
       widths: widths || [null],
       urlPath: "/_assets/img/built/",
       outputDir: "./dist/_assets/img/built/",

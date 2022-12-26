@@ -11,16 +11,21 @@ eleventyComputed:
 {% set authorDetails = post.author | authorLookup(people) %}
 
 <main class="mt-12 px-4">
-  <header class="m-4 mx-auto lg:container">
-    <div class="p-4">
-      <a href="/blog">Back to all posts</a>
-      <h1 class="glbHeading md:text-2xl">
-        {{ title | safe }}
-      </h1>
-      <date class="text-sm mb-4 block">{{ post.date | formatDate('dddd, D MMMM YYYY') }}</date>
+  <header class="mx-auto lg:container mb-4">
+    <div class="">
 
       {% if post.featured_media %}
-      Featured img: {{ post.featured_media }}
+      <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">
+        {% rwdImg post.featured_img_url, "", [550, 1024, 1512, 2056], "sm:inset-0 sm:absolute sm:object-cover", "100vw" %}
+
+        <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-white/0 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
+          <a href="/blog" class="hidden sm:block">All posts</a>
+          <h1 class="glbHeading md:text-2xl">
+            {{ title | safe }}
+          </h1>
+          <date class="text-sm block">{{ post.date | formatDate('dddd, D MMMM YYYY') }}</date>
+        </div>
+      </div>
       {% endif %}
     </div>
   </header>
