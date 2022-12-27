@@ -6,13 +6,13 @@ layout: layouts/base.njk
 <div class="grid gap-4">
   <h2 class="text-xl mt-5 mx-4 uppercase">Events this week</h2>
 
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
     {% set d = null %}
     {% for event in events | eventThisWeek | eventsSort %}
 
       {% if event.startDate | formatDate !== d %}
         <!-- DATE OF EVENT & BOTTOM LINE-->
-        <h3 class="mx-4 text-lg  text-black border-b-[1px] col-span-2">
+        <h3 class="mx-4 text-lg  text-black border-b-[1px] col-span-full">
           {{ event.startDate | formatDate('dddd D MMMM') }}
         </h3>
         {% set d = event.startDate | formatDate %}
@@ -63,15 +63,15 @@ layout: layouts/base.njk
 
   </div>
 
-  <h2 class="text-xl mt-5 mx-4 grid grid-cols-1 uppercase">Future events</h2>
+  <h2 class="text-xl mt-5 mx-4 uppercase">Future events</h2>
 
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
     {% set futuredate = null %}
     {% for event in events | eventsFuture(7, 'day') | eventsSort %}
 
       {% if event.startDate | formatDate !== futuredate %}
         <!-- DATE OF EVENT & BOTTOM LINE-->
-        <h3 class="mx-4 text-lg text-black border-b-[1px] col-span-2">
+        <h3 class="mx-4 text-lg text-black border-b-[1px] col-span-full">
           {{ event.startDate | formatDate('dddd D MMMM') }}
         </h3>
         {% set futuredate = event.startDate | formatDate %}
