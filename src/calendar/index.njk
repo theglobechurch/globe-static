@@ -6,113 +6,119 @@ layout: layouts/base.njk
 <div class="grid gap-4">
   <h2 class="text-xl mt-5 mx-4 uppercase">Events this week</h2>
 
-  {% set d = null %}
-  {% for event in events | eventThisWeek | eventsSort %}
+  <div class="grid grid-cols-2 gap-4">
+    {% set d = null %}
+    {% for event in events | eventThisWeek | eventsSort %}
 
-    {% if event.startDate | formatDate !== d %}
-      <!-- DATE OF EVENT & BOTTOM LINE-->
-      <h3 class="mx-4 text-lg text-black border-b-[1px]">
-        {{ event.startDate | formatDate('dddd D MMMM') }}3
-      </h3>
-      {% set d = event.startDate | formatDate %}
-    {% endif %}
+      {% if event.startDate | formatDate !== d %}
+        <!-- DATE OF EVENT & BOTTOM LINE-->
+        <h3 class="mx-4 text-lg  text-black border-b-[1px] col-span-2">
+          {{ event.startDate | formatDate('dddd D MMMM') }}
+        </h3>
+        {% set d = event.startDate | formatDate %}
+      {% endif %}
 
-    <div class="mx-4 grid grid-cols-2 gap-4">
-      <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
-      <a
+      <div class="mx-4">
+        <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
+        <a
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
         class="no-underline"
         itemscope itemtype="https://schema.org/Event"
       >
 
-        <!-- NAME OF EVENT -->
-        <p itemprop="name">
-          {{ event.title }}
-        </p>
+          <!-- NAME OF EVENT -->
+          <p itemprop="name">
+            {{ event.title }}
+          </p>
 
-        <!-- TIME -->
-        <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
-        <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
-          {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
+          <!-- TIME -->
+          <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
+          <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
+            {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
         </date>
 
-        <!-- LOCATION -->
-        <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
-        <p class="text-xs" itemprop="location" itemscope itemtype="https://schema.org/Place">
-          {{ event.location}}
-        </p>
+          <!-- LOCATION -->
+          <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
+          <p class="text-xs" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            {{ event.location}}
+          </p>
 
-        <!-- MORE INFORMATION -->
-        <p class="text-xs hover:underline">
+          <!-- MORE INFORMATION -->
+          <p class="text-xs hover:underline">
           More information
         </p>
 
-        <!-- EVENT TAGS -->
-        {% if event.data.tags %}
-          <div>
-            {% for tag in event.data.tags %}
-              <span class="rounded bg-orange px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
-            {% endfor %}
-          </div>
-        {% endif %}
+          <!-- EVENT TAGS -->
+          {% if event.data.tags %}
+            <div>
+              {% for tag in event.data.tags %}
+                <span class="rounded bg-orange px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
 
-      </a>
-    </div>
-  {% endfor %}
+        </a>
+      </div>
+    {% endfor %}
 
-  <h2 class="text-xl mt-5 mx-4 uppercase">Future events</h2>
+  </div>
 
-  {% set futuredate = null %}
-  {% for event in events | eventsFuture(7, 'day') | eventsSort %}
+  <h2 class="text-xl mt-5 mx-4 grid grid-cols-1 uppercase">Future events</h2>
 
-    {% if event.startDate | formatDate !== futuredate %}
-      <!-- DATE OF EVENT & BOTTOM LINE-->
-      <h3 class="mx-4 text-lg text-black border-b-[1px]">
-        {{ event.startDate | formatDate('dddd D MMMM') }}
-      </h3>
-      {% set futuredate = event.startDate | formatDate %}
-    {% endif %}
+  <div class="grid grid-cols-2 gap-4">
+    {% set futuredate = null %}
+    {% for event in events | eventsFuture(7, 'day') | eventsSort %}
 
-    <div class="mx-4 grid grid-cols-2 gap-4">
-      <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
-      <a 
+      {% if event.startDate | formatDate !== futuredate %}
+        <!-- DATE OF EVENT & BOTTOM LINE-->
+        <h3 class="mx-4 text-lg text-black border-b-[1px] col-span-2">
+          {{ event.startDate | formatDate('dddd D MMMM') }}
+        </h3>
+        {% set futuredate = event.startDate | formatDate %}
+      {% endif %}
+
+      <div class="mx-4">
+        <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
+        <a 
         href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" 
         class="no-underline"
       >
 
-        <!-- NAME OF EVENT -->
-        <p itemprop="name">
-          {{ event.title }}
-        </p>
+          <!-- NAME OF EVENT -->
+          <p itemprop="name">
+            {{ event.title }}
+          </p>
 
-        <!-- TIME -->
-        <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
-        <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
-          {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
+          <!-- TIME -->
+          <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
+          <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
+            {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
         </date>
 
-        <!-- LOCATION -->
-        <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
-        <p class="text-xs">
-          {{ event.location }}
-        </p>
+          <!-- LOCATION -->
+          <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
+          <p class="text-xs">
+            {{ event.location }}
+          </p>
 
-        <!-- MORE INFORMATION -->
-        <p class="text-xs hover:underline">
+          <!-- MORE INFORMATION -->
+          <p class="text-xs hover:underline">
             More information
           </p>
 
-        <!-- EVENT TAGS -->
-        {% if event.data.tags %}
-          <div>
-            {% for tag in event.data.tags %}
-              <span class="rounded bg-orange mb-4 px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
-            {% endfor %}
-          </div>
-        {% endif %}
+          <!-- EVENT TAGS -->
+          {% if event.data.tags %}
+            <div>
+              {% for tag in event.data.tags %}
+                <span class="rounded bg-orange mb-4 px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
 
-      </a>
-    </div>
+        </a>
+      </div>
 
-  {% endfor %}
+    {% endfor %}
+  </div>
+
 </div>
