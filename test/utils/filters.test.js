@@ -99,3 +99,13 @@ describe('One off events', () => {
     expect(oneOffEvents[0].recurring).toBeFalsy();
   });
 });
+
+
+describe('Limit filter', () => {
+  test('Should limit the input array', () => {
+    const inArr = [1,2,3,4,5,6,7,8,9];
+    const outArr = filters.limit(inArr, 2);
+    expect(outArr.length).toEqual(2);
+    expect(outArr).toEqual([1,2]);
+  })
+});

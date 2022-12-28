@@ -66,6 +66,10 @@ module.exports = {
 
   augmentedPageCheck: (pages, slug) => {
     return pages.find((page) => page.filePathStem.replace('/augmentedPages/', '') === slug)
+  },
+
+  limit: (arr, count = 5) => {
+    return arr.slice(0, count);
   }
 
 }

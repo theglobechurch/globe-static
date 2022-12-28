@@ -1,6 +1,7 @@
 require("dotenv").config();
 const fetch = require("node-fetch");
 const { AssetCache } = require("@11ty/eleventy-cache-assets");
+const { async } = require("node-ical");
 const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
 
 if (!process.env.API_BASE) {
@@ -8,7 +9,9 @@ if (!process.env.API_BASE) {
   return false;
 }
 
-const base = `${process.env.API_BASE}users`;
+const base = `${process.env.API_BASE}users?`;
+let thisPage = 1;
+let totalPages = 1;
 
 module.exports = () => {
   let wpUsers = new AssetCache("users");
@@ -20,10 +23,47 @@ module.exports = () => {
 
   console.log("👤 Fetching users");
 
-  return fetch(base)
-    .then((res) => res.json())
-    .then((authorJson) => {
-      wpUsers.save(authorJson, "json");
-      return authorJson
-    });
+  return new Promise(async (resolve, reject) => {
+    // Get the first page of users
+    let users = await fetchUserPage();
+
+    while (totalPages >= thisPage) {
+      t = await fetchUserPage();
+      Array.prototype.push.apply(users, t);
+    }
+
+    wpUsers.save(users, "json");
+    console.log(`✏️  Imported ${users.length} users`);
+    resolve(users);
+  });
 };
+
+
+async function fetchUserPage() {
+  const url = `${base}&page=${thisPage}`;
+
+  return fetch(url)
+    .then((res) => {
+      return {
+        statusCode: res.status,
+        headers: Object.fromEntries(res.headers.entries()),
+        data: res.json()
+      };
+    })
+    .then((res) => {
+      totalPages = res.headers['x-wp-totalpages'];
+      thisPage++;
+
+      res.data.then((authors) => {
+        authors.forEach((author) => {
+          if (author.profile_photo_url) {
+            author.profile_photo_url = author.profile_photo_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+          }
+          return author;
+        });
+        return authors;
+      });
+
+      return res.data;
+    });
+}

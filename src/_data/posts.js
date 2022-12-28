@@ -57,7 +57,6 @@ async function fetchPosts() {
 
       // Clean up the titles; replace HTML entities with actual things
       // Match up the author info
-      // Pull in featured image
 
       return res.data;
     });

@@ -42,27 +42,22 @@ layout: default
     </div>
 
     <div class="justify-between items-center py-4 grid gap-4 sm:grid-cols-2">
-      {% set oneOffEvents = events | eventsFuture | eventsOneOff | eventsSort %}
-      <a href="/calendar/{{ oneOffEvents[0].startDate | formatDate }}/{{ oneOffEvents[0].slug }}/" class="w-full group no-underline transition-colors">
-        {% rwdImg "./src/_assets/img/core/the-globe-church-london-southwark.jpg", "People looking reading the Bible at a church service", [330, 550, 1024, 1500, 2560], "", "100vw" %}
+      {% set oneOffEvents = events | eventsFuture | eventsOneOff | eventsSort | limit(2) %}
+      {% for e in oneOffEvents %}
+      <a href="/calendar/{{ e.startDate | formatDate }}/{{ e.slug }}/" class="w-full group no-underline transition-colors">
+        <div class="aspect-video bg-cover bg-center overflow-hidden relative">
+        {% rwdImg "./src/_assets/img/core/the-globe-church-london-southwark.jpg", "", [330, 550, 1024], "inset-0 absolute object-cover", "@media (min-width: 640px) 50vw ,100vw" %}
+        </div>
 
         <div class="bg-orange/10 p-4">
-          {{ oneOffEvents[0].startDate | formatDate('dddd, D MMMM YYYY') }}<br />
-          <strong class="block">{{ oneOffEvents[0].title }}</strong>
-          <button class="rounded px-2 py-1 bg-orange text-white group-hover:bg-blue group-hover:text-white">More information</button>
-
+          {{ e.startDate | formatDate('dddd, D MMMM YYYY') }}<br />
+          <strong class="block">{{ e.title }}</strong>
+          <button class="rounded px-2 py-1 bg-orange text-white group-hover:bg-blue group-hover:text-white">
+            More information
+          </button>
         </div>
       </a>
-
-      <a href="/calendar/{{ oneOffEvents[1].startDate | formatDate }}/{{ oneOffEvents[1].slug }}/" class="w-full group no-underline transition-colors">
-        {% rwdImg "./src/_assets/img/core/the-globe-church-people.jpg", "People looking reading the Bible at a church service", [330, 550, 1024, 1500, 2560], "", "100vw" %}
-
-        <div class="bg-orange/10 p-4">
-          {{ oneOffEvents[1].startDate | formatDate('dddd, D MMMM YYYY') }}<br />
-          <strong class="block">{{ oneOffEvents[1].title }}</strong>
-          <button class="rounded px-2 py-1 bg-orange text-white group-hover:bg-blue group-hover:text-white">More information</button>
-        </div>
-      </a>
+      {% endfor %}
     </div>
   </section>
 

@@ -12,22 +12,27 @@ eleventyComputed:
 
 <main class="mt-12 px-4">
   <header class="mx-auto lg:container mb-4">
-    <div class="">
+    {% if post.featured_media %}
+    <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">
+      {% rwdImg post.featured_img_url, "", [550, 1024, 1512, 2056], "sm:inset-0 sm:absolute sm:object-cover", "100vw" %}
 
-      {% if post.featured_media %}
-      <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">
-        {% rwdImg post.featured_img_url, "", [550, 1024, 1512, 2056], "sm:inset-0 sm:absolute sm:object-cover", "100vw" %}
-
-        <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
-          <a href="/blog" class="hidden sm:block">All posts</a>
-          <h1 class="glbHeading md:text-2xl">
-            {{ title | safe }}
-          </h1>
-          <date class="text-sm block">{{ post.date | formatDate('dddd, D MMMM YYYY') }}</date>
-        </div>
+      <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
+        <a href="/blog" class="hidden sm:block">All posts</a>
+        <h1 class="glbHeading md:text-2xl">
+          {{ title | safe }}
+        </h1>
+        <date class="text-sm block">{{ post.date | formatDate('dddd, D MMMM YYYY') }}</date>
       </div>
-      {% endif %}
     </div>
+    {% else %}
+      <div class="mx-auto lg:container mb-4 px-4">
+        <a href="/blog" class="hidden sm:block">All posts</a>
+        <h1 class="glbHeading md:text-2xl">
+          {{ title | safe }}
+        </h1>
+        <date class="text-sm block">{{ post.date | formatDate('dddd, D MMMM YYYY') }}</date>
+      </div>
+    {% endif %}
   </header>
 
   <div class="mx-auto lg:container lg:grid gap-12 lg:grid-cols-4">
@@ -38,11 +43,17 @@ eleventyComputed:
     <aside class="border-t border-b mt-4 pt-4 lg:mt-0 lg:pt-0 lg:border-0 leading-7 lg:text-lg lg:leading-loose">
       <div class="sm:grid sm:gap-4 sm:grid-cols-2 lg:grid-cols-1 lg:sticky lg:top-24 divide-y sm:divide-y-0 lg:divide-y lg:gap-0">
         <div class="px-4 pb-4">
+          {% if authorDetails.profile_photo_url %}
+          <div class="aspect-square w-32 h-32 rounded-full bg-cover bg-center overflow-hidden relative">
+          {% rwdImg authorDetails.profile_photo_url, "", [150, 300], "inset-0 absolute sm:object-cover", "150px" %}
+          </div>
+          {% endif %}
+
           <p class="block font-bold">Written by {{ authorDetails.name }}</p>
           {% if authorDetails.description %}
-          <p>{{ authorDetails.description }}</p>
+            <p>{{ authorDetails.description }}</p>
           {% endif %}
-          {# {{ authorDetails.profile_photo_url }} #}
+
         </div>
 
         {# TODO: if other posts by author #}
