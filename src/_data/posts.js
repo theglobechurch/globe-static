@@ -54,6 +54,15 @@ async function fetchPosts() {
       thisPage++;
 
       // Loop through each of the responses
+      res.data.then((posts) => {
+        posts.forEach((post) => {
+          if (post.featured_img_url) {
+            post.featured_img_url = post.featured_img_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+          }
+          return post;
+        });
+        return posts;
+      });
 
       // Clean up the titles; replace HTML entities with actual things
       // Match up the author info

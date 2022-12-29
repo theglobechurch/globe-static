@@ -10,7 +10,7 @@ module.exports = {
       outputDir: "./dist/_assets/img/built/",
       cacheOptions: {
         duration: "2y",
-        directory: ".cache",
+        directory: ".imgCache",
         removeUrlQueryParams: false,
       },
     };
