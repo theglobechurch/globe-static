@@ -1,6 +1,7 @@
 const dayjs = require("dayjs");
 const isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
 const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
+const advancedFormat = require('dayjs/plugin/advancedFormat');
 const utc = require('dayjs/plugin/utc');
 const timezone = require('dayjs/plugin/timezone');
 const localTimezone = "Europe/London";
@@ -8,6 +9,7 @@ const localTimezone = "Europe/London";
 dayjs
   .extend(isSameOrBefore)
   .extend(isSameOrAfter)
+  .extend(advancedFormat)
   .extend(utc)
   .extend(timezone)
   .tz.setDefault(localTimezone);

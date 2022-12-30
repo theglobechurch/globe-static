@@ -1,0 +1,56 @@
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+  {% set d = null %}
+  {% for event in eventList %}
+
+    {% if event.startDate | formatDate !== d %}
+      <!-- DATE OF EVENT & BOTTOM LINE-->
+      <h3 class="px-4 text-lg text-black border-b-[1px] col-span-full">
+        {{ event.startDate | formatDate('dddd Do MMMM') }}
+      </h3>
+      {% set d = event.startDate | formatDate %}
+    {% endif %}
+
+    <div class="mx-4">
+      <!-- BORDER, COLOUR & HREF, URL LINK ??? -->
+      <a
+      href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/"
+      class="no-underline"
+      itemscope itemtype="https://schema.org/Event"
+    >
+
+        <!-- NAME OF EVENT -->
+        <p itemprop="name">
+          {{ event.title }}
+        </p>
+
+        <!-- TIME -->
+        <div class="float-left pr-2">{% svgIcon "clock", "h-3 w-3 text-green" %}</div>
+        <date class="block text-xs" itemprop="startDate" content="{{ event.startDate }}">
+          {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
+      </date>
+
+        <!-- LOCATION -->
+        <div class="float-left pr-2">{% svgIcon "pin", "h-3 w-3 text-orange" %}</div>
+        <p class="text-xs" itemprop="location" itemscope itemtype="https://schema.org/Place">
+          {{ event.location}}
+        </p>
+
+        <!-- MORE INFORMATION -->
+        <p class="text-xs hover:underline">
+        More information
+      </p>
+
+        <!-- EVENT TAGS -->
+        {% if event.data.tags %}
+          <div>
+            {% for tag in event.data.tags %}
+              <span class="rounded bg-orange px-1 mr-1 text-xs text-white inline-block">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+      </a>
+    </div>
+  {% endfor %}
+
+</div>
