@@ -3,18 +3,71 @@ title: Calendar
 layout: layouts/base.njk
 ---
 
+<header class="relative">
+
+  <div class="sm:grid sm:grid-cols-2 min-h-[30vh] sm:min-h-[80vh]">
+    <div class="hidden sm:block bg-orange text-white">
+    </div>
+
+    <div class="min-h-[30vh] sm:min-h-[auto] bg-[#ccc] relative w-full bg-cover bg-center overflow-hidden">
+      {% rwdImg "./src/_assets/img/core/the-globe-church-people.jpg", "Members of The Globe Church", [330, 550, 1024, 1500, 2560], "block h-full w-full inset-0 absolute object-cover", "50vw" %}
+    </div>
+  </div>
+
+  <div class="bg-orange">
+    <div class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute">
+      <div class="p-8 sm:px-4 sm:max-w-[40%] text-white lg:text-lg">
+        <h1 class="glbHeading text-white lg:text-2xl">Church Calendar</h1>
+        <p class="my-4">
+          <span class="bg-[yellow] uppercase text-blue block p-4">TODO: Improve this copy:</span>
+          A church is not a building on a street, but the gathering of Christians in community. Gathering together as a family is at the heart of what we do as followers of Jesus.
+        </p>
+
+        <p class="my-4"><a href="/sundays" class="glbBtn bg-blue hover:bg-white hover:text-orange">Join us this Sunday</a></p>
+        <p>
+          <a href="#thisWeek" class="text-white no-underline inline-flex gap-2 items-center group">
+            {% svgIcon "icon-arrowDown", "h-6 w-6 inline-block transition group-hover:translate-y-1" %}
+            <span class="underline hover:no-underline">All events</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+
 <main class="mt-12 px-4">
 
-  <div class="mx-auto lg:container mb-4">
+  <div class="mx-auto lg:container mb-4 scroll-mt-4" id="thisWeek">
     {% set eventList = events | eventThisWeek | eventsSort %}
-    <h2 class="glbHeading px-4">Events this week</h2>
+    <h2 class="glbHeading px-4 mb-4">Events this week</h2>
     {% include 'blocks/eventList.njk' %}
   </div>
 
   <!-- TODO FEATURED EVENT BLOCK -->
-  <div class="mx-auto lg:container mb-4">
+  {% set oneOffEvent = events | eventsFuture | eventsOneOff | eventsSort | limit(1) | first %}
+  {% if oneOffEvent %}
+  <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" class="no-underline block my-12 mx-auto lg:container border-2 border-[#ccc] p-4">
+
+    {% if oneOffEvent.data.tags %}
+    <div class="rounded bg-orange px-2 py-1 mr-1 text-xs text-white inline-block uppercase font-bold">
+      {{ oneOffEvent.data.tags | first }}
+    </div>
+    {% endif %}
+
+
+    <p>{{ oneOffEvent.title }}</p>
+
+    <date class="block" content="{{ oneOffEvent.startDate }}">
+      {{ oneOffEvent.startDate | formatDate('dddd Do MMMM') }} ({{ oneOffEvent.duration }})
+    </date>
+  </a>
+  {% endif %}
+
+
+  <div class="mx-auto lg:container mb-4 scroll-mt-4" id="futureEvents">
     {% set eventList = events | eventsFuture(7, 'day') | eventsSort %}
-    <h2 class="glbHeading px-4">Future events</h2>
+    <h2 class="glbHeading px-4 mb-4">Future events</h2>
     {% include 'blocks/eventList.njk' %}
   </div>
 </main>
