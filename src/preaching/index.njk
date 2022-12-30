@@ -3,12 +3,42 @@ title: Preaching
 layout: layouts/base.njk
 ---
 
-<ol>
+<section class="mt-12 px-4">
+  <div class="mx-auto lg:container mb-4">
+    <div class="px-4 pt-4">
+      <h2 class="glbHeading">Latest sermon</h2>
+
+      {% set latestSermon = preaching| first %}
+
+      <a href="/resources/{{ latestSermon.slug }}">
+        {{ latestSermon.title }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="mt-12 px-4">
+  <div class="mx-auto lg:container mb-4">
+    <div class="px-4 pt-4">
+      <h2 class="glbHeading">List of Sermon series</h2>
+    </div>
+  </div>
+</section>
+
+<div class="mx-auto lg:container p-4">
+<h2 class="glbHeading">All sermons</h2>
+<span class="bg-[yellow] uppercase text-blue block p-4">THIS IS NOT STAYING</span>
+</div>
+
+<ol class="mx-auto lg:container p-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
   {% for item in preaching %}
     <li>
       <a href="/resources/{{ item.slug }}">
-        {{ item.title.rendered }}
+        {{ item.title }}
       </a>
     </li>
   {% endfor -%}
 </ol>
+
+
+

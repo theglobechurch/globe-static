@@ -6,13 +6,46 @@ pagination:
 permalink: "resources/{{ preaching.slug }}/index.html"
 layout: layouts/base.njk
 eleventyComputed:
-  title: "{{ preaching.title.rendered }}"
+  title: "{{ preaching.title }}"
 ---
 
-<h1 class="text-2xl">{{ title }}</h1>
+{% set authorDetails = post.author | authorLookup(people) %}
 
-<div class="mainContent">
-    {{preaching.content.rendered | safe}}
+<main class="mt-12 px-4">
+  <header class="mx-auto lg:container mb-4">
+    <div class="px-4 pt-4">
+
+      <a href="/preaching" class="hidden sm:block">All sermons</a>
+      <h1 class="glbHeading md:text-2xl">
+        {{ title }}
+      </h1>
+      <date class="text-sm block">{{ preaching.date | formatDate('dddd, Do MMMM YYYY') }}</date>
+      <p class="text-sm block">{{ preaching.meta.glb_sermon_passage }}</p>
+    </div>
+  </header>
+
+  <div class="mx-auto lg:container">
+
+    <div class="px-4 prose prose-globeBlue lg:prose-xl mb-4">
+      {{preaching.content.rendered | safe}}
+    </div>
+
+    <audio class="px-4 mb-4 w-full" src="{{ preaching.sermon_url }}" preload="metadata" controls></audio>
+
+    <p class="px-4">
+      Sermon series: {{ preaching.sermon_series[0] }}
+    </p>
+
+  </div>
+
+</main>
+
+<div class="mt-12 px-4">
+  <div class="mx-auto lg:container">
+
+    <div class="px-4">
+      PODCAST BLOCK
+    </div>
+
+  </div>
 </div>
-
-{{ preaching.sermon_series[2] }}

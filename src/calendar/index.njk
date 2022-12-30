@@ -44,19 +44,19 @@ layout: layouts/base.njk
     {% include 'blocks/eventList.njk' %}
   </div>
 
-  <!-- TODO FEATURED EVENT BLOCK -->
+
   {% set oneOffEvent = events | eventsFuture | eventsOneOff | eventsSort | limit(1) | first %}
   {% if oneOffEvent %}
   <a href="/calendar/{{ event.startDate | formatDate}}/{{ event.slug }}/" class="no-underline block my-12 mx-auto lg:container border-2 border-[#ccc] p-4">
 
     {% if oneOffEvent.data.tags %}
-    <div class="rounded bg-orange px-2 py-1 mr-1 text-xs text-white inline-block uppercase font-bold">
+    <div class="rounded bg-orange px-2 py-1 mb-1 text-xs text-white inline-block uppercase font-bold">
       {{ oneOffEvent.data.tags | first }}
     </div>
     {% endif %}
 
 
-    <p>{{ oneOffEvent.title }}</p>
+    <p class="font-bold">{{ oneOffEvent.title }}</p>
 
     <date class="block" content="{{ oneOffEvent.startDate }}">
       {{ oneOffEvent.startDate | formatDate('dddd Do MMMM') }} ({{ oneOffEvent.duration }})
