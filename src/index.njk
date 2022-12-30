@@ -41,7 +41,7 @@ layout: default
       <a href="/calendar" class="">See the church calendar</a>
     </div>
 
-    <div class="justify-between items-center py-4 grid gap-4 sm:grid-cols-2">
+    <div class="py-4 grid gap-4 sm:grid-cols-2">
       {% set oneOffEvents = events | eventsFuture | eventsOneOff | eventsSort | limit(2) %}
       {% for e in oneOffEvents %}
       <a href="/calendar/{{ e.startDate | formatDate }}/{{ e.slug }}/" class="w-full group no-underline transition-colors">
