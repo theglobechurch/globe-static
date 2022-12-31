@@ -21,7 +21,7 @@ eleventyComputed:
         <h1 class="glbHeading md:text-2xl">
           {{ title | safe }}
         </h1>
-        <date class="text-sm block">{{ post.date | formatDate('dddd, D MMMM YYYY') }}</date>
+        <date class="text-sm block">{{ post.date | formatDate('dddd, Do MMMM YYYY') }}</date>
       </div>
     </div>
     {% else %}

@@ -1,0 +1,67 @@
+---
+pagination:
+  data: events
+  size: 1
+  alias: event
+permalink: "calendar/{{ event.startDate | formatDate }}/{{ event.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ event.title }}"
+---
+
+<main class="mt-12 px-4">
+  <header class="mx-auto lg:container mb-4">
+    <div class="px-4 pt-4">
+
+      <a href="/calendar#thisWeek" class="hidden sm:block">All events</a>
+
+      {% if event.data.tags %}
+        <div>
+          {% for tag in event.data.tags %}
+            <span class="rounded bg-orange px-2 py-1 mr-1 mb-1 text-xs text-white inline-block uppercase font-bold">
+              {{ tag }}
+            </span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <h1 class="glbHeading md:text-2xl">
+        {{ title }}
+      </h1>
+
+      <date class="flex gap-2 items-start">
+        {% svgIcon "clock", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange" %}
+
+        <span>
+          {% if event.startDate | formatDate() != event.endDate | formatDate() %}
+            {{ event.startDate | formatDate('dddd, Do MMMM YYYY HH:mm') }} &mdash; {{ event.endDate | formatDate('dddd, Do MMMM YYYY HH:mm') }}
+          {%  else %}
+            {{ event.startDate | formatDate('dddd, Do MMMM YYYY HH:mm') }} &mdash; {{ event.endDate | formatDate('HH:mm') }}
+          {% endif %}
+
+          ({{ event.duration }})
+        </span>
+      </date>
+
+      <p class="flex gap-2 items-start">
+        {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange" %}
+        <span>{{ event.location }}</span>
+      </p>
+    </div>
+  </header>
+</main>
+
+
+  <div class="mx-auto lg:container">
+
+    <div class="px-4 prose prose-globeBlue lg:prose-xl mb-4">
+      {{ event.body }}
+    </div>
+
+  </div>
+
+{% if event.data.url %}
+<div class="border m-4 p-4">
+  {{ event.data.url }}
+</div>
+{% endif %}

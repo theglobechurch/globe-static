@@ -72,6 +72,18 @@ module.exports = {
 
   limit: (arr, count = 5) => {
     return arr.slice(0, count);
+  },
+
+  pageParent: (currentPage, allPages) => {
+    if (currentPage.parent === 0) {
+      return null;
+    }
+
+    return allPages.find((page) => page.id === currentPage.parent);
+  },
+
+  pageChildren: (currentPage, allPages) => {
+    return allPages.filter((page) => currentPage.id === page.parent)
   }
 
 }

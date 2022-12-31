@@ -2,12 +2,14 @@
 pagination:
   data: "pages"
   size: 1
-  alias: pages
-permalink: "{{ pages.slug }}/index.html"
+  alias: p
+permalink: "{{ p.slug }}/index.html"
 layout: textPage
 eleventyComputed:
-  title: "{{ pages.title.rendered }}"
+  title: "{{ p.title }}"
 ---
+{% set parentPage = p | pageParent(pages) %}
+{% set childPages = p | pageChildren(pages) %}
 
 <main class="mt-12 px-4">
   <header class="m-4 mx-auto lg:container">
@@ -16,7 +18,7 @@ eleventyComputed:
 
   <div class="mx-auto lg:container">
     <article class="px-4 prose prose-globeBlue lg:prose-xl">
-      {{ pages.content.rendered | safe }}
+      {{ p.content.rendered | safe }}
     </article>
   </div>
 
@@ -25,3 +27,16 @@ eleventyComputed:
 {% include 'blocks/augmentedPages.njk' %}
 
 {# todo: check for subpages #}
+
+
+{% if parentPage %}
+Parent page: <a href="/{{ parentPage.slug }}">{{ parentPage.title }}</a>
+{% endif %}
+
+
+{# TODO: sort order #}
+{% if childPages | length > 0 %}
+  {% for page in childPages %}
+    <li><a href="/{{page.slug}}">{{ page.title }}</a></li>
+  {% endfor %}
+{% endif %}

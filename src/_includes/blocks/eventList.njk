@@ -27,7 +27,7 @@
         </p>
 
         <date class="flex gap-2 items-start" itemprop="startDate" content="{{ event.startDate }}">
-          {% svgIcon "clock", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange" %}
+          {% svgIcon "clock", "shrink-0 h-4 w-4 mt-1" %}
           <span>
             {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
           </span>
@@ -35,7 +35,7 @@
 
         {% if event.location %}
         <p class="flex gap-2 items-start" itemprop="location" itemscope itemtype="https://schema.org/Place">
-          {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange" %}
+          {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1" %}
           <span>{{ event.location }}</span>
         </p>
         {% endif %}
