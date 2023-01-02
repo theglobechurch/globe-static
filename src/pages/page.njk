@@ -9,14 +9,19 @@ eleventyComputed:
   title: "{{ p.title }}"
 ---
 {% set parentPage = p | pageParent(pages) %}
-{% set childPages = p | pageChildren(pages) %}
+{% set childPages = p | pageChildren(pages) | sort(false, false, 'menu_order') %}
 {% if parentPage %}
-{% set siblingPages = parentPage | pageChildren(pages) %}
+{% set siblingPages = parentPage | pageChildren(pages) | sort(false, false, 'menu_order') %}
 {% endif %}
 
 <main class="mt-12 px-4">
   <header class="m-4 mx-auto lg:container">
-    <h1 class="p-4 glbHeading md:text-2xl">{{ title }}</h1>
+    {% if parentPage %}
+      <a href="/{{ parentPage.slug }}" class="px-4">
+        {{ parentPage.title }}
+      </a>
+    {% endif %}
+    <h1 class="px-4 glbHeading md:text-2xl">{{ title }}</h1>
   </header>
 
   <div class="mx-auto lg:container">
@@ -30,7 +35,6 @@ eleventyComputed:
 {% include 'blocks/augmentedPages.njk' %}
 
 <div class="mt-12 px-4">
-{# TODO: sort order #}
 
   <div class="m-4 mx-auto lg:container">
     <div class="border-b pb-4">
