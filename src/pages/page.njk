@@ -10,6 +10,9 @@ eleventyComputed:
 ---
 {% set parentPage = p | pageParent(pages) %}
 {% set childPages = p | pageChildren(pages) %}
+{% if parentPage %}
+{% set siblingPages = parentPage | pageChildren(pages) %}
+{% endif %}
 
 <main class="mt-12 px-4">
   <header class="m-4 mx-auto lg:container">
@@ -26,17 +29,44 @@ eleventyComputed:
 
 {% include 'blocks/augmentedPages.njk' %}
 
-{# todo: check for subpages #}
-
-
-{% if parentPage %}
-Parent page: <a href="/{{ parentPage.slug }}">{{ parentPage.title }}</a>
-{% endif %}
-
-
+<div class="mt-12 px-4">
 {# TODO: sort order #}
-{% if childPages | length > 0 %}
-  {% for page in childPages %}
-    <li><a href="/{{page.slug}}">{{ page.title }}</a></li>
-  {% endfor %}
-{% endif %}
+
+  <div class="m-4 mx-auto lg:container">
+    <div class="border-b pb-4">
+      <h2 class="px-4 glbHeading">Where next?</h2>
+    </div>
+
+    <div class="w-full grid grid-cols-1 divide-y divide-orange/30 lg:grid-cols-2 gap-x-4">
+
+    {% if childPages | length > 0 %}
+      {% for page in childPages %}
+        <a href="/{{page.slug}}" class="p-4 no-underline flex justify-between hover:underline">
+          <div class="uppercase font-bold">{{ page.title }}</div>
+          <div class="hidden sm:block">More information</div>
+        </a>
+      {% endfor %}
+    {% endif %}
+
+    {% if parentPage %}
+      <a href="/{{ parentPage.slug }}" class="p-4 no-underline flex justify-between hover:underline">
+        <div class="uppercase font-bold">{{ parentPage.title }}</div>
+        <div class="hidden sm:block">More information</div>
+      </a>
+
+      {% if siblingPages | length > 0 %}
+        {% for page in siblingPages %}
+          {% if page.slug != p.slug %}
+          <a href="/{{page.slug}}" class="p-4 no-underline flex justify-between hover:underline">
+            <div class="uppercase font-bold">{{ page.title }}</div>
+            <div class="hidden sm:block">More information</div>
+          </a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+    {% endif %}
+
+    </div>
+  </div>
+</div>
