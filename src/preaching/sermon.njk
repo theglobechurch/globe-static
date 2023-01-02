@@ -10,12 +10,19 @@ eleventyComputed:
 ---
 
 {% set authorDetails = post.author | authorLookup(people) %}
+{% set seriesDetails = preaching.sermon_series[0] | seriesLookup(sermonseries) %}
 
 <main class="mt-12 px-4">
   <header class="mx-auto lg:container mb-4">
     <div class="px-4 pt-4">
 
-      <a href="/preaching" class="hidden sm:block">All sermons</a>
+      <div>
+        <a href="/preaching" class="text-orange/50">Preaching</a> /
+        <a href="/preaching/{{ seriesDetails.slug }}" class="hidden sm:inline-block">
+          {{ seriesDetails.title }}
+        </a>
+      </div>
+
       <h1 class="glbHeading md:text-2xl">
         {{ title }}
       </h1>
@@ -32,9 +39,16 @@ eleventyComputed:
 
     <audio class="px-4 mb-4 w-full" src="{{ preaching.sermon_url }}" preload="metadata" controls></audio>
 
-    <p class="px-4">
-      Sermon series: {{ preaching.sermon_series[0] }}
-    </p>
+    <a href="/preaching/{{ seriesDetails.slug }}" class="no-underline block my-12 mx-auto lg:container border-2 border-[#ccc] p-4 hover:border-orange">
+      <div class="rounded bg-orange px-2 py-1 mb-1 text-xs text-white inline-block uppercase font-bold">
+        Series
+      </div>
+
+      <p class="font-bold">
+        {{ seriesDetails.title }}
+      </p>
+    </a>
+
 
   </div>
 

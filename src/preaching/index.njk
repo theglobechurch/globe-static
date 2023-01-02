@@ -21,24 +21,13 @@ layout: layouts/base.njk
   <div class="mx-auto lg:container mb-4">
     <div class="px-4 pt-4">
       <h2 class="glbHeading">List of Sermon series</h2>
+      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+        {% for series in sermonseries %}
+        <a href="/preaching/{{ series.slug }}" class="block">
+          {{ series.title }}
+        </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>
-
-<div class="mx-auto lg:container p-4">
-<h2 class="glbHeading">All sermons</h2>
-<span class="bg-[yellow] uppercase text-blue block p-4">THIS IS NOT STAYING</span>
-</div>
-
-<ol class="mx-auto lg:container p-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-  {% for item in preaching %}
-    <li>
-      <a href="/resources/{{ item.slug }}">
-        {{ item.title }}
-      </a>
-    </li>
-  {% endfor -%}
-</ol>
-
-
-

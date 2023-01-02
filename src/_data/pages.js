@@ -16,10 +16,10 @@ let totalPages = 1;
 module.exports = () => {
   let wpPages = new AssetCache("pages");
 
-  // if (ENABLE_11TY_CACHE && wpPages.isCacheValid("1d")) {
-  //   console.log("📃 Serving pages from the cache…");
-  //   return wpPages.getCachedValue();
-  // }
+  if (ENABLE_11TY_CACHE && wpPages.isCacheValid("1d")) {
+    console.log("📃 Serving pages from the cache…");
+    return wpPages.getCachedValue();
+  }
 
   console.log("📃 Fetching pages");
 

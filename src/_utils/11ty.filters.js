@@ -84,6 +84,13 @@ module.exports = {
 
   pageChildren: (currentPage, allPages) => {
     return allPages.filter((page) => currentPage.id === page.parent)
-  }
+  },
 
+  sermonsInSeries: (series, allSermons) => {
+    return allSermons.filter((sermon) => sermon.sermon_series.includes(series.id))
+  },
+
+  seriesLookup: (seriesId, allSeries) => {
+    return allSeries.find((series) => series.id === seriesId);
+  }
 }

@@ -1,0 +1,53 @@
+---
+pagination:
+  data: "sermonseries"
+  size: 1
+  alias: series
+permalink: "preaching/{{ series.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ series.title }}"
+---
+{% set sermons = series | sermonsInSeries(preaching) | sort(false, true, 'date') %}
+
+<main class="mt-12 px-4">
+  <header class="m-4 mx-auto lg:container">
+    <div class="px-4">
+      <a href="/preaching">
+        Preaching
+      </a>
+      <h1 class="glbHeading md:text-2xl">{{ series.title }}</h1>
+      {% if series.description %}
+        <div class="prose lg:prose-xl">
+          <p>{{ series.description }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="m-4 mx-auto lg:container">
+    <div class="border-b pb-4">
+      <h2 class="px-4 glbHeading">In this series</h2>
+    </div>
+
+    <div class="w-full grid grid-cols-1 divide-y divide-orange/30">
+
+      {% for sermon in sermons %}
+        <a href="/resources/{{ sermon.slug }}" class="p-4 no-underline flex justify-between items-center hover:underline group">
+          <div>
+            <h3 class="font-bold">{{ sermon.title }}</h3>
+            <p class="text-sm">{{ sermon.meta.glb_sermon_passage }}</p>
+            <p class="text-sm">{{ sermon.date | formatDate('dddd, Do MMMM YYYY') }}</p>
+          </div>
+          <div>
+            <p class="flex items-center">
+              <span>Listen now</span>
+              {% svgIcon "icon-play", "ml-1 h-6 w-6 inline-block transition group-hover:translate-x-1" %}
+            </p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+</main>
