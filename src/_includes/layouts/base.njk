@@ -47,6 +47,6 @@
 
       {% include 'blocks/footer.njk' %}
     </div>
-    <!-- last build: {{ build.env }} {{ build.timestamp }} -->
+    <!-- last build: {{ data.env }} | {{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }} -->
   </body>
 </html>

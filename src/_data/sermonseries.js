@@ -61,9 +61,9 @@ async function fetchSermonSeries() {
           // Replace all the HTML entities that Wordpress throws into the title…
           s.title = ent.decode(s.name);
 
-          // if (sermon.sermon_url) {
-          //   sermon.sermon_url = sermon.sermon_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
-          // }
+          if (s.artwork_url) {
+            s.artwork_url = s.artwork_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+          }
 
           // Remove the WP link meta from internal array
           delete s._links;

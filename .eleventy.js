@@ -1,4 +1,5 @@
 const directoryOutputPlugin = require("@11ty/eleventy-plugin-directory-output");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 const svgSprite = require("eleventy-plugin-svg-sprite");
 const shortcodes = require("./src/_utils/11ty.shortcodes.js");
 const filters = require("./src/_utils/11ty.filters.js");
@@ -9,6 +10,7 @@ module.exports = function (eleventyConfig) {
 
   // Plugins
   // eleventyConfig.addPlugin(directoryOutputPlugin);
+  eleventyConfig.addPlugin(pluginRss);
 
   eleventyConfig.addPlugin(svgSprite, {
     path: "./src/_assets/svg",

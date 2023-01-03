@@ -1,0 +1,43 @@
+---
+permalink: podcast/sermon.rss
+eleventyExcludeFromCollections: true
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:ppg="http://bbc.co.uk/2009/01/ppgRss" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>The Globe Church Sermons</title>
+    <description>The Globe Church is all about Jesus. The Globe Church is made up of all sorts of people. The Globe Church is involved in the greatest mission.</description>
+    <language>en-gb</language>
+    {# TODO: CHECK THIS IS VALID #}
+    <pubDate>{{ preaching[0].date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
+    <lastBuildDate>{{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</lastBuildDate>
+    <link>https://www.globe.church/</link>
+    <image>
+      {# TODO: MAKE SURE THIS FILE EXISTS #}
+      <url>https://www.globe.church/assets/podcast-cover.jpg</url>
+      <title>The Globe Church Sermons</title>
+      <link>https://www.globe.church/</link>
+    </image>
+    <itunes:author>The Globe Church</itunes:author>
+    <itunes:summary>The Globe Church is all about Jesus. The Globe Church is made up of all sorts of people. The Globe Church is involved in the greatest mission.</itunes:summary>
+    <itunes:keywords>The Globe Church, Sermon, Recordings, Church</itunes:keywords>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="https://www.globe.church/assets/podcast-cover.jpg"/>
+    <itunes:owner>
+      <itunes:name>The Globe Church</itunes:name>
+      <itunes:email>info@globe.church</itunes:email>
+    </itunes:owner>
+    <itunes:block>no</itunes:block>
+    <itunes:category text="Religion &amp; Spirituality">
+      <itunes:category text="Christianity"/>
+    </itunes:category>
+    {# TODO… #}
+    {% for sermon in preaching %}
+    <item>
+      COMING SOON
+    </item>
+    {% endfor %}
+
+  </channel>
+</rss>

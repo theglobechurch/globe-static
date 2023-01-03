@@ -7,7 +7,7 @@ module.exports = function () {
 
   return {
     url: 'https://next.globe.church',
-    buildRef: buildTime,
+    timestamp: buildTime,
     updatedTime: currentTimeHuman,
     currentYear: new Date().getFullYear(),
     env: process.env.ELEVENTY_ENV

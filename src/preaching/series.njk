@@ -17,6 +17,13 @@ eleventyComputed:
         Preaching
       </a>
       <h1 class="glbHeading md:text-2xl">{{ series.title }}</h1>
+      {% if series.start_date %}
+        {% if series.start_date | formatDate('YYYY') === series.end_date | formatDate('YYYY') %}
+        <p>{{ series.start_date | formatDate('MMMM') }} – {{ series.end_date | formatDate('MMMM YYYY') }}</p>
+        {% else %}
+        <p>{{ series.start_date | formatDate('MMMM YYYY') }} – {{ series.end_date | formatDate('MMMM YYYY') }}</p>
+        {% endif %}
+      {% endif %}
       {% if series.description %}
         <div class="prose lg:prose-xl">
           <p>{{ series.description }}</p>

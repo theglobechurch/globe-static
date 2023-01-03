@@ -10,7 +10,7 @@ layout: layouts/base.njk
 
       {% set latestSermon = preaching| first %}
 
-      <a href="/resources/{{ latestSermon.slug }}">
+      <a href="/resources/{{ latestSermon.slug }}" class="no-underline block my-12 mx-auto lg:container border-2 border-[#ccc] p-4 hover:border-orange">
         {{ latestSermon.title }}
       </a>
     </div>
@@ -19,12 +19,28 @@ layout: layouts/base.njk
 
 <section class="mt-12 px-4">
   <div class="mx-auto lg:container mb-4">
+    <div class="border-b pb-4 mb-4">
+      <h2 class="px-4 glbHeading">List of Sermon series</h2>
+    </div>
     <div class="px-4 pt-4">
-      <h2 class="glbHeading">List of Sermon series</h2>
-      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
-        {% for series in sermonseries %}
-        <a href="/preaching/{{ series.slug }}" class="block">
-          {{ series.title }}
+      <div class="grid gap-4 grid-cols-2 sm:gap-8 sm:grid-cols-3 md:grid-cols-4">
+        {% for series in sermonseries | sort(true, true, 'start_date') %}
+        <a href="/preaching/{{ series.slug }}" class="block no-underline group">
+          <div class="aspect-square bg-cover bg-center overflow-hidden relative">
+            {% rwdImg series.artwork_url, "", [450, 600], "inset-0 w-full h-full absolute object-cover saturate-100 transition group-hover:saturate-[1.1] group-hover:scale-110", "33vw" %}
+          </div>
+          <div class="px-1">
+            <p class="uppercase font-bold">{{ series.title }}</p>
+            {% if series.start_date %}
+              {% if series.start_date | formatDate('MMMM YYYY') === series.end_date | formatDate('MMMM YYYY') %}
+              <p class="text-sm">{{ series.start_date | formatDate('MMMM YYYY') }}</p>
+              {% elif series.start_date | formatDate('YYYY') === series.end_date | formatDate('YYYY') %}
+              <p class="text-sm">{{ series.start_date | formatDate('MMMM') }} – {{ series.end_date | formatDate('MMMM YYYY') }}</p>
+              {% else %}
+              <p class="text-sm">{{ series.start_date | formatDate('MMMM YYYY') }} – {{ series.end_date | formatDate('MMMM YYYY') }}</p>
+              {% endif %}
+            {% endif %}
+          </div>
         </a>
         {% endfor %}
       </div>
