@@ -14,7 +14,6 @@ eleventyExcludeFromCollections: true
     <lastBuildDate>{{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</lastBuildDate>
     <link>https://www.globe.church/</link>
     <image>
-      {# TODO: MAKE SURE THIS FILE EXISTS #}
       <url>https://www.globe.church/assets/podcast-cover.jpg</url>
       <title>The Globe Church Sermons</title>
       <link>https://www.globe.church/</link>
@@ -35,7 +34,20 @@ eleventyExcludeFromCollections: true
     {# TODO… #}
     {% for sermon in preaching %}
     <item>
-      COMING SOON
+      <title>{{ sermon.title }} {% if sermon.meta.glb_sermon_passage %}- {{ sermon.meta.glb_sermon_passage }}{% endif %}</title>
+      <description>{{ sermon.description | striptags }}</description>
+      <pubDate>{{ sermon.date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
+      <link>https://www.globe.church/resources/{{ sermon.slug }}</link>
+      <guid>https://www.globe.church/resources/{{ sermon.slug }}</guid>
+      {# <enclosure url="https://www.globe.church/uploads/production/2022/11/28/5d712wizjg_22_11_27_Sermon_Audio.mp3" length="91989120" type="audio/mpeg"/>
+      <ppg:enclosureLegacy url="https://www.globe.church/uploads/production/2022/11/28/5d712wizjg_22_11_27_Sermon_Audio.mp3" length="91989120" type="audio/mpeg"/>
+      <ppg:enclosureSecure url="https://www.globe.church/uploads/production/2022/11/28/5d712wizjg_22_11_27_Sermon_Audio.mp3" length="91989120" type="audio/mpeg"/>
+      <media:content url="https://www.globe.church/uploads/production/2022/11/28/5d712wizjg_22_11_27_Sermon_Audio.mp3" fileSize="91989120" type="audio/mpeg"/> #}
+      <itunes:explicit>clean</itunes:explicit>
+      {# <itunes:author>Jonty Allcock</itunes:author> #}
+      <itunes:subtitle>{{ sermon.description | truncate(250) }}</itunes:subtitle>
+      <itunes:summary>{{ sermon.description }}</itunes:summary>
+      <itunes:explicit>no</itunes:explicit>
     </item>
     {% endfor %}
 

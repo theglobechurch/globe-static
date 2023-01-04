@@ -60,6 +60,8 @@ async function fetchSermons() {
 
           // Replace all the HTML entities that Wordpress throws into the title…
           sermon.title = ent.decode(sermon.title.rendered);
+          sermon.content = ent.decode(sermon.content.rendered);
+          sermon.description = sermon.content;
 
           if (sermon.sermon_url) {
             sermon.sermon_url = sermon.sermon_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');

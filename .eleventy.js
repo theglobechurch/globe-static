@@ -44,6 +44,7 @@ module.exports = function (eleventyConfig) {
     "src/robots.txt",
   ];
   eleventyConfig.addPassthroughCopy({"src/_assets/favicon/**": "."});
+  eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/podcast-cover.jpg": "assets/podcast-cover.jpg"});
   passThroughFiles.forEach(f => eleventyConfig.addPassthroughCopy(f, ""));
 
   return {
