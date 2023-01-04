@@ -14,29 +14,33 @@
       The Globe Church
     </title>
 
-    {#TODO: OG TAGS#}
-
-    {#
-    <link rel="alternate" type="application/rss+xml" title="The Globe Church Blog" href="/blog/feed.xml" />
-    #}
+    <meta property="og:title" content={{ title }}/>
+    <meta property="og:url" content={{ page.url }}/>
+    <meta property="og:description" content={{ description }} >
+    <meta property="og:image" content="/src/_assets/svg/tgcLogoFilled.svg"/>
+    <meta property="og:type" content="website"/>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#d06348">
 
-    <link rel="preconnect" href="https://use.typekit.net" />
+    <link rel="preconnect" href="https://use.typekit.net"/>
 
-    <meta name="generator" content="{{ eleventy.generator }}" />
-    <link rel="author" href="/humans.txt" />
+    <meta name="generator" content="{{ eleventy.generator }}"/>
+    <link rel="author" href="/humans.txt"/>
 
-    <link rel="me" href="https://instagram.com/{{ meta.instagram }}" />
-    <link rel="me" href="https://twitter.com/{{ meta.twitter }}" />
-    <link rel="me" href="https://facebook.com/{{ meta.facebook }}" />
-    <link rel="me" href="https://youtube.com/{{ meta.youtube }}" />
-    <link rel="me" href="https://linkedin.com/company/{{ meta.linkedin }}" />
+    <link rel="me" href="https://instagram.com/{{ meta.instagram }}"/>
+    <link rel="me" href="https://twitter.com/{{ meta.twitter }}"/>
+    <link rel="me" href="https://facebook.com/{{ meta.facebook }}"/>
+    <link rel="me" href="https://youtube.com/{{ meta.youtube }}"/>
+    <link rel="me" href="https://linkedin.com/company/{{ meta.linkedin }}"/>
 
     <script defer src="/_assets/js/main.js"></script>
+
+    <!-- NO IDEA WHAT THIS IS??
+    {# <link rel="alternate" type="application/rss+xml" title="The Globe Church Blog" href="/blog/feed.xml" /> #}
+    -->
   </head>
 
   <body>
