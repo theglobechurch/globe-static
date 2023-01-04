@@ -14,6 +14,13 @@
       The Globe Church
     </title>
 
+    <!-- TRYING TO JOIN THE TITLE TOGETHTER WITH A SPACE, DIDN'T WORK
+    {% set joinedtitle = {{ title }} %}
+    {{ joinedtitle | join(" ") }}
+
+    <meta property="og:title" content={{ joinedtitle }}/>
+    -->
+
     <meta property="og:title" content={{ title }}/>
     <meta property="og:url" content={{ page.url }}/>
     <meta property="og:description" content={{ description }} >
