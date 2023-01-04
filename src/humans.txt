@@ -1,26 +1,29 @@
 /* TEAM */
 
 Name: James Doc
-Role: Developer
-URL: jamesdoc.com
+Role: Senior Developer
+Site: jamesdoc.com
 
 Name: Jonty Allcock
 Role: Writer
 Twitter: https://twitter.com/jontyallcock
 
+Name: Masum Khan
+Role: Junior Developer
+Site: https://linktr.ee/mazonetwoone
+
+
 /* PREVIOUS TEAM */
 
 Name: Melody Raines
 Role: Editor
-URL: moregreat.com
+Site: moregreat.com
 
 Name: Phil Tinker
 Role: Writer
 Twitter: https://twitter.com/phil_tinker
 
+
 /* SITE */
 
-- Eleventy
-- Tailwind CSS
-- AlpineJS
-- Hosted with Netlify
+Components: Eleventy (11ty), Tailwind CSS, Hosted with Netlify
