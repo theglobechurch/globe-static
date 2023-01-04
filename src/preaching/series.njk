@@ -7,29 +7,54 @@ permalink: "preaching/{{ series.slug }}/index.html"
 layout: layouts/base.njk
 eleventyComputed:
   title: "{{ series.title }}"
+  featured_img: "{{ series.artwork_url }}"
 ---
+{% if series.slug != "one-off-sermons" %}
 {% set sermons = series | sermonsInSeries(preaching) | sort(false, true, 'date') %}
+{% else %}
+{% set sermons = series | sermonsInSeries(preaching) | sort(true, true, 'date') %}
+{% endif %}
 
 <main class="mt-12 px-4">
   <header class="m-4 mx-auto lg:container">
-    <div class="px-4">
-      <a href="/preaching">
-        Preaching
-      </a>
-      <h1 class="glbHeading md:text-2xl">{{ series.title }}</h1>
-      {% if series.start_date %}
-        {% if series.start_date | formatDate('YYYY') === series.end_date | formatDate('YYYY') %}
-        <p>{{ series.start_date | formatDate('MMMM') }} – {{ series.end_date | formatDate('MMMM YYYY') }}</p>
-        {% else %}
-        <p>{{ series.start_date | formatDate('MMMM YYYY') }} – {{ series.end_date | formatDate('MMMM YYYY') }}</p>
-        {% endif %}
-      {% endif %}
+    {% if series.artwork_url %}
+      <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">
+        {% rwdImg series.artwork_url, "", [550, 1024, 1512, 2056], "sm:inset-0 w-full h-full sm:absolute sm:object-cover", "100vw" %}
+
+        <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
+          <a href="/preaching" class="hidden sm:block">
+            Preaching
+          </a>
+          <h1 class="glbHeading md:text-2xl">
+            {{ series.title }}
+          </h1>
+          {% if series.start_date %}
+          <p class="text-sm block">{% dateRange series.start_date, series.end_date %}</p>
+          {% endif %}
+        </div>
+      </div>
+
       {% if series.description %}
-        <div class="prose lg:prose-xl">
+        <div class="mt-4 px-4 prose lg:prose-xl">
           <p>{{ series.description }}</p>
         </div>
       {% endif %}
-    </div>
+    {% else %}
+      <div class="px-4">
+        <a href="/preaching">
+          Preaching
+        </a>
+        <h1 class="glbHeading md:text-2xl">{{ series.title }}</h1>
+        {% if series.start_date %}
+          <p class="text-sm block">{% dateRange series.start_date, series.end_date %}</p>
+        {% endif %}
+        {% if series.description %}
+          <div class="prose lg:prose-xl">
+            <p>{{ series.description }}</p>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
   </header>
 
   <div class="m-4 mx-auto lg:container">
@@ -43,8 +68,8 @@ eleventyComputed:
         <a href="/resources/{{ sermon.slug }}" class="p-4 no-underline flex justify-between items-center hover:underline group">
           <div>
             <h3 class="font-bold">{{ sermon.title }}</h3>
-            <p class="text-sm">{{ sermon.meta.glb_sermon_passage }}</p>
-            <p class="text-sm">{{ sermon.date | formatDate('dddd, Do MMMM YYYY') }}</p>
+            <p class="text-sm text-blue">{{ sermon.meta.glb_sermon_passage }}</p>
+            <p class="text-sm text-blue">{{ sermon.date | formatDate('dddd, Do MMMM YYYY') }}</p>
           </div>
           <div>
             <p class="flex items-center">

@@ -1,4 +1,5 @@
 const eleventyImage = require("@11ty/eleventy-img");
+const dayjs = require("dayjs");
 
 module.exports = {
   rwdImg: async function(filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw") {
@@ -28,5 +29,24 @@ module.exports = {
 
   svgIcon: function(name, cls = null) {
     return `<svg class="${cls}"><use xlink:href="/_assets/svgSprite.svg#svg-${name}"></use></svg>`;
+  },
+
+  dateRange: function(startDate, endDate) {
+
+    const my = 'MMMM YYYY';
+    const y = 'YYYY';
+
+    startDate = dayjs(startDate);
+    endDate = dayjs(endDate);
+
+    if (startDate.format(my) === endDate.format(my)) {
+      return startDate.format(my);
+    }
+
+    if (startDate.format(y) === endDate.format(y)) {
+      return `${startDate.format('MMMM')} – ${endDate.format(my)}`;
+    }
+
+    return `${startDate.format(my)} – ${endDate.format(my)}`;
   }
 }

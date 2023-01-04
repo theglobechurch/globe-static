@@ -20,6 +20,7 @@ module.exports = function (eleventyConfig) {
   // Shortcodes
   eleventyConfig.addNunjucksAsyncShortcode("rwdImg", shortcodes.rwdImg);
   eleventyConfig.addNunjucksShortcode("svgIcon", shortcodes.svgIcon);
+  eleventyConfig.addNunjucksShortcode("dateRange", shortcodes.dateRange);
 
   // Filters
   Object.keys(filters).forEach((filterName) => {
