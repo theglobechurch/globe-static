@@ -8,33 +8,42 @@
     <link rel="stylesheet" href="/_assets/css/tw.css?v={{ data.timestamp }}" media="screen" type="text/css">
 
     <title>
+      {% set maintitle = "The Globe Church" %}
       {% if title %}
-        {{ title | safe }} &middot;
+        {{ title | safe }}
+        {% else%}
+        {{ maintitle | safe }}
       {% endif %}
-      The Globe Church
     </title>
 
-    {#TODO: OG TAGS#}
+    <meta property="og:title" content="{{ title }}{{" &middot The Globe Church" | safe if title else "The Globe Church"}}"/>
+    <meta property="og:url" content="https://globe.church{{ page.url }}"/>
+    <meta property="og:description" content="{{ content | striptags | truncate(100) }}"/>
+    <meta property="og:type" content="website"/>
 
-    <link rel="alternate" type="application/rss+xml" title="The Globe Church Blog" href="/blog/feed.xml" />
+    <!-- No idea how to select an appropriate image from the blog post, which correlates to each page -->
+    <meta property="og:image" content="/src/assets/svg/tgcLogoFilled.svg"/>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#d06348">
 
-    <link rel="preconnect" href="https://use.typekit.net" />
+    <link rel="preconnect" href="https://use.typekit.net"/>
 
-    <meta name="generator" content="{{ eleventy.generator }}" />
-    <link rel="author" href="/humans.txt" />
+    <meta name="generator" content="{{ eleventy.generator }}"/>
+    <link rel="author" href="/humans.txt"/>
 
-    <link rel="me" href="https://instagram.com/{{ meta.instagram }}" />
-    <link rel="me" href="https://twitter.com/{{ meta.twitter }}" />
-    <link rel="me" href="https://facebook.com/{{ meta.facebook }}" />
-    <link rel="me" href="https://youtube.com/{{ meta.youtube }}" />
-    <link rel="me" href="https://linkedin.com/company/{{ meta.linkedin }}" />
+    <link rel="me" href="https://instagram.com/{{ meta.instagram }}"/>
+    <link rel="me" href="https://twitter.com/{{ meta.twitter }}"/>
+    <link rel="me" href="https://facebook.com/{{ meta.facebook }}"/>
+    <link rel="me" href="https://youtube.com/{{ meta.youtube }}"/>
+    <link rel="me" href="https://linkedin.com/company/{{ meta.linkedin }}"/>
 
     <script defer src="/_assets/js/main.js"></script>
+
+    <link rel="alternate" type="application/rss+xml" title="The Globe Church Blog" href="/blog/feed.xml" />
+
   </head>
 
   <body>
