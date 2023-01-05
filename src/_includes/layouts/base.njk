@@ -14,16 +14,10 @@
       The Globe Church
     </title>
 
-    <!-- TRYING TO JOIN THE TITLE TOGETHTER WITH A SPACE, DIDN'T WORK
-    {% set joinedtitle = {{ title }} %}
-    {{ joinedtitle | join(" ") }}
 
-    <meta property="og:title" content={{ joinedtitle }}/>
-    -->
-
-    <meta property="og:title" content={{ title }}/>
-    <meta property="og:url" content={{ page.url }}/>
-    <meta property="og:description" content={{ description }} >
+    <meta property="og:title" content="{{ title }}"/>
+    <meta property="og:url" content="{{ page.url }}"/>
+    <meta property="og:description" content="{{ description }}">
     <meta property="og:image" content="/src/_assets/svg/tgcLogoFilled.svg"/>
     <meta property="og:type" content="website"/>
 
@@ -45,9 +39,10 @@
 
     <script defer src="/_assets/js/main.js"></script>
 
-    <!-- NO IDEA WHAT THIS IS??
+    <!-- RSS FEED
     {# <link rel="alternate" type="application/rss+xml" title="The Globe Church Blog" href="/blog/feed.xml" /> #}
     -->
+    
   </head>
 
   <body>
