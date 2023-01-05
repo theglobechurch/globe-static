@@ -1,0 +1,22 @@
+{% set latestSermon = preaching | first %}
+{% set latestSermonSeries = latestSermon.sermon_series[0] | seriesLookup(sermonseries) %}
+
+<div class="border-b px-4 pb-4 flex justify-between">
+  <h2 class=" glbHeading">Latest sermon</h2>
+  <a href="/preaching#allSeries">All preaching</a>
+</div>
+
+<div class="px-4">
+    <a href="/resources/{{ latestSermon.slug }}" class="relative block lg:container mx-auto sm:my-4 w-full bg-cover bg-center min-h-[250px] text-white overflow-hidden group">
+    {% rwdImg latestSermonSeries.artwork_url, "", [550, 1024, 1512, 2056], "sm:inset-0 w-full h-full sm:absolute sm:object-cover", "100vw" %}
+    <div class="absolute inset-0 flex flex-col justify-end items-start bg-blue/50 p-4 transition-colors group-hover:bg-blue/20">
+      <p class="text-lg">
+        Listen back to the latest sermon
+      </p>
+      <p class="text-2xl font-bold uppercase">
+        {{ latestSermon.title }}
+      </p>
+      <span class="mt-2 inline-block px-2 py-1 rounded bg-orange text-white no-underline transition-colors hover:bg-blue">Listen now</span>
+    </div>
+  </a>
+</div>

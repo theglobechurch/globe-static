@@ -2,22 +2,46 @@
 title: Preaching
 layout: layouts/base.njk
 ---
+<header class="relative">
+
+  <div class="sm:grid sm:grid-cols-2 min-h-[30vh] sm:min-h-[80vh]">
+    <div class="hidden sm:block bg-orange text-white">
+    </div>
+
+    <div class="min-h-[30vh] sm:min-h-[auto] bg-[#ccc] relative w-full bg-cover bg-center overflow-hidden">
+      {% rwdImg "./src/_assets/img/core/the-globe-church-bible-study.jpg", "Members of The Globe Church", [330, 550, 1024, 1500, 2560], "block h-full w-full inset-0 absolute object-cover", "50vw" %}
+    </div>
+  </div>
+
+  <div class="bg-orange">
+    <div class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute">
+      <div class="p-8 sm:px-4 sm:max-w-[40%] text-white lg:text-lg">
+        <h1 class="glbHeading text-white lg:text-2xl">{{ title }}</h1>
+        <p class="my-4">
+          <span class="bg-[yellow] uppercase text-blue block p-4">TODO: Improve this copy:</span>
+          … … …
+        </p>
+
+        <p>
+          <a href="#allSeries" class="text-white no-underline inline-flex gap-2 items-center group">
+            {% svgIcon "icon-arrowDown", "h-6 w-6 inline-block transition group-hover:translate-y-1" %}
+            <span class="underline hover:no-underline">All series</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
 
 <section class="mt-12 px-4">
   <div class="mx-auto lg:container mb-4">
-    <div class="px-4 pt-4">
-      <h2 class="glbHeading">Latest sermon</h2>
 
-      {% set latestSermon = preaching| first %}
+    {% include 'blocks/latestSermon.njk' %}
 
-      <a href="/resources/{{ latestSermon.slug }}" class="no-underline block my-12 mx-auto lg:container border-2 border-[#ccc] p-4 hover:border-orange">
-        {{ latestSermon.title }}
-      </a>
-    </div>
   </div>
 </section>
 
-<section class="mt-12 px-4">
+<section class="mt-12 px-4 scroll-mt-4" id="allSeries">
   <div class="mx-auto lg:container mb-4">
     <div class="border-b pb-4 mb-4">
       <h2 class="px-4 glbHeading">List of Sermon series</h2>
@@ -41,3 +65,12 @@ layout: layouts/base.njk
     </div>
   </div>
 </section>
+
+{# TODO: This needs a bit of a tidy here #}
+<div class="mt-12 px-4">
+  <div class="mx-auto lg:container">
+
+    {% include 'blocks/podcast.njk' %}
+
+  </div>
+</div>

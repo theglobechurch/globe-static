@@ -1,22 +1,23 @@
-<section class="c-podcast-promo">
+<section class="text-center">
 
   <header class="c-podcast-promo__header">
-    <h1 class="glbHeading">Subscribe to the podcast</h1>
+    <h1 class="glbHeading text-2xl">Subscribe to the podcast</h1>
   </header>
 
-  <main class="c-podcast-promo__body">
-    {# <img src="/assets/podcast-cover-thumb.jpg" alt="Podcast artwork"> #}
-    <p class="c-podcast-promo__body__lead">Sermons from The Globe Church</p>
-    <p>Get Sunday's sermon in your podcatcher each week…</p>
+  <main class="mx-auto max-w-md border border-blue rounded mt-[50px]">
+    {% rwdImg "./src/_assets/img/core/podcast-cover-thumb.jpg", "The Globe Church podcast cover", [128, 256, 512], "block mx-auto w-32 h-32 mt-[-40px] mb-4", "8rem" %}
 
-    <div class="c-podcast-promo__body__list">
+    <h1 class="font-bold">Sermons from The Globe Church</h1>
+    <p>Get Sunday's sermon in your podcatcher each week</p>
+
+    <div class="my-2 px-4 grid grid-cols-2 gap-4 md:flex md:justify-center">
       <a target="_blank" rel="noopener" href="https://podcasts.apple.com/gb/podcast/the-globe-church-sermons/id1436294537" class="glbBtn bg-[#852dc4]">Apple Podcasts</a>
       <a target="_blank" rel="noopener" href="https://pca.st/21Vk" class="glbBtn bg-[#f43e38]">Pocket Casts</a>
       <a target="_blank" rel="noopener" href="https://open.spotify.com/show/08loxZkdYlbxwxy5HVduEQ?si=jD1CwmvsTyiGmqNcb1YXHw" class="glbBtn bg-[#1eba54]">Spotify</a>
       <a target="_blank" rel="noopener" href="/podcast/sermon.rss" class="glbBtn">RSS Feed</a>
     </div>
 
-    <p>Or wherever you listen to podcasts</p>
+    <p class="text-sm mb-2">Or wherever you listen to podcasts…</p>
   </main>
 
 </section>

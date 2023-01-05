@@ -29,7 +29,10 @@ eleventyComputed:
             {{ series.title }}
           </h1>
           {% if series.start_date %}
-          <p class="text-sm block">{% dateRange series.start_date, series.end_date %}</p>
+          <p class="text-sm flex gap-2 items-center">
+            {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+            <span>{% dateRange series.start_date, series.end_date %}</span>
+          </p>
           {% endif %}
         </div>
       </div>
@@ -83,3 +86,11 @@ eleventyComputed:
   </div>
 
 </main>
+
+<div class="mt-12 px-4">
+  <div class="mx-auto lg:container">
+
+    {% include 'blocks/podcast.njk' %}
+
+  </div>
+</div>

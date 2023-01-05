@@ -61,16 +61,7 @@ layout: default
     </div>
   </section>
 
-  {% set sermon = preaching[0] %}
-  <a href="/resources/{{ sermon.slug }}" class="relative block lg:container mx-auto sm:my-8 w-full bg-cover bg-center min-h-[250px] text-white overflow-hidden group">
-    <section>
-      {% rwdImg "./src/_assets/img/core/the-globe-church-bible-study.jpg", "People looking reading the Bible at a church service", [330, 550, 1024, 1500, 2560], "block h-full w-full left-0 right-0 absolute object-cover transition group-hover:scale-105", "100vw" %}
-
-      <div class="absolute inset-0 flex flex-col justify-end items-start bg-blue/50 p-4 group-hover:bg-blue/20">
-        <h2 class="text-white">Listen back to the latest sermon</h2>
-        <p class="glbHeading text-white">{{ sermon.title.rendered }}</p>
-        <span class="inline-block px-2 py-1 rounded bg-orange text-white no-underline transition-colors hover:bg-blue">Go to the recording</span>
-      </div>
-    </section>
-  </a>
+  <div class="mx-auto lg:container mb-4">
+  {% include 'blocks/latestSermon.njk' %}
+  </div>
 </div>

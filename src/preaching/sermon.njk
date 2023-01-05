@@ -9,44 +9,95 @@ eleventyComputed:
   title: "{{ preaching.title }}"
 ---
 
-{% set authorDetails = post.author | authorLookup(people) %}
-{% set seriesDetails = preaching.sermon_series[0] | seriesLookup(sermonseries) %}
+{% set authorDetails = preaching.author | authorLookup(people) %}
+{% set series = preaching.sermon_series[0] | seriesLookup(sermonseries) %}
 
 <main class="mt-12 px-4">
   <header class="mx-auto lg:container mb-4">
+    {% if series.artwork_url %}
+      <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">
+        {% rwdImg series.artwork_url, "", [550, 1024, 1512, 2056], "sm:inset-0 w-full h-full sm:absolute sm:object-cover", "100vw" %}
+
+        <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
+
+          <div>
+            <a href="/preaching" class="text-orange/50">Preaching</a> /
+            <a href="/preaching/{{ series.slug }}" class="">
+              {{ series.title }}
+            </a>
+          </div>
+
+          <h1 class="glbHeading md:text-2xl">
+            {{ title }}
+          </h1>
+
+        </div>
+      </div>
+
+    {% else %}
     <div class="px-4 pt-4">
 
       <div>
         <a href="/preaching" class="text-orange/50">Preaching</a> /
-        <a href="/preaching/{{ seriesDetails.slug }}" class="hidden sm:inline-block">
-          {{ seriesDetails.title }}
+        <a href="/preaching/{{ series.slug }}" class="hidden sm:inline-block">
+          {{ series.title }}
         </a>
       </div>
 
       <h1 class="glbHeading md:text-2xl">
         {{ title }}
       </h1>
-      <date class="text-sm block">{{ preaching.date | formatDate('dddd, Do MMMM YYYY') }}</date>
-      <p class="text-sm block">{{ preaching.meta.glb_sermon_passage }}</p>
+
     </div>
+    {% endif %}
   </header>
 
   <div class="mx-auto lg:container">
 
+    <div class="md:flex gap-4 px-4 mb-4">
+      {% if preaching.date %}
+      <date class="text-sm flex gap-2 items-center">
+        {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+        <span>{{ preaching.date | formatDate('dddd, Do MMMM YYYY') }}</span>
+      </date>
+      {% endif %}
+
+      {% if preaching.meta.glb_sermon_passage %}
+      <p class="text-sm flex gap-2 items-center">
+        {% svgIcon "icon-book", "shrink-0 h-4 w-4", "Preaching passage" %}
+        <span>{{ preaching.meta.glb_sermon_passage }}</span>
+      </p>
+      {% endif %}
+
+      {% if authorDetails %}
+      <p class="text-sm flex gap-2 items-center">
+        {% svgIcon "icon-person", "shrink-0 h-4 w-4", "Preached by" %}
+        <span>{{ authorDetails.name }}</span>
+      </p>
+      {% endif %}
+    </div>
+
     <div class="px-4 prose prose-globeBlue lg:prose-xl mb-4">
-      {{preaching.content.rendered | safe}}
+      {{ preaching.content.rendered | safe}}
     </div>
 
     <audio class="px-4 mb-4 w-full" src="{{ preaching.sermon_url }}" preload="metadata" controls></audio>
 
-    <a href="/preaching/{{ seriesDetails.slug }}" class="no-underline block my-12 mx-auto lg:container border-2 border-[#ccc] p-4 hover:border-orange">
-      <div class="rounded bg-orange px-2 py-1 mb-1 text-xs text-white inline-block uppercase font-bold">
-        Series
-      </div>
+    <a href="/preaching/{{ series.slug }}" class="relative block lg:container mx-auto sm:my-8 w-full bg-cover bg-center min-h-[250px] text-white overflow-hidden group">
+      {% rwdImg series.artwork_url, "", [550, 1024, 1512, 2056], "sm:inset-0 w-full h-full sm:absolute sm:object-cover", "100vw" %}
 
-      <p class="font-bold">
-        {{ seriesDetails.title }}
-      </p>
+      <div class="absolute inset-0 flex flex-col justify-end items-start bg-blue/50 p-4 transition-colors group-hover:bg-blue/20">
+
+        <p class="text-lg">
+          This recording is part of the series…
+        </p>
+
+        <p class="text-2xl font-bold uppercase">
+          {{ series.title }}
+        </p>
+
+        <span class="mt-2 inline-block px-2 py-1 rounded bg-orange text-white no-underline transition-colors hover:bg-blue">Go to series</span>
+      </div>
     </a>
 
 
