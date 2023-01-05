@@ -27,8 +27,11 @@ module.exports = {
     });
   },
 
-  svgIcon: function(name, cls = null) {
-    return `<svg class="${cls}"><use xlink:href="/_assets/svgSprite.svg#svg-${name}"></use></svg>`;
+  svgIcon: function(name, cls = null, title = null) {
+    if (title !== null) {
+      title = `<title>${title}</title>`;
+    }
+    return `<svg class="${cls}">${title}<use xlink:href="/_assets/svgSprite.svg#svg-${name}"></use></svg>`;
   },
 
   dateRange: function(startDate, endDate) {

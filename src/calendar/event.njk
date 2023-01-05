@@ -30,7 +30,7 @@ eleventyComputed:
       </h1>
 
       <date class="flex gap-2 items-start">
-        {% svgIcon "clock", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange" %}
+        {% svgIcon "clock", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange", "Event time" %}
 
         <span>
           {% if event.startDate | formatDate() != event.endDate | formatDate() %}
@@ -44,7 +44,7 @@ eleventyComputed:
       </date>
 
       <p class="flex gap-2 items-start">
-        {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange" %}
+        {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange", "Event location" %}
         <span>{{ event.location }}</span>
       </p>
     </div>
