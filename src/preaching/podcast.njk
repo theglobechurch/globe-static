@@ -2,14 +2,12 @@
 permalink: podcast/sermon.rss
 eleventyExcludeFromCollections: true
 ---
-
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:ppg="http://bbc.co.uk/2009/01/ppgRss" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>The Globe Church Sermons</title>
     <description>The Globe Church is all about Jesus. The Globe Church is made up of all sorts of people. The Globe Church is involved in the greatest mission.</description>
     <language>en-gb</language>
-    {# TODO: CHECK THIS IS VALID #}
     <pubDate>{{ preaching[0].date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
     <lastBuildDate>{{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</lastBuildDate>
     <link>https://www.globe.church/</link>
@@ -31,22 +29,22 @@ eleventyExcludeFromCollections: true
     <itunes:category text="Religion &amp; Spirituality">
       <itunes:category text="Christianity"/>
     </itunes:category>
-    {# TODO… #}
     {% for sermon in preaching %}
-    <item>
-      <title>{{ sermon.title }} {% if sermon.meta.glb_sermon_passage %}- {{ sermon.meta.glb_sermon_passage }}{% endif %}</title>
-      <description>{{ sermon.description | striptags }}</description>
+    <item>{% set authorDetails = sermon.author | authorLookup(people) %}
+      <title>{{ sermon.title }}{% if sermon.meta.glb_sermon_passage %} ({{ sermon.meta.glb_sermon_passage }}){% endif %}</title>
+      <description>{{ sermon.content | striptags | truncate(250) }}</description>
       <pubDate>{{ sermon.date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
       <link>https://www.globe.church/resources/{{ sermon.slug }}</link>
       <guid>https://www.globe.church/resources/{{ sermon.slug }}</guid>
-      {# <enclosure url="https://www.globe.church/uploads/production/2022/11/28/5d712wizjg_22_11_27_Sermon_Audio.mp3" length="91989120" type="audio/mpeg"/>
-      <ppg:enclosureLegacy url="https://www.globe.church/uploads/production/2022/11/28/5d712wizjg_22_11_27_Sermon_Audio.mp3" length="91989120" type="audio/mpeg"/>
-      <ppg:enclosureSecure url="https://www.globe.church/uploads/production/2022/11/28/5d712wizjg_22_11_27_Sermon_Audio.mp3" length="91989120" type="audio/mpeg"/>
-      <media:content url="https://www.globe.church/uploads/production/2022/11/28/5d712wizjg_22_11_27_Sermon_Audio.mp3" fileSize="91989120" type="audio/mpeg"/> #}
+      {# <enclosure url="{{ sermon.sermon_url }}" length="" type="audio/mpeg" /> #}
+      {# <ppg:enclosureLegacy url="{{ sermon.sermon_url }}" length="91989120" type="audio/mpeg"/> #}
+      {# <ppg:enclosureSecure url="{{ sermon.sermon_url }}" length="91989120" type="audio/mpeg"/> #}
+      {# <media:content url="{{ sermon.sermon_url }}" fileSize="91989120" type="audio/mpeg"/> #}
+      {# <itunes:duration></itunes:duration> #}{# Need to expose this in WP #}
       <itunes:explicit>clean</itunes:explicit>
-      {# <itunes:author>Jonty Allcock</itunes:author> #}
-      <itunes:subtitle>{{ sermon.description | truncate(250) }}</itunes:subtitle>
-      <itunes:summary>{{ sermon.description }}</itunes:summary>
+      <itunes:author>{{ authorDetails.name }}</itunes:author>
+      <itunes:subtitle>{{ sermon.content | striptags | truncate(250) }}</itunes:subtitle>
+      <itunes:summary>{{ sermon.content | striptags }}</itunes:summary>
       <itunes:explicit>no</itunes:explicit>
     </item>
     {% endfor %}
