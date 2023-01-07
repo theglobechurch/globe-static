@@ -36,11 +36,11 @@ eleventyExcludeFromCollections: true
       <pubDate>{{ sermon.date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
       <link>https://www.globe.church/resources/{{ sermon.slug }}</link>
       <guid>https://www.globe.church/resources/{{ sermon.slug }}</guid>
-      {# <enclosure url="{{ sermon.sermon_url }}" length="" type="audio/mpeg" /> #}
-      {# <ppg:enclosureLegacy url="{{ sermon.sermon_url }}" length="91989120" type="audio/mpeg"/> #}
-      {# <ppg:enclosureSecure url="{{ sermon.sermon_url }}" length="91989120" type="audio/mpeg"/> #}
-      {# <media:content url="{{ sermon.sermon_url }}" fileSize="91989120" type="audio/mpeg"/> #}
-      {# <itunes:duration></itunes:duration> #}{# Need to expose this in WP #}
+      <enclosure url="{{ sermon.sermon_data.url }}" length="{{ sermon.sermon_data.filesize }}" type="audio/mpeg" />
+      <ppg:enclosureLegacy url="{{ sermon.sermon_data.url }}" length="{{ sermon.sermon_data.filesize }}" type="audio/mpeg"/>
+      <ppg:enclosureSecure url="{{ sermon.sermon_data.url }}" length="{{ sermon.sermon_data.filesize }}" type="audio/mpeg"/>
+      <media:content url="{{ sermon.sermon_data.url }}" fileSize="{{ sermon.sermon_data.filesize }}" type="audio/mpeg"/>
+      <itunes:duration>{{ sermon.sermon_data.length }}</itunes:duration>
       <itunes:explicit>clean</itunes:explicit>
       <itunes:author>{{ authorDetails.name }}</itunes:author>
       <itunes:subtitle>{{ sermon.content | striptags | truncate(250) }}</itunes:subtitle>
@@ -48,6 +48,5 @@ eleventyExcludeFromCollections: true
       <itunes:explicit>no</itunes:explicit>
     </item>
     {% endfor %}
-
   </channel>
 </rss>
