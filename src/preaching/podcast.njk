@@ -32,7 +32,7 @@ eleventyExcludeFromCollections: true
     {% for sermon in preaching %}
     <item>{% set authorDetails = sermon.author | authorLookup(people) %}
       <title>{{ sermon.title }}{% if sermon.meta.glb_sermon_passage %} ({{ sermon.meta.glb_sermon_passage }}){% endif %}</title>
-      <description>{{ sermon.content | striptags | truncate(250) }}</description>
+      <description>{{ sermon.content | striptags | truncate(250)| entEncode | safe }}</description>
       <pubDate>{{ sermon.date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
       <link>https://www.globe.church/resources/{{ sermon.slug }}</link>
       <guid>https://www.globe.church/resources/{{ sermon.slug }}</guid>
@@ -43,8 +43,8 @@ eleventyExcludeFromCollections: true
       <itunes:duration>{{ sermon.sermon_data.length }}</itunes:duration>
       <itunes:explicit>clean</itunes:explicit>
       <itunes:author>{{ authorDetails.name }}</itunes:author>
-      <itunes:subtitle>{{ sermon.content | striptags | truncate(250) }}</itunes:subtitle>
-      <itunes:summary>{{ sermon.content | striptags }}</itunes:summary>
+      <itunes:subtitle>{{ sermon.content | striptags | truncate(250)| entEncode | safe }}</itunes:subtitle>
+      <itunes:summary>{{ sermon.content | striptags | entEncode | safe }}</itunes:summary>
       <itunes:explicit>no</itunes:explicit>
     </item>
     {% endfor %}
