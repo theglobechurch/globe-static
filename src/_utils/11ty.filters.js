@@ -5,6 +5,7 @@ const advancedFormat = require('dayjs/plugin/advancedFormat');
 const utc = require('dayjs/plugin/utc');
 const timezone = require('dayjs/plugin/timezone');
 const localTimezone = "Europe/London";
+const ent = require('ent');
 
 dayjs
   .extend(isSameOrBefore)
@@ -92,5 +93,9 @@ module.exports = {
 
   seriesLookup: (seriesId, allSeries) => {
     return allSeries.find((series) => series.id === seriesId);
+  },
+
+  entEncode: (str) => {
+    return ent.encode(str);
   }
 }

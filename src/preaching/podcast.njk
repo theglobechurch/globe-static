@@ -2,19 +2,16 @@
 permalink: podcast/sermon.rss
 eleventyExcludeFromCollections: true
 ---
-
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:ppg="http://bbc.co.uk/2009/01/ppgRss" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>The Globe Church Sermons</title>
     <description>The Globe Church is all about Jesus. The Globe Church is made up of all sorts of people. The Globe Church is involved in the greatest mission.</description>
     <language>en-gb</language>
-    {# TODO: CHECK THIS IS VALID #}
     <pubDate>{{ preaching[0].date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
     <lastBuildDate>{{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</lastBuildDate>
     <link>https://www.globe.church/</link>
     <image>
-      {# TODO: MAKE SURE THIS FILE EXISTS #}
       <url>https://www.globe.church/assets/podcast-cover.jpg</url>
       <title>The Globe Church Sermons</title>
       <link>https://www.globe.church/</link>
@@ -32,12 +29,24 @@ eleventyExcludeFromCollections: true
     <itunes:category text="Religion &amp; Spirituality">
       <itunes:category text="Christianity"/>
     </itunes:category>
-    {# TODO… #}
     {% for sermon in preaching %}
-    <item>
-      COMING SOON
+    <item>{% set authorDetails = sermon.author | authorLookup(people) %}
+      <title>{{ sermon.title }}{% if sermon.meta.glb_sermon_passage %} ({{ sermon.meta.glb_sermon_passage }}){% endif %}</title>
+      <description>{{ sermon.content | striptags | truncate(250)| entEncode | safe }}</description>
+      <pubDate>{{ sermon.date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
+      <link>https://www.globe.church/resources/{{ sermon.slug }}</link>
+      <guid>https://www.globe.church/resources/{{ sermon.slug }}</guid>
+      <enclosure url="{{ sermon.sermon_data.url }}" length="{{ sermon.sermon_data.filesize }}" type="audio/mpeg" />
+      <ppg:enclosureLegacy url="{{ sermon.sermon_data.url }}" length="{{ sermon.sermon_data.filesize }}" type="audio/mpeg"/>
+      <ppg:enclosureSecure url="{{ sermon.sermon_data.url }}" length="{{ sermon.sermon_data.filesize }}" type="audio/mpeg"/>
+      <media:content url="{{ sermon.sermon_data.url }}" fileSize="{{ sermon.sermon_data.filesize }}" type="audio/mpeg"/>
+      <itunes:duration>{{ sermon.sermon_data.length }}</itunes:duration>
+      <itunes:explicit>clean</itunes:explicit>
+      <itunes:author>{{ authorDetails.name }}</itunes:author>
+      <itunes:subtitle>{{ sermon.content | striptags | truncate(250)| entEncode | safe }}</itunes:subtitle>
+      <itunes:summary>{{ sermon.content | striptags | entEncode | safe }}</itunes:summary>
+      <itunes:explicit>no</itunes:explicit>
     </item>
     {% endfor %}
-
   </channel>
 </rss>

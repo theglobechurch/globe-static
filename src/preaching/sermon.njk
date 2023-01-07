@@ -78,10 +78,10 @@ eleventyComputed:
     </div>
 
     <div class="px-4 prose prose-globeBlue lg:prose-xl mb-4">
-      {{ preaching.content.rendered | safe}}
+      {{ preaching.content | safe }}
     </div>
 
-    <audio class="px-4 mb-4 w-full" src="{{ preaching.sermon_url }}" preload="metadata" controls></audio>
+    <audio class="px-4 mb-4 w-full" src="{{ preaching.sermon_data.url }}" preload="metadata" controls></audio>
 
     <a href="/preaching/{{ series.slug }}" class="relative block lg:container mx-auto sm:my-8 w-full bg-cover bg-center min-h-[250px] text-white overflow-hidden group">
       {% rwdImg series.artwork_url, "", [550, 1024, 1512, 2056], "sm:inset-0 w-full h-full sm:absolute sm:object-cover", "100vw" %}
