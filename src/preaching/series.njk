@@ -15,7 +15,7 @@ eleventyComputed:
 {% set sermons = series | sermonsInSeries(preaching) | sort(true, true, 'date') %}
 {% endif %}
 
-<main class="mt-12 px-4">
+<main class="mt-16 px-4">
   <header class="m-4 mx-auto lg:container">
     {% if series.artwork_url %}
       <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">

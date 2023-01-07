@@ -12,7 +12,7 @@ eleventyComputed:
 {% set authorDetails = preaching.author | authorLookup(people) %}
 {% set series = preaching.sermon_series[0] | seriesLookup(sermonseries) %}
 
-<main class="mt-12 px-4">
+<main class="mt-16 px-4">
   <header class="mx-auto lg:container mb-4">
     {% if series.artwork_url %}
       <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">

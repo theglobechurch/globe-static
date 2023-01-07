@@ -14,18 +14,18 @@ eleventyComputed:
 {% set siblingPages = parentPage | pageChildren(pages) | sort(false, false, 'menu_order') %}
 {% endif %}
 
-<main class="mt-12 px-4">
+<main class="mt-16 px-4">
   <header class="m-4 mx-auto lg:container">
     {% if parentPage %}
       <a href="/{{ parentPage.slug }}" class="px-4">
         {{ parentPage.title }}
       </a>
     {% endif %}
-    <h1 class="px-4 glbHeading md:text-2xl">{{ title }}</h1>
+    <h1 class="px-4 glbHeading">{{ title }}</h1>
   </header>
 
   <div class="mx-auto lg:container">
-    <article class="px-4 prose prose-globeBlue lg:prose-xl">
+    <article class="px-4 prose prose-globeBlue">
       {{ p.content.rendered | safe }}
     </article>
   </div>

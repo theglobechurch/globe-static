@@ -22,6 +22,13 @@ module.exports = {
     },
     extend: {
       typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            h2: {
+              'text-transform': 'uppercase'
+            }
+          }
+        },
         globeBlue: {
           css: {
             '--tw-prose-body': theme('colors.blue.DEFAULT'),
