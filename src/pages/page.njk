@@ -34,6 +34,7 @@ eleventyComputed:
 
 {% include 'blocks/augmentedPages.njk' %}
 
+{% if childPages | length > 0 or parentPage | length > 0 %}
 <div class="mt-12 px-4">
 
   <div class="m-4 mx-auto lg:container">
@@ -74,3 +75,4 @@ eleventyComputed:
     </div>
   </div>
 </div>
+{% endif %}
