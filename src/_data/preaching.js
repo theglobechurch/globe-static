@@ -63,8 +63,8 @@ async function fetchSermons() {
           sermon.content = ent.decode(sermon.content.rendered);
           sermon.description = sermon.content;
 
-          if (sermon.sermon_url) {
-            sermon.sermon_url = sermon.sermon_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+          if (sermon.sermon_data.url) {
+            sermon.sermon_data.url = sermon.sermon_data.url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
           }
           return sermon;
         });
