@@ -68,13 +68,19 @@ eleventyComputed:
     <div class="w-full grid grid-cols-1 divide-y divide-orange/30">
 
       {% for sermon in sermons %}
-        <a href="/resources/{{ sermon.slug }}" class="p-4 no-underline flex justify-between items-center hover:underline group">
+        <a href="/resources/{{ sermon.slug }}" class="p-4 no-underline flex gap-2 justify-between items-center hover:underline group">
           <div>
             <h3 class="font-bold">{{ sermon.title }}</h3>
-            <p class="text-sm text-blue">{{ sermon.meta.glb_sermon_passage }}</p>
-            <p class="text-sm text-blue">{{ sermon.date | formatDate('dddd, Do MMMM YYYY') }}</p>
+            <p class="text-sm text-blue flex gap-2 items-top">
+              {% svgIcon "icon-book", "shrink-0 h-4 w-4", "Preaching passage" %}
+              <span>{{ sermon.meta.glb_sermon_passage }}</span>
+            </p>
+            <p class="text-sm text-blue flex gap-2 items-top">
+              {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+              <span>{{ sermon.date | formatDate('Do MMMM YYYY') }}</span>
+            </p>
           </div>
-          <div>
+          <div class="flex-shrink-0">
             <p class="flex items-center">
               <span>Listen now</span>
               {% svgIcon "icon-play", "ml-1 h-6 w-6 inline-block transition group-hover:translate-x-1", "Play icon" %}
