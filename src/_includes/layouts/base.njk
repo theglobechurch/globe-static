@@ -8,16 +8,18 @@
     <link rel="stylesheet" href="/_assets/css/tw.css?v={{ data.buildRef }}" media="screen" type="text/css">
 
     <title>
+      {% set maintitle = "The Globe Church" %}
       {% if title %}
-        {{ title | safe }} &middot;
+        {{ title | safe }}
+      {% else%}
+        {{ maintitle | safe }}
       {% endif %}
-      The Globe Church
     </title>
 
 
-    <meta property="og:title" content="{{ title }}"/>
+    <meta property="og:title" content="{{ title }}{{" &middot The Globe Church" | safe if title else "The Globe Church"}}" />
     <meta property="og:url" content="{{ page.url }}"/>
-    <meta property="og:description" content="{{ description }}">
+    <meta property="og:description" content="{{ description }}"/>
     <meta property="og:image" content="/src/_assets/svg/tgcLogoFilled.svg"/>
     <meta property="og:type" content="website"/>
 
