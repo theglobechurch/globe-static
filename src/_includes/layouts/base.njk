@@ -19,8 +19,12 @@
     <meta property="og:title" content="{{ title }}{{" &middot The Globe Church" | safe if title else "The Globe Church"}}"/>
     <meta property="og:url" content="https://globe.church{{ page.url }}"/>
     <meta property="og:description" content="{{ content | striptags | truncate(100) }}"/>
-    <meta property="og:image" content="{{ image }}"/>
     <meta property="og:type" content="website"/>
+
+    <!-- No idea how to select an appropriate image from the blog post, which correlates to each page -->
+    <meta property="og:image" content="/src/assets/svg/tgcLogoFilled.svg"/>
+
+
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
