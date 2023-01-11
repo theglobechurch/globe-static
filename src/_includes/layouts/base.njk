@@ -18,8 +18,8 @@
 
     <meta property="og:title" content="{{ title }}{{" &middot The Globe Church" | safe if title else "The Globe Church"}}"/>
     <meta property="og:url" content="https://globe.church{{ page.url }}"/>
-    <meta property="og:description" content="{{ description }}"/>
-    <meta property="og:image" content="{{ header }}"/>
+    <meta property="og:description" content="{{ content | striptags | truncate(100) }}"/>
+    <meta property="og:image" content="{{ image }}"/>
     <meta property="og:type" content="website"/>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
