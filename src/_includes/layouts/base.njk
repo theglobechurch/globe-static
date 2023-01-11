@@ -11,16 +11,15 @@
       {% set maintitle = "The Globe Church" %}
       {% if title %}
         {{ title | safe }}
-      {% else%}
+        {% else%}
         {{ maintitle | safe }}
       {% endif %}
     </title>
 
-
-    <meta property="og:title" content="{{ title }}{{" &middot The Globe Church" | safe if title else "The Globe Church"}}" />
-    <meta property="og:url" content="{{ page.url }}"/>
+    <meta property="og:title" content="{{ title }}{{" &middot The Globe Church" | safe if title else "The Globe Church"}}"/>
+    <meta property="og:url" content="https://globe.church{{ page.url }}"/>
     <meta property="og:description" content="{{ description }}"/>
-    <meta property="og:image" content="/src/_assets/svg/tgcLogoFilled.svg"/>
+    <meta property="og:image" content="{{ header }}"/>
     <meta property="og:type" content="website"/>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -44,7 +43,7 @@
     <!-- RSS FEED
     {# <link rel="alternate" type="application/rss+xml" title="The Globe Church Blog" href="/blog/feed.xml" /> #}
     -->
-    
+
   </head>
 
   <body>
