@@ -16,10 +16,10 @@ let totalPages = 1;
 module.exports = () => {
   let wpPages = new AssetCache("pages");
 
-  if (ENABLE_11TY_CACHE && wpPages.isCacheValid("1d")) {
-    console.log("📃 Serving pages from the cache…");
-    return wpPages.getCachedValue();
-  }
+  // if (ENABLE_11TY_CACHE && wpPages.isCacheValid("1d")) {
+  //   console.log("📃 Serving pages from the cache…");
+  //   return wpPages.getCachedValue();
+  // }
 
   console.log("📃 Fetching pages");
 
@@ -36,22 +36,6 @@ module.exports = () => {
     console.log(`✏️  Imported ${pages.length} pages`);
     resolve(pages);
   });
-
-  // return fetch(base)
-  //   .then((res) => res.json())
-  //   .then((pagesJson) => {
-
-  //     pagesJson.forEach(page => {
-  //       // Update slug to full URL
-  //       page.slug_original = page.slug;
-  //       if (page.parent !== 0) {
-  //         page.slug = `${parentSlug(pagesJson, page.parent)}/${page.slug}`;
-  //       }
-  //     });
-
-  //     wpPages.save(pagesJson, "json");
-  //     return pagesJson
-  //   });
 };
 
 function fetchPages() {
@@ -79,6 +63,8 @@ function fetchPages() {
           if (page.parent !== 0) {
             page.slug = `${parentSlug(allPages, page.parent)}/${page.slug}`;
           }
+
+          page.body = page.content.rendered.replaceAll('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
 
           return page;
         });

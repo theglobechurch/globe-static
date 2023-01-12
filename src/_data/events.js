@@ -11,6 +11,7 @@ const fetch = require("node-fetch");
 const ical = require('node-ical');
 const frontMatter = require('front-matter');
 const striptags = require('striptags');
+const ent = require('ent');
 
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc')
@@ -140,11 +141,18 @@ function eventBuilder(event, recurring = false) {
     strict: true,
   });
 
+  let url = `/calendar/${start.format('YYYY-MM-DD')}/${slug}/`;
+
+  if (eventDesc.attributes.canonical) {
+    url = eventDesc.attributes.canonical;
+  }
+
   const duration = dayjs.duration(end.diff(start)).humanize();
 
   return {
-    title: event.summary,
+    title: ent.decode(event.summary),
     slug,
+    url,
     location: event.location,
     startDate: start.format(),
     endDate: end.format(),

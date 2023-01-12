@@ -48,20 +48,30 @@ layout: layouts/base.njk
   {% set oneOffEvent = events | eventsFuture | eventsOneOff | eventsSort | limit(1) | first %}
   {# TODO: SWITCH THIS TO FIRST FEATURED EVENT #}
   {% if oneOffEvent %}
-  <a href="/calendar/{{ oneOffEvent.startDate | formatDate}}/{{ oneOffEvent.slug }}/" class="no-underline block my-12 mx-auto lg:container border-2 border-[#ccc] p-4">
+  <div class="mx-auto lg:container mb-4 grid gap-4">
+    <a href="/calendar/{{ oneOffEvent.startDate | formatDate}}/{{ oneOffEvent.slug }}/" class="w-full border border-[#ccc] text-blue group no-underline transition-colors bg-orange/10 p-4 hover:bg-orange/20">
 
-    {% if oneOffEvent.data.tags %}
-    <div class="rounded bg-orange px-2 py-1 mb-1 text-xs text-white inline-block uppercase font-bold">
-      {{ oneOffEvent.data.tags | first }}
-    </div>
-    {% endif %}
+      {% if oneOffEvent.data.tags %}
+      <div class="rounded bg-orange px-2 py-1 mb-1 text-xs text-white inline-block uppercase font-bold">
+        {{ oneOffEvent.data.tags | first }}
+      </div>
+      {% endif %}
 
-    <p class="font-bold">{{ oneOffEvent.title }}</p>
+      <p class="font-bold">{{ oneOffEvent.title }}</p>
 
-    <date class="block" content="{{ oneOffEvent.startDate }}">
-      {{ oneOffEvent.startDate | formatDate('dddd Do MMMM') }} ({{ oneOffEvent.duration }})
-    </date>
-  </a>
+      <date class="flex gap-2 items-start" content="{{ oneOffEvent.startDate }}">
+        {% svgIcon "icon-calendar", "shrink-0 h-4 w-4 mt-1", "Event time" %}
+        <spon>{{ oneOffEvent.startDate | formatDate('dddd Do MMMM, H:mm') }} ({{ oneOffEvent.duration }})</span>
+      </date>
+
+      {% if oneOffEvent.location %}
+      <p class="flex gap-2 items-start">
+        {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1", "Event location" %}
+        <span>{{ oneOffEvent.location }}</span>
+      </p>
+      {% endif %}
+    </a>
+  </div>
   {% endif %}
 
 

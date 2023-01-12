@@ -27,11 +27,11 @@ eleventyComputed:
       {% endif %}
 
       <h1 class="glbHeading md:text-2xl">
-        {{ title }}
+        {{ title | safe}}
       </h1>
 
       <date class="flex gap-2 items-start">
-        {% svgIcon "clock", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange", "Event time" %}
+        {% svgIcon "clock", "shrink-0 h-4 w-4 mt-1", "Event time" %}
 
         <span>
           {% if event.startDate | formatDate() != event.endDate | formatDate() %}
@@ -46,7 +46,7 @@ eleventyComputed:
 
       {% if event.location %}
       <p class="flex gap-2 items-start">
-        {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1 group-hover:text-orange", "Event location" %}
+        {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1", "Event location" %}
         <span>{{ event.location }}</span>
       </p>
       {% endif %}
@@ -57,11 +57,13 @@ eleventyComputed:
 
   <div class="mx-auto lg:container lg:grid gap-12 lg:grid-cols-4">
     <article class="px-4 prose prose-globeBlue lg:prose-xl lg:col-span-3">
-      {{ event.body }}
+
+      <div>{{ event.body }}</div>
 
       {% if event.data.url %}
-        <div class="border m-4 p-4">
-          {{ event.data.url }}
+        <div class="border-t my-8 py-4">
+          Find out more at <a href="{{ event.data.url }}">{{ event.data.url | replace('https://','') }}</a>
+
         </div>
       {% endif %}
     </article>
@@ -74,7 +76,7 @@ eleventyComputed:
             {% for fEvent in futureEvents %}
               {% if fEvent.slug !== event.slug %}
                 <li>
-                  <a href="/calendar/{{ fEvent.startDate | formatDate}}/{{ fEvent.slug }}/" class=" lg:leading-snug">
+                  <a href="{{ fEvent.url }}" class=" lg:leading-snug">
                     {{ fEvent.title }}
                     <span class="text-sm block">{{ fEvent.startDate | formatDate('D MMM, HH:mm') }}</span>
                   </a>

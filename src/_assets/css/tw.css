@@ -252,3 +252,19 @@
   background-color: #588d74;
   box-shadow: -5px 9px 0 #588d74, -5px -10px 0 #588d74, 5px 9px 0 #588d74, 5px -10px 0 #588d74;
 }
+
+
+
+/*Wordpress goodness*/
+
+.wp-embed-aspect-16-9 .wp-block-embed__wrapper {
+  @apply w-full aspect-video;
+}
+
+.wp-block-embed__wrapper {
+  @apply relative;
+}
+
+.wp-embed-aspect-16-9 iframe {
+  @apply absolute inset-0 w-full h-full;
+}
