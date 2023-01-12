@@ -1,0 +1,12 @@
+<a href="/calendar/{{ event.startDate | formatDate }}/{{ event.slug }}/" class="w-full text-blue group no-underline transition-colors bg-orange/10 p-4 first:bg-blue/10 hover:bg-orange/20 hover:first:bg-blue/20">
+
+  <p class="text-sm flex gap-2 items-center">
+    {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+    <span>{{ event.startDate | formatDate('dddd, D MMMM YYYY') }}</span>
+  </p>
+
+  <strong class="block mb-2">{{ event.title }}</strong>
+  <button class="underline group-hover:no-underline">
+    More information
+  </button>
+</a>

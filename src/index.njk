@@ -41,23 +41,20 @@ layout: default
       <a href="/calendar" class="">See the church calendar</a>
     </div>
 
-    <div class="py-4 grid gap-4 sm:grid-cols-2">
-      {% set oneOffEvents = events | eventsFuture | eventsOneOff | eventsSort | limit(2) %}
-      {% for e in oneOffEvents %}
-      <a href="/calendar/{{ e.startDate | formatDate }}/{{ e.slug }}/" class="w-full group no-underline transition-colors">
-        <div class="aspect-video bg-cover bg-center overflow-hidden relative">
-        {% rwdImg "./src/_assets/img/core/the-globe-church-london-southwark.jpg", "", [330, 550, 1024], "inset-0 absolute object-cover", "@media (min-width: 640px) 50vw ,100vw" %}
-        </div>
+    <div class="p-4 grid gap-4 sm:grid-cols-4">
+      {% set eventCount = 4 %}
+      {# TODO: SWITCH THIS TO FIRST FEATURED EVENT #}
+      {% set event = events | eventsFuture | eventsOneOff | eventsSort | limit(1) | first %}
+      {% if event %}
+        {% include 'blocks/simpleEvent.njk' %}
+        {% set eventCount = 3 %}
+      {% endif %}
 
-        <div class="bg-orange/10 p-4">
-          {{ e.startDate | formatDate('dddd, D MMMM YYYY') }}<br />
-          <strong class="block">{{ e.title }}</strong>
-          <button class="rounded px-2 py-1 bg-orange text-white group-hover:bg-blue group-hover:text-white">
-            More information
-          </button>
-        </div>
-      </a>
+      {% set events = events | eventsFuture | eventsSort | limit(eventCount) %}
+      {% for event in events %}
+        {% include 'blocks/simpleEvent.njk' %}
       {% endfor %}
+
     </div>
   </section>
 

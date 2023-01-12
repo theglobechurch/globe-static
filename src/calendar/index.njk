@@ -46,6 +46,7 @@ layout: layouts/base.njk
 
 
   {% set oneOffEvent = events | eventsFuture | eventsOneOff | eventsSort | limit(1) | first %}
+  {# TODO: SWITCH THIS TO FIRST FEATURED EVENT #}
   {% if oneOffEvent %}
   <a href="/calendar/{{ oneOffEvent.startDate | formatDate}}/{{ oneOffEvent.slug }}/" class="no-underline block my-12 mx-auto lg:container border-2 border-[#ccc] p-4">
 
