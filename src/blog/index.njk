@@ -13,13 +13,25 @@ layout: default
     </h1>
   </header>
 
-  {% for item in pagination.items %}
-    <a href="/blog/{{ item.slug }}" class="block mb-4 p-4 border border-orange text-blue no-underline lg:container mx-auto sm:mb-8 hover:border-blue">
-      <h2 class="uppercase font-bold">{{ item.title.rendered | safe }}</h2>
-      <date class="text-sm mb-4 block">{{ item.date | formatDate('dddd, D MMMM YYYY') }}</date>
-      <p>{{ item.excerpt.rendered | striptags | safe }}</p>
-    </a>
-  {% endfor %}
+  <div class="grid gap-4">
+    {% for item in pagination.items %}
+      <a href="/blog/{{ item.slug }}" class="w-full text-blue group no-underline transition-colors bg-orange/10 p-4 hover:bg-orange/20">
+        <div class="flex flex-col-reverse">
+          <h2 class="uppercase font-bold">{{ item.title.rendered | safe }}</h2>
+          <date class="text-sm flex gap-1 items-center">
+            {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+            <span>{{ item.date | formatDate('dddd, D MMMM YYYY') }}</span>
+          </date>
+        </div>
+
+        <p class="my-2">{{ item.excerpt.rendered | striptags | safe }}</p>
+
+        <button class="underline group-hover:no-underline">
+          Keep reading
+        </button>
+      </a>
+    {% endfor %}
+  </div>
 
   <nav class="m-4 mx-auto lg:container">
     <ol class="p-4 flex gap-2 sm:gap-4 justify-between">

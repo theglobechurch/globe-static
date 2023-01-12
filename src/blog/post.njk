@@ -22,7 +22,10 @@ eleventyComputed:
         <h1 class="glbHeading md:text-2xl">
           {{ title | safe }}
         </h1>
-        <date class="text-sm block">{{ post.date | formatDate('dddd, Do MMMM YYYY') }}</date>
+        <date class="text-sm flex gap-2 items-center">
+          {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+          <span>{{ post.date | formatDate('dddd, Do MMMM YYYY') }}</span>
+        </date>
       </div>
     </div>
     {% else %}
@@ -31,7 +34,10 @@ eleventyComputed:
         <h1 class="glbHeading md:text-2xl">
           {{ title | safe }}
         </h1>
-        <date class="text-sm block">{{ post.date | formatDate('dddd, D MMMM YYYY') }}</date>
+        <date class="text-sm flex gap-2 items-center">
+          {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+          <span>{{ post.date | formatDate('dddd, D MMMM YYYY') }}</span>
+        </date>
       </div>
     {% endif %}
   </header>
