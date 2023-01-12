@@ -17,8 +17,9 @@ eleventyComputed:
 <main class="mt-16 px-4">
   <header class="m-4 mx-auto lg:container">
     {% if parentPage %}
-      <a href="/{{ parentPage.slug }}" class="px-4">
-        {{ parentPage.title }}
+      <a href="/{{ parentPage.slug }}" class="px-4 flex gap-1 items-center group">
+        {% svgIcon "icon-arrowLeft", "shrink-0 h-4 w-4 transition group-hover:-translate-x-2", "Date" %}
+        <span>{{ parentPage.title }}</span>
       </a>
     {% endif %}
     <h1 class="px-4 glbHeading">{{ title }}</h1>
