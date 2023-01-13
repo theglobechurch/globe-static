@@ -41,7 +41,7 @@ layout: default
       <a href="/calendar" class="">See the church calendar</a>
     </div>
 
-    <div class="p-4 grid gap-4 sm:grid-cols-4">
+    <div class="p-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {% set eventCount = 4 %}
       {# TODO: SWITCH THIS TO FIRST FEATURED EVENT #}
       {% set event = events | eventsFuture | eventsOneOff | eventsSort | limit(1) | first %}

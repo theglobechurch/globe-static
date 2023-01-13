@@ -8,7 +8,6 @@ layout: layouts/base.njk
 eleventyComputed:
   title: "{{ event.title }}"
 ---
-{% set futureEvents = events | eventsFuture(0, 'day') | eventsSort | limit(6) %}
 
 <main class="mt-16 px-4">
   <header class="mx-auto lg:container mb-4">
@@ -55,40 +54,33 @@ eleventyComputed:
 
 
 
-  <div class="mx-auto lg:container lg:grid gap-12 lg:grid-cols-4">
+  <div class="mx-auto lg:container">
     <article class="px-4 prose prose-globeBlue lg:prose-xl lg:col-span-3">
 
       <div>{{ event.body }}</div>
 
       {% if event.data.url %}
-        <div class="border-t my-8 py-4">
-          Find out more at <a href="{{ event.data.url }}">{{ event.data.url | replace('https://','') }}</a>
+        <div class="my-8 py-4">
+          Find out more at:<br />
+          <a href="{{ event.data.url }}">{{ event.data.url | replace('https://','') }}</a>
 
         </div>
       {% endif %}
     </article>
 
     <aside class="border-t border-b mt-4 pt-4 lg:mt-0 lg:pt-0 lg:border-0 leading-7 lg:text-lg lg:leading-loose">
-      <div class="sm:grid sm:gap-4 sm:grid-cols-2 lg:grid-cols-1 lg:sticky lg:top-24 divide-y sm:divide-y-0 lg:divide-y lg:gap-0">
-        <div class="px-4 pb-4">
-          <p class="block font-bold">Upcoming church events…</p>
-          <ol class="ml-4 list-disc list-outside">
-            {% for fEvent in futureEvents %}
-              {% if fEvent.slug !== event.slug %}
-                <li>
-                  <a href="{{ fEvent.url }}" class=" lg:leading-snug">
-                    {{ fEvent.title }}
-                    <span class="text-sm block">{{ fEvent.startDate | formatDate('D MMM, HH:mm') }}</span>
-                  </a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ol>
-          <p>
-            <a href="/calendar">All events</a>
-          </p>
-        </div>
+      <div class="justify-between items-center p-4 pb-0 sm:pb-4 sm:border-b sm:flex sm:gap-4">
+        <h2 class="glbHeading">Upcoming events</h2>
+        <a href="/calendar#thisWeek" class="">All events</a>
       </div>
+
+      <div class="p-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {% set futureEvents = events | eventsFuture(0, 'day') | eventsSort | limit(4) %}
+        {% for event in futureEvents %}
+          {% include 'blocks/simpleEvent.njk' %}
+        {% endfor %}
+      </div>
+
     </aside>
   </div>
 
