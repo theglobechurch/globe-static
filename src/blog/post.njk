@@ -49,17 +49,20 @@ eleventyComputed:
 
     <aside class="border-t border-b mt-4 pt-4 lg:mt-0 lg:pt-0 lg:border-0 leading-7 lg:text-lg lg:leading-loose">
       <div class="sm:grid sm:gap-4 sm:grid-cols-2 lg:grid-cols-1 lg:sticky lg:top-24 divide-y sm:divide-y-0 lg:divide-y lg:gap-0">
-        <div class="px-4 pb-4">
+        <div class="flex flex-row gap-4 px-4 pb-4 lg:flex-col">
+
           {% if authorDetails.profile_photo_url %}
-          <div class="aspect-square w-32 h-32 rounded-full bg-cover bg-center overflow-hidden relative">
+          <div class="flex-shrink-0 aspect-square w-32 h-32 rounded-full bg-cover bg-center overflow-hidden relative">
           {% rwdImg authorDetails.profile_photo_url, "", [150, 300], "inset-0 absolute sm:object-cover", "150px" %}
           </div>
           {% endif %}
 
-          <p class="block font-bold">Written by {{ authorDetails.name }}</p>
-          {% if authorDetails.description %}
-            <p>{{ authorDetails.description }}</p>
-          {% endif %}
+          <div class="flex flex-col justify-center md:justify-start">
+            <p class="block font-bold">Written by {{ authorDetails.name }}</p>
+            {% if authorDetails.description %}
+              <p>{{ authorDetails.description }}</p>
+            {% endif %}
+          </div>
 
         </div>
 

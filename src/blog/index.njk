@@ -15,13 +15,22 @@ layout: default
 
   <div class="m-4 mx-auto lg:container grid gap-4">
     {% for item in pagination.items %}
+      {% set authorDetails = item.author | authorLookup(people) %}
       <a href="/blog/{{ item.slug }}" class="w-full text-blue group no-underline transition-colors bg-orange/10 p-4 hover:bg-orange/20">
-        <div class="flex flex-col-reverse">
+        <div class="flex flex-col sm:flex-col-reverse">
           <h2 class="uppercase font-bold">{{ item.title.rendered | safe }}</h2>
-          <date class="text-sm flex gap-1 items-center">
-            {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
-            <span>{{ item.date | formatDate('dddd, D MMMM YYYY') }}</span>
-          </date>
+          <div class="flex flex-col sm:flex-row gap-1 sm:gap-4">
+            <date class="text-sm flex gap-1 items-center">
+              {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+              <span>{{ item.date | formatDate('dddd, D MMMM YYYY') }}</span>
+            </date>
+            {% if authorDetails %}
+            <p class="text-sm flex gap-1 items-center">
+              {% svgIcon "icon-person", "shrink-0 h-4 w-4", "Author" %}
+              <span>{{ authorDetails.name }}</span>
+            </p>
+            {% endif %}
+          </div>
         </div>
 
         <p class="my-2">{{ item.excerpt.rendered | striptags | safe }}</p>
