@@ -25,6 +25,7 @@ module.exports = {
         DEFAULT: {
           css: {
             h2: {
+              'font-size': '1.25em',
               'text-transform': 'uppercase'
             }
           }

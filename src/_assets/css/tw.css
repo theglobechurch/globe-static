@@ -41,7 +41,7 @@
   }
 
   .glbHeading {
-    @apply uppercase font-bold tracking-wider text-xl;
+    @apply uppercase font-bold tracking-wider text-xl lg:text-2xl;
     color: theme('colors.blue.DEFAULT');
   }
 
