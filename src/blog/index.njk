@@ -13,7 +13,7 @@ layout: default
     </h1>
   </header>
 
-  <div class="grid gap-4">
+  <div class="m-4 mx-auto lg:container grid gap-4">
     {% for item in pagination.items %}
       <a href="/blog/{{ item.slug }}" class="w-full text-blue group no-underline transition-colors bg-orange/10 p-4 hover:bg-orange/20">
         <div class="flex flex-col-reverse">
