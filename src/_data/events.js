@@ -1,4 +1,6 @@
 require("dotenv").config();
+const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH;
+
 
 if (!process.env.EVENTS_ICAL_FEED) {
   console.error("🚨 Oh no! No iCal feed in the env…");
@@ -34,7 +36,7 @@ module.exports = () => {
 
   let globeEvents = new AssetCache("globeEvents");
 
-  if (ENABLE_11TY_CACHE && globeEvents.isCacheValid("1d")) {
+  if (ENABLE_11TY_CACHE && globeEvents.isCacheValid(WP_CACHE_LENGTH)) {
     console.log("📅 Serving events from the cache…");
     return globeEvents.getCachedValue();
   }

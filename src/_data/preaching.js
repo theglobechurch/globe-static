@@ -4,6 +4,7 @@ const { AssetCache } = require("@11ty/eleventy-cache-assets");
 const ent = require('ent');
 
 const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
+const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH;
 
 if (!process.env.API_BASE) {
   console.error("🚨 Oh no! No API base url in the env…");
@@ -17,7 +18,7 @@ let totalPages = 1;
 module.exports = () => {
   let wpSermons = new AssetCache("preaching");
 
-  if (ENABLE_11TY_CACHE && wpSermons.isCacheValid("1d")) {
+  if (ENABLE_11TY_CACHE && wpSermons.isCacheValid(WP_CACHE_LENGTH)) {
     console.log(`🎤 Serving sermons from the cache…`);
     return wpSermons.getCachedValue();
   }

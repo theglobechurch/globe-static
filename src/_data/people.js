@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 const { AssetCache } = require("@11ty/eleventy-cache-assets");
 const { async } = require("node-ical");
 const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
+const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH;
 
 if (!process.env.API_BASE) {
   console.error("🚨 Oh no! No API base url in the env…");
@@ -16,7 +17,7 @@ let totalPages = 1;
 module.exports = () => {
   let wpUsers = new AssetCache("users");
 
-  if (ENABLE_11TY_CACHE && wpUsers.isCacheValid("1d")) {
+  if (ENABLE_11TY_CACHE && wpUsers.isCacheValid(WP_CACHE_LENGTH)) {
     console.log("👤 Serving users from the cache…");
     return wpUsers.getCachedValue();
   }

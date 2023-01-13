@@ -2,6 +2,7 @@ require("dotenv").config();
 const fetch = require("node-fetch");
 const { AssetCache } = require("@11ty/eleventy-cache-assets");
 const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
+const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH;
 
 if (!process.env.API_BASE) {
   console.error("🚨 Oh no! No API base url in the env…");
@@ -15,7 +16,7 @@ let totalPages = 1;
 module.exports = async () => {
   let asset = new AssetCache("posts");
 
-  if (ENABLE_11TY_CACHE && asset.isCacheValid("1d")) {
+  if (ENABLE_11TY_CACHE && asset.isCacheValid(WP_CACHE_LENGTH)) {
     console.log("✏️  Serving posts from the cache…");
     return asset.getCachedValue();
   }
