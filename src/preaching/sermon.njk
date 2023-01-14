@@ -7,6 +7,7 @@ permalink: "resources/{{ preaching.slug }}/index.html"
 layout: layouts/base.njk
 eleventyComputed:
   title: "{{ preaching.title }}"
+  description: "{{ preaching.content | striptags }}"
 ---
 
 {% set authorDetails = preaching.author | authorLookup(people) %}

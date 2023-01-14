@@ -7,7 +7,8 @@ permalink: "blog/{{ post.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
   title: "{{ post.title | safe }}"
-  featured_img: "{{ post.featured_img_url }}"
+  description: "{{ post.description }}"
+  featuredImage: "{{ post.featured_img_url }}"
 ---
 {% set authorDetails = post.author | authorLookup(people) %}
 

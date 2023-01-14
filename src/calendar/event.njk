@@ -7,6 +7,7 @@ permalink: "calendar/{{ event.startDate | formatDate }}/{{ event.slug }}/index.h
 layout: layouts/base.njk
 eleventyComputed:
   title: "{{ event.title }}"
+  description: "{{ event.body | striptags | truncate(256) }}"
 ---
 
 <main class="mt-16 px-4">

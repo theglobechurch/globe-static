@@ -1,6 +1,8 @@
 require("dotenv").config();
 const fetch = require("node-fetch");
 const { AssetCache } = require("@11ty/eleventy-cache-assets");
+const ent = require('ent');
+const striptags = require('striptags');
 const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
 const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH;
 
@@ -57,6 +59,8 @@ async function fetchPosts() {
       // Loop through each of the responses
       res.data.then((posts) => {
         posts.forEach((post) => {
+          post.title = ent.decode(post.title.rendered);
+          post.description = striptags(ent.decode(post.excerpt.rendered));
           if (post.featured_img_url) {
             post.featured_img_url = post.featured_img_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
           }
