@@ -1,6 +1,13 @@
 module.exports = function () {
   // TODO: Move this all out to Wordpress
   return {
+    title: "The Globe Church",
+    subtitle: "All about Jesus. Made up of all sorts of people. Involved in the greatest mission…",
+    feed: {
+      url: "https://www.globe.church/blog/feed.xml"
+    },
+    url: "https://globe.church",
+
     instagram: "theglobechurch",
     twitter: "theglobechurch",
     facebook: "theglobechurch",

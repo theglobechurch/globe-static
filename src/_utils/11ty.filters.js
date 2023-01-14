@@ -16,16 +16,21 @@ dayjs
   .tz.setDefault(localTimezone);
 
 module.exports = {
-  formatDate: (dateObj, format = 'YYYY-MM-DD') => {
-    if (!dateObj) { return; }
+  formatDate: (dateStr, format = 'YYYY-MM-DD') => {
+    if (!dateStr) { return; }
 
-    const parsedDate = dayjs(dateObj);
+    const parsedDate = dayjs(dateStr);
 
     if (!parsedDate.isValid()){
       return;
     }
 
     return parsedDate.format(format);
+  },
+
+  jsDate: (dateStr) => {
+    if (!dateStr) { return; }
+    return dayjs(dateStr).toDate();
   },
 
   eventThisWeek: (events) => {
