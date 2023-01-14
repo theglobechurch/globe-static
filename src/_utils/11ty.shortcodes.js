@@ -2,6 +2,30 @@ const eleventyImage = require("@11ty/eleventy-img");
 const dayjs = require("dayjs");
 
 module.exports = {
+
+  socialImg: async function(filepath) {
+    if (!filepath || filepath === "false") {
+      return false
+    }
+
+    let options = {
+      formats: ["jpeg"],
+      widths: [1200],
+      urlPath: "/_assets/img/built/",
+      outputDir: "./dist/_assets/img/built/",
+      cacheOptions: {
+        duration: "2y",
+        directory: ".imgCache",
+        removeUrlQueryParams: false,
+      },
+    }
+
+    let metadata = await eleventyImage(filepath, options);
+    let data = metadata.jpeg[metadata.jpeg.length - 1];
+    return data.url;
+
+  },
+
   rwdImg: async function(filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw") {
 
     let options = {

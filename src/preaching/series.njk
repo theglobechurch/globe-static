@@ -7,7 +7,8 @@ permalink: "preaching/{{ series.slug }}/index.html"
 layout: layouts/base.njk
 eleventyComputed:
   title: "{{ series.title }}"
-  featured_img: "{{ series.artwork_url }}"
+  description: "{{ series.description }}"
+  featuredImage: "{{ series.artwork_url }}"
 ---
 {% if series.slug != "one-off-sermons" %}
 {% set sermons = series | sermonsInSeries(preaching) | sort(false, true, 'date') %}

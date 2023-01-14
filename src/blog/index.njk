@@ -2,8 +2,10 @@
 pagination:
   data: posts
   size: 5
-title: Church blog
+title: Blog
+description: On The Globe Church blog members of our church family share their reflections on faith, life, and living in London…
 layout: default
+featuredImage: ./src/_assets/img/core/blog.jpg
 ---
 {% set latestPost = posts | limit(1) | first %}
 {% set latestAuthor = latestPost.author | authorLookup(people) %}
@@ -60,7 +62,9 @@ layout: default
           </div>
         </div>
 
-        <p class="my-2 max-w-prose">{{ item.excerpt.rendered | striptags | safe }}</p>
+        <p class="my-2 max-w-prose">
+          {{ item.description }}
+        </p>
 
         <button class="underline group-hover:no-underline">
           Keep reading

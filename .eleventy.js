@@ -19,6 +19,7 @@ module.exports = function (eleventyConfig) {
 
   // Shortcodes
   eleventyConfig.addNunjucksAsyncShortcode("rwdImg", shortcodes.rwdImg);
+  eleventyConfig.addNunjucksAsyncShortcode("socialImg", shortcodes.socialImg);
   eleventyConfig.addNunjucksShortcode("svgIcon", shortcodes.svgIcon);
   eleventyConfig.addNunjucksShortcode("dateRange", shortcodes.dateRange);
 
@@ -43,9 +44,10 @@ module.exports = function (eleventyConfig) {
     "src/humans.txt",
     "src/robots.txt",
   ];
+  passThroughFiles.forEach(f => eleventyConfig.addPassthroughCopy(f, ""));
   eleventyConfig.addPassthroughCopy({"src/_assets/favicon/**": "."});
   eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/podcast-cover.jpg": "assets/podcast-cover.jpg"});
-  passThroughFiles.forEach(f => eleventyConfig.addPassthroughCopy(f, ""));
+  eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/the-globe-church-og.jpg": "_assets/img/the-globe-church-og.jpg"});
 
   return {
     templateFormats: ["html", "njk", "md", "11ty.js"],

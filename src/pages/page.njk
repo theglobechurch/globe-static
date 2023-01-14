@@ -7,8 +7,8 @@ permalink: "{{ p.slug }}/index.html"
 layout: textPage
 eleventyComputed:
   title: "{{ p.title }}"
-  description: "{{ p.body | striptags | truncate(256) }}"
   featuredImage: "{{ p.featured_img_url }}"
+  description: "{{ p.description }}"
 ---
 {% set parentPage = p | pageParent(pages) %}
 {% set childPages = p | pageChildren(pages) | sort(false, false, 'menu_order') %}
