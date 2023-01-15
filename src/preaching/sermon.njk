@@ -20,8 +20,12 @@ eleventyComputed:
 
         <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
 
-          <div>
-            <a href="/preaching" class="text-orange/50">Preaching</a> /
+          <div class="group inline-flex gap-1 items-center">
+            {% svgIcon "icon-arrowLeft", "shrink-0 h-4 w-4 transition group-hover:-translate-x-2", "Date" %}
+            <a href="/preaching" class="text-orange/50 sm:inline-flex gap-1 items-center">
+              <span>Preaching</span>
+            </a>
+            /
             <a href="/preaching/{{ series.slug }}" class="">
               {{ series.title }}
             </a>

@@ -6,7 +6,7 @@ pagination:
 permalink: "blog/{{ post.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
-  title: "{{ post.title.rendered | safe }}"
+  title: "{{ post.title | safe }}"
   featured_img: "{{ post.featured_img_url }}"
 ---
 {% set authorDetails = post.author | authorLookup(people) %}
@@ -18,10 +18,16 @@ eleventyComputed:
       {% rwdImg post.featured_img_url, "", [550, 1024, 1512, 2056], "sm:inset-0 sm:absolute sm:object-cover sm:h-full", "100vw" %}
 
       <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
-        <a href="/blog" class="hidden sm:block">All posts</a>
+
+        <a href="/blog" class="hidden sm:flex gap-1 items-center group">
+          {% svgIcon "icon-arrowLeft", "shrink-0 h-4 w-4 transition group-hover:-translate-x-2", "Date" %}
+          <span>All posts</span>
+        </a>
+
         <h1 class="glbHeading md:text-2xl">
           {{ title | safe }}
         </h1>
+
         <date class="text-sm flex gap-2 items-center">
           {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
           <span>{{ post.date | formatDate('dddd, Do MMMM YYYY') }}</span>
@@ -30,7 +36,11 @@ eleventyComputed:
     </div>
     {% else %}
       <div class="mx-auto lg:container mb-4 px-4">
-        <a href="/blog" class="hidden sm:block">All posts</a>
+        <a href="/blog" class="hidden sm:flex gap-1 items-center group">
+          {% svgIcon "icon-arrowLeft", "shrink-0 h-4 w-4 transition group-hover:-translate-x-2", "Date" %}
+          <span>All posts</span>
+        </a>
+
         <h1 class="glbHeading md:text-2xl">
           {{ title | safe }}
         </h1>
@@ -76,7 +86,7 @@ eleventyComputed:
           <p class="block font-bold">Recent posts</p>
           <ol class="ml-4 list-disc list-outside">
             {% for p in posts.slice(0, 5) %}
-              <li><a href="/blog/{{ p.slug }}">{{ p.title.rendered | safe }}</a></li>
+              <li><a href="/blog/{{ p.slug }}">{{ p.title | safe }}</a></li>
             {% endfor %}
           </ol>
           <a href="/blog">All posts</a>

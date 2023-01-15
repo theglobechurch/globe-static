@@ -22,9 +22,12 @@ eleventyComputed:
         {% rwdImg series.artwork_url, "", [550, 1024, 1512, 2056], "sm:inset-0 w-full h-full sm:absolute sm:object-cover", "100vw" %}
 
         <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
-          <a href="/preaching" class="hidden sm:block">
-            Preaching
+
+          <a href="/preaching" class="hidden sm:flex gap-1 items-center group">
+            {% svgIcon "icon-arrowLeft", "shrink-0 h-4 w-4 transition group-hover:-translate-x-2", "Date" %}
+            <span>Preaching</span>
           </a>
+
           <h1 class="glbHeading md:text-2xl">
             {{ series.title }}
           </h1>
@@ -44,9 +47,11 @@ eleventyComputed:
       {% endif %}
     {% else %}
       <div class="px-4">
-        <a href="/preaching">
-          Preaching
+        <a href="/preaching" class="hidden sm:flex gap-1 items-center group">
+          {% svgIcon "icon-arrowLeft", "shrink-0 h-4 w-4 transition group-hover:-translate-x-2", "Date" %}
+          <span>Preaching</span>
         </a>
+
         <h1 class="glbHeading md:text-2xl">{{ series.title }}</h1>
         {% if series.start_date %}
           <p class="text-sm block">{% dateRange series.start_date, series.end_date %}</p>
