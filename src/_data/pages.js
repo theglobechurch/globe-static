@@ -65,6 +65,10 @@ function fetchPages() {
             page.slug = `${parentSlug(allPages, page.parent)}/${page.slug}`;
           }
 
+          if (page.featured_img_url) {
+            page.featured_img_url = page.featured_img_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+          }
+
           page.body = page.content.rendered.replaceAll('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
 
           return page;
