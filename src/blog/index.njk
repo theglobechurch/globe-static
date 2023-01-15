@@ -5,20 +5,41 @@ pagination:
 title: Church blog
 layout: default
 ---
+{% set latestPost = posts | limit(1) | first %}
+{% set latestAuthor = latestPost.author | authorLookup(people) %}
+
+<header class="relative">
+
+  <div class="sm:grid sm:grid-cols-2 min-h-[30vh] sm:min-h-[80vh]">
+    <div class="hidden sm:block bg-orange text-white">
+    </div>
+
+    <div class="min-h-[30vh] sm:min-h-[auto] bg-[#ccc] relative w-full bg-cover bg-center overflow-hidden">
+      {% rwdImg "./src/_assets/img/core/blog.jpg", "The Globe Church Blog", [330, 550, 1024, 1500, 2560], "block h-full w-full inset-0 absolute object-cover", "50vw" %}
+    </div>
+  </div>
+
+  <div class="bg-orange">
+    <div class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute">
+      <div class="p-8 sm:px-4 sm:max-w-[40%] text-white lg:text-lg">
+        <h1 class="glbHeading text-white lg:text-2xl">Church Blog</h1>
+        <p class="my-4">
+          Throughout the year we invite members of our church family to reflect on topics like what God is teaching them in through our sermon series, things that are happening in the world, and more…
+        </p>
+        <p>The latest post is <a class="text-white" href="/blog/{{ latestPost.slug }}">{{ latestPost.title | safe }}</a> by {{ latestAuthor.name }}</p>
+      </div>
+    </div>
+  </div>
+</header>
 
 <main class="mt-16 px-4">
-  <header class="m-4 mx-auto lg:container">
-    <h1 class="p-4 glbHeading md:text-2xl">
-      Church blog
-    </h1>
-  </header>
 
   <div class="m-4 mx-auto lg:container grid gap-4">
     {% for item in pagination.items %}
       {% set authorDetails = item.author | authorLookup(people) %}
       <a href="/blog/{{ item.slug }}" class="w-full text-blue group no-underline transition-colors bg-orange/10 p-4 hover:bg-orange/20">
         <div class="flex flex-col sm:flex-col-reverse">
-          <h2 class="uppercase font-bold">{{ item.title.rendered | safe }}</h2>
+          <h2 class="uppercase font-bold">{{ item.title | safe }}</h2>
           <div class="flex flex-col sm:flex-row gap-1 sm:gap-4">
             <date class="text-sm flex gap-1 items-center">
               {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
@@ -33,7 +54,7 @@ layout: default
           </div>
         </div>
 
-        <p class="my-2">{{ item.excerpt.rendered | striptags | safe }}</p>
+        <p class="my-2 max-w-prose">{{ item.excerpt.rendered | striptags | safe }}</p>
 
         <button class="underline group-hover:no-underline">
           Keep reading
