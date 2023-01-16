@@ -5,8 +5,43 @@ layout: default
 permalink: /404.html
 ---
 
-<h1>Sorry, the page you are looking for cannot be found.</h1>
+<article class="mt-12 px-4">
+  <header class="mx-auto lg:container mb-4">
 
-<a href="/">
-  Maybe go back to the home page?
-</a>
+    <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">
+      {% rwdImg "./src/_assets/img/core/sheep.jpg", "", [550, 1024, 1512, 2056], "sm:inset-0 sm:absolute sm:object-cover sm:h-full", "100vw" %}
+
+      <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
+
+        <h1 class="glbHeading md:text-2xl">
+          Sorry, the page you are looking for cannot be found.
+        </h1>
+        <a href="/" class="sm:flex gap-1 items-center group">
+          {% svgIcon "icon-arrowLeft", "shrink-0 h-4 w-4 transition group-hover:-translate-x-2", "Date" %}
+          <span>Maybe go back to the home page?</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="mt-12 mx-auto lg:container">
+    <div class="px-4 prose prose-globeBlue lg:prose-xl">
+      <figure>
+        <blockquote>
+          “What do you think? If a man owns a hundred sheep, and one of them wanders away, will he not leave the ninety-nine on the hills and go to look for the one that wandered off? And if he finds it, truly I tell you, he is happier about that one sheep than about the ninety-nine that did not wander off. In the same way your Father in heaven is not willing that any of these little ones should perish.”
+        </blockquote>
+        <figcaption>
+          —Jesus,
+          <cite>
+            <a href="https://www.biblegateway.com/passage/?search=Matthew%2018&amp;version=NIVUK" target="_blank" rel="noopener">
+              Matthew 18
+            </a>
+          </cite>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+</article>
+
+
