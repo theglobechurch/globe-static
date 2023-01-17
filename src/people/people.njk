@@ -1,0 +1,32 @@
+---
+pagination:
+  data: "people"
+  size: 1
+  alias: person
+permalink: "people/{{ person.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ person.name }}"
+  description: "{{ person.description }}"
+---
+
+<main class="mt-20 px-4">
+  <div class="mx-auto lg:container lg:grid gap-12 lg:grid-cols-4">
+    <aside class="px-4 border-b lg:border-b-0">
+      {% if person.profile_photo_url %}
+        <div class="flex-shrink-0 aspect-square w-32 h-32 rounded-full bg-cover bg-center overflow-hidden relative mb-4">
+          {% rwdImg person.profile_photo_url, "", [150, 300], "inset-0 h-full absolute sm:object-cover", "150px" %}
+        </div>
+      {% endif %}
+      <h1 class="glbHeading md:text-2xl">
+        {{ title }}
+      </h1>
+      <p>
+        {{ description }}
+      </p>
+    </aside>
+    <article class="px-4 prose prose-globeBlue lg:prose-xl lg:col-span-3">
+      {{ person.profile_big_bio | safe | nl2br }}
+    </article>
+  </div>
+</main>

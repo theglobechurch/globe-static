@@ -10,7 +10,7 @@ if (!process.env.API_BASE) {
   return false;
 }
 
-const base = `${process.env.API_BASE}users?`;
+const base = `${process.env.API_BASE}users?per_page=50`;
 let thisPage = 1;
 let totalPages = 1;
 
