@@ -9,3 +9,18 @@ package = "netlify-plugin-cache"
     "./dist/_assets/img",
     ".imgCache"
   ]
+
+[[redirects]]
+  from = "/prayer"
+  to = "/prayer-meeting/"
+  status = 301
+
+[[redirects]]
+  from = "/focus"
+  to = "/bible-study/"
+  status = 302
+
+[[redirects]]
+  from = "/privacy"
+  to = "/about/policies/our-privacy-policy/"
+  status = 302
