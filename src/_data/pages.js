@@ -61,10 +61,10 @@ function fetchPages() {
           page.title = ent.decode(page.title.rendered);
           page.description = striptags(ent.decode(page.excerpt.rendered));
 
-          // Update slug to full URL
-          page.slug_original = page.slug;
           if (page.parent !== 0) {
-            page.slug = `${parentSlug(allPages, page.parent)}/${page.slug}`;
+            page.url = `${parentSlug(allPages, page.parent)}/${page.slug}`;
+          } else {
+            page.url = page.slug
           }
 
           if (page.featured_img_url) {
@@ -84,8 +84,20 @@ function fetchPages() {
 
 // Loop through all the pages to find a parent page
 function parentSlug(allPages, parentId) {
+
+  let slug = "";
+
   const parent = allPages.find(o => o.id === parentId);
-  if (parent) {
-    return parent.slug
+
+  // Find the parent of the parent…
+  if (parent.parent) {
+    slug += parentSlug(allPages, parent.parent) + "/";
   }
+
+  slug += parent.slug
+
+  return slug;
+
 }
+
+
