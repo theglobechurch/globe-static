@@ -10,7 +10,7 @@ eleventyComputed:
   description: "{{ event.body | striptags | truncate(256) }}"
 ---
 
-<main class="mt-16 px-4">
+<main class="mt-16 px-4" itemscope itemtype="https://schema.org/Event">
   <header class="mx-auto lg:container mb-4">
     <div class="px-4 pt-4">
 
@@ -26,7 +26,7 @@ eleventyComputed:
         </div>
       {% endif %}
 
-      <h1 class="glbHeading md:text-2xl">
+      <h1 class="glbHeading md:text-2xl" itemprop="name">
         {{ title | safe}}
       </h1>
 
@@ -35,9 +35,9 @@ eleventyComputed:
 
         <span>
           {% if event.startDate | formatDate() != event.endDate | formatDate() %}
-            {{ event.startDate | formatDate('dddd, Do MMMM YYYY HH:mm') }} &mdash; {{ event.endDate | formatDate('dddd, Do MMMM YYYY HH:mm') }}
+            <date itemprop="startDate" content="{{ event.startDate }}">{{ event.startDate | formatDate('dddd, Do MMMM YYYY HH:mm') }}</date> &mdash; <date itemprop="endDate" content="{{ event.endDate }}">{{ event.endDate | formatDate('dddd, Do MMMM YYYY HH:mm') }}</date>
           {%  else %}
-            {{ event.startDate | formatDate('dddd, Do MMMM YYYY HH:mm') }} &mdash; {{ event.endDate | formatDate('HH:mm') }}
+            <date itemprop="startDate" content="{{ event.startDate }}">{{ event.startDate | formatDate('dddd, Do MMMM YYYY HH:mm') }}</date> &mdash; <date itemprop="endDate" content="{{ event.endDate }}">{{ event.endDate | formatDate('HH:mm') }}</date>
           {% endif %}
 
           ({{ event.duration }})
@@ -45,25 +45,23 @@ eleventyComputed:
       </date>
 
       {% if event.location %}
-      <p class="flex gap-2 items-start">
+      <p class="flex gap-2 items-start" itemprop="location" itemscope itemtype="https://schema.org/Place">
         {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1", "Event location" %}
-        <span>{{ event.location }}</span>
+        <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">{{ event.location }}</span>
       </p>
       {% endif %}
     </div>
   </header>
 
-
-
   <div class="mx-auto lg:container">
     <article class="px-4 prose prose-globeBlue lg:prose-xl lg:col-span-3">
 
-      <div>{{ event.body }}</div>
+      <div itemprop="description">{{ event.body }}</div>
 
       {% if event.data.url %}
         <div class="my-8 py-4">
           Find out more at:<br />
-          <a href="{{ event.data.url }}">{{ event.data.url | replace('https://','') }}</a>
+          <a itemprop="url" href="{{ event.data.url }}">{{ event.data.url | replace('https://','') }}</a>
 
         </div>
       {% endif %}

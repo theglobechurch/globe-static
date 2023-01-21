@@ -9,11 +9,11 @@
       {% set d = event.startDate | formatDate %}
     {% endif %}
 
-    <div class="mx-4">
+    <div class="mx-4" itemscope itemtype="https://schema.org/Event">
       <a
         href="{{ event.url }}"
         class="no-underline text-blue block group"
-        itemscope itemtype="https://schema.org/Event"
+        itemprop="mainEntityOfPage"
       >
 
         {% if event.data.tags %}
@@ -26,17 +26,17 @@
           {{ event.title }}
         </p>
 
-        <date class="flex gap-2 items-start" itemprop="startDate" content="{{ event.startDate }}">
+        <date class="flex gap-2 items-start">
           {% svgIcon "clock", "shrink-0 h-4 w-4 mt-1", "Event time" %}
           <span>
-            {{ event.startDate | formatDate('h:mma') }} – {{ event.endDate | formatDate('h:mma') }} ({{ event.duration }})
+            <date itemprop="startDate" content="{{ event.startDate }}">{{ event.startDate | formatDate('h:mma') }}</date> – <date itemprop="startDate" content="{{ event.endDate }}">{{ event.endDate | formatDate('h:mma') }}</date> ({{ event.duration }})
           </span>
         </date>
 
         {% if event.location %}
         <p class="flex gap-2 items-start" itemprop="location" itemscope itemtype="https://schema.org/Place">
           {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1", "Event location" %}
-          <span>{{ event.location }}</span>
+          <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">{{ event.location }}</span>
         </p>
         {% endif %}
 
