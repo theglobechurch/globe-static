@@ -4,7 +4,7 @@ module.exports = {
     size: 1,
     alias: "person",
     before: function(paginationData) {
-      return paginationData.filter(entry => entry.profile_big_bio !== "");
+      return paginationData.filter(entry => entry.hasProfilePage === "1");
     }
   },
   layout: "layouts/base.njk",

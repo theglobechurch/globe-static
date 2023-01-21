@@ -268,3 +268,34 @@
 .wp-embed-aspect-16-9 iframe {
   @apply absolute inset-0 w-full h-full;
 }
+
+/* Team block */
+.glb_peopleList {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .glb_peopleList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .glb_peopleList {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.glb_peopleList img {
+  margin: 0 auto;
+  border-radius: 100%;
+  max-width: 100%;
+}
+
+.glb_peopleList p {
+  margin: 0;
+}
