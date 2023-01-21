@@ -1,14 +1,4 @@
 ---
-pagination:
-  data: "pages"
-  size: 1
-  alias: p
-permalink: "{{ p.url }}/index.html"
-layout: textPage
-eleventyComputed:
-  title: "{{ p.title }}"
-  featuredImage: "{{ p.featured_img_url }}"
-  description: "{{ p.description }}"
 ---
 {% set parentPage = p | pageParent(pages) %}
 {% set childPages = p | pageChildren(pages) | sort(false, false, 'menu_order') %}

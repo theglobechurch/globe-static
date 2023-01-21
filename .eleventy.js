@@ -40,11 +40,11 @@ module.exports = function (eleventyConfig) {
   layouts.forEach(layout => eleventyConfig.addLayoutAlias(layout.name, layout.path));
 
   // Copy the files to the right place
-  const passThroughFiles = [
+  [
     "src/humans.txt",
     "src/robots.txt",
-  ];
-  passThroughFiles.forEach(f => eleventyConfig.addPassthroughCopy(f, ""));
+  ].forEach(path => eleventyConfig.addPassthroughCopy(path));
+
   eleventyConfig.addPassthroughCopy({"src/_assets/favicon/**": "."});
   eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/podcast-cover.jpg": "assets/podcast-cover.jpg"});
   eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/the-globe-church-og.jpg": "_assets/img/the-globe-church-og.jpg"});
