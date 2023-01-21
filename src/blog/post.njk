@@ -29,10 +29,20 @@ eleventyComputed:
           {{ title | safe }}
         </h1>
 
-        <date class="text-sm flex gap-2 items-center">
-          {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
-          <span>{{ post.date | formatDate('dddd, Do MMMM YYYY') }}</span>
-        </date>
+        <div class="md:flex gap-4 mb-4">
+          <date class="text-sm flex gap-2 items-center">
+            {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+            <span>{{ post.date | formatDate('dddd, Do MMMM YYYY') }}</span>
+          </date>
+
+          {% if authorDetails %}
+            <p class="text-sm flex gap-2 items-center">
+              {% svgIcon "icon-person", "shrink-0 h-4 w-4", "Preached by" %}
+              <span>{{ authorDetails.name }}</span>
+            </p>
+          {% endif %}
+        </div>
+
       </div>
     </div>
     {% else %}
@@ -45,10 +55,19 @@ eleventyComputed:
         <h1 class="glbHeading md:text-2xl">
           {{ title | safe }}
         </h1>
-        <date class="text-sm flex gap-2 items-center">
-          {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
-          <span>{{ post.date | formatDate('dddd, D MMMM YYYY') }}</span>
-        </date>
+        <div class="md:flex gap-4 px-4 mb-4">
+          <date class="text-sm flex gap-2 items-center">
+            {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+            <span>{{ post.date | formatDate('dddd, Do MMMM YYYY') }}</span>
+          </date>
+
+          {% if authorDetails %}
+            <p class="text-sm flex gap-2 items-center">
+              {% svgIcon "icon-person", "shrink-0 h-4 w-4", "Preached by" %}
+              <span>{{ authorDetails.name }}</span>
+            </p>
+          {% endif %}
+        </div>
       </div>
     {% endif %}
   </header>
