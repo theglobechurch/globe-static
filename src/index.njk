@@ -27,14 +27,37 @@ eleventyComputed:
 
 <div class="p-4">
 
-  <section class="mb-4 p-4 border border-orange lg:container mx-auto sm:mb-8">
+  <section class="mb-4 lg:container mx-auto sm:mb-8">
+    <div class="bg-orange/10 grid sm:grid-cols-2">
+      <div class="p-4 text-xl flex flex-col justify-around order-2 sm:order-1">
+        <h2 class="glbHeading mb-8">
+          <span class="block normal-case text-base">Join us</span>
+          this Sunday
+        </h2>
+
+        <div>
+          <p class="max-w-lg">{{ meta.sundays | safe }}</p>
+          <p class="mt-8">
+            <a href="/sundays" class="px-2 py-1 mr-2 rounded bg-orange text-white no-underline transition-colors hover:bg-blue">Find out more</a>
+            <a href="https://goo.gl/maps/ZYWE7cPGxr9NWBB1A" class="text-blue" target="_blank" rel="noopener">See a map</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="block relative min-h-[200px] order-1 sm:order-2 sm:min-h-[400px] w-full bg-cover bg-center text-white overflow-hidden">
+        {% rwdImg "./src/_assets/img/core/join-us-on-sunday.jpg", "A team of musicians leading the church in sung worship", [330, 550, 1024, 1500], "block h-full w-full inset-0 absolute object-cover", "(min-width: 640px) 50vw, 100vw" %}
+      </div>
+    </div>
+  </section>
+
+  {# <section class="mb-4 p-4 border border-orange lg:container mx-auto sm:mb-8">
     <h2 class="glbHeading">Join us this Sunday</h2>
     <p class="max-w-lg">{{ meta.sundays | safe }}</p>
     <p class="mt-2">
       <a href="/sundays" class="px-2 py-1 mr-2 rounded bg-orange text-white no-underline transition-colors hover:bg-blue">Find out more</a>
       <a href="https://goo.gl/maps/ZYWE7cPGxr9NWBB1A" target="_blank" rel="noopener">See a map</a>
     </p>
-  </section>
+  </section> #}
 
   <section class="m-4 border border-white lg:container mx-auto sm:my-8">
     <div class="justify-between items-center p-4 pb-0 sm:pb-4 sm:border-b sm:flex sm:gap-4">
