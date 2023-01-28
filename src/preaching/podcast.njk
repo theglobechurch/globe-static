@@ -41,11 +41,10 @@ eleventyExcludeFromCollections: true
       <ppg:enclosureSecure url="{{ sermon.sermon_data.url }}" length="{{ sermon.sermon_data.filesize }}" type="audio/mpeg"/>
       <media:content url="{{ sermon.sermon_data.url }}" fileSize="{{ sermon.sermon_data.filesize }}" type="audio/mpeg"/>
       <itunes:duration>{{ sermon.sermon_data.length }}</itunes:duration>
-      <itunes:explicit>clean</itunes:explicit>
+      <itunes:explicit>no</itunes:explicit>
       <itunes:author>{{ authorDetails.name }}</itunes:author>
       <itunes:subtitle>{{ sermon.content | striptags | truncate(250)| entEncode | safe }}</itunes:subtitle>
       <itunes:summary>{{ sermon.content | striptags | entEncode | safe }}</itunes:summary>
-      <itunes:explicit>no</itunes:explicit>
     </item>
     {% endfor %}
   </channel>
