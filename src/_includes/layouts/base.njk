@@ -57,13 +57,13 @@
 
     <link rel="alternate" type="application/rss+xml" title="{{ meta.title }} Blog" href="/blog/feed.xml" />
 
-    {% if data.env === "production" %}
-    <script>(function(w,d,s,l,i){w[l]=w[l]\|\|[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K5WB4B6');</script>
-    {% endif %}
+    {% if data.env === "production" %}<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-K5WB4B6');</script>{% endif %}
 
   </head>
 
   <body>
+    {% if data.env === "production" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5WB4B6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}
+
     {% include 'blocks/header.njk' %}
 
     <div id="site-content" class="sm:ml-16">
@@ -71,10 +71,6 @@
 
       {% include 'blocks/footer.njk' %}
     </div>
-
-    {% if data.env === "production" %}
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5WB4B6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    {% endif %}
 
     <!-- last build: {{ data.env }} | {{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }} -->
   </body>
