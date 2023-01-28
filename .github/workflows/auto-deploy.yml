@@ -1,0 +1,21 @@
+name: "Auto-Deploy"
+
+on:
+  schedule:
+    - cron: '20 15 * * 6'
+    # Run at 6am on Sunday and Wednesdays
+    - cron: '0 6 * * 0,3'
+
+jobs:
+  deploy:
+    name: 'Auto Deploy'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: jsmrcaga/action-netlify-deploy@master
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_MESSAGE: "Auto deploy from Github Actions"
+          NETLIFY_DEPLOY_TO_PROD: true
