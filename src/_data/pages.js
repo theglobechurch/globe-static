@@ -2,7 +2,7 @@ require("dotenv").config();
 const fetch = require("node-fetch");
 const { AssetCache } = require("@11ty/eleventy-cache-assets");
 const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
-const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH;
+const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH || "1d";
 const ent = require('ent');
 const striptags = require('striptags');
 
@@ -42,7 +42,17 @@ module.exports = () => {
 
 function fetchPages() {
   const url = `${base}&page=${thisPage}`;
-  return fetch(url)
+  const headers = new fetch.Headers();
+
+  if (process.env.CMS_AUTH_USR) {
+    const auth = Buffer.from(`${process.env.CMS_AUTH_USR}:${process.env.CMS_AUTH_PWD}`).toString('base64');
+    headers.set('Authorization', `Basic ${auth}`)
+  }
+
+  return fetch(url, {
+    method: 'GET',
+    headers,
+  })
     .then((res) => {
       return {
         statusCode: res.status,

@@ -36,6 +36,11 @@ npm run dev
 - `EVENTS_ICAL_FEED` - iCal feed for where we'll be pulling all the events from
 - `ENABLE_11TY_CACHE` - When enabled (`TRUE`) 11ty will pull in data just once and then store it, this will make the site build a bit quicker. Don't enable in production.
 
+If WordPress is behind some form of basic auth then you'll also need to add in the auth details to the env too. These are optional.
+
+- `CMS_AUTH_USR`
+- `CMS_AUTH_PWD`
+
 ### Tests
 
 There is a small number of tests (which should grow)

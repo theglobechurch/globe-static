@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const { AssetCache } = require("@11ty/eleventy-cache-assets");
 const { async } = require("node-ical");
 const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
-const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH;
+const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH || "1d";
 
 if (!process.env.API_BASE) {
   console.error("🚨 Oh no! No API base url in the env…");
@@ -42,8 +42,17 @@ module.exports = () => {
 
 async function fetchUserPage() {
   const url = `${base}&page=${thisPage}`;
+  const headers = new fetch.Headers();
 
-  return fetch(url)
+  if (process.env.CMS_AUTH_USR) {
+    const auth = Buffer.from(`${process.env.CMS_AUTH_USR}:${process.env.CMS_AUTH_PWD}`).toString('base64');
+    headers.set('Authorization', `Basic ${auth}`)
+  }
+
+  return fetch(url, {
+    method: 'GET',
+    headers,
+  })
     .then((res) => {
       return {
         statusCode: res.status,
