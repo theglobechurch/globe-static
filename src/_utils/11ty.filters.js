@@ -43,9 +43,14 @@ module.exports = {
   eventsFuture: (events, offset = 0, offsetUnit = 'days') => {
     startDate = dayjs().add(offset, offsetUnit);
     return events.filter(event => {
-      // console.log(startDate, event.endDate)
       return dayjs(event.endDate).isSameOrAfter(startDate, "day");
     })
+  },
+
+  eventsFeatured: (events) => {
+    return events.filter(event => {
+      return event.data.tags && event.data.tags.includes('featured');
+    });
   },
 
   eventsSort: (events) => {

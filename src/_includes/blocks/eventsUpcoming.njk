@@ -1,0 +1,30 @@
+<section class="m-4 border border-white lg:container mx-auto sm:my-8">
+  <div class="justify-between items-center p-4 pb-0 sm:pb-4 sm:border-b sm:flex sm:gap-4">
+    <h2 class="glbHeading">Upcoming events</h2>
+    <a href="/calendar" class="">See the church calendar</a>
+  </div>
+
+  <div class="p-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {% set eventCount = 4 %}
+
+    {% set featuredEvent = events | eventsFuture | eventsFeatured | eventsSort | limit(1) | first %}
+    {% if featuredEvent %}
+      {% set event = featuredEvent %}
+      {% include 'blocks/simpleEvent.njk' %}
+      {% set eventCount = 3 %}
+    {% endif %}
+
+    {% set soonEvents = events | eventsFuture | eventsSort | limit(eventCount + 1) %}
+    {% set displayedEvents = 0 %}
+    {% for event in soonEvents %}
+      {% if event.title == featuredEvent.title or displayedEvents == eventCount%}
+        {# nothing to see here #}
+      {% else %}
+        {% include 'blocks/simpleEvent.njk' %}
+        {% set displayedEvents = displayedEvents + 1 %}
+      {% endif %}
+
+    {% endfor %}
+
+  </div>
+</section>

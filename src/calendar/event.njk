@@ -67,21 +67,8 @@ eleventyComputed:
       {% endif %}
     </article>
 
-    <aside class="border-t border-b mt-4 pt-4 lg:mt-0 lg:pt-0 lg:border-0 leading-7 lg:text-lg lg:leading-loose">
-      <div class="justify-between items-center p-4 pb-0 sm:pb-4 sm:border-b sm:flex sm:gap-4">
-        <h2 class="glbHeading">Upcoming events</h2>
-        <a href="/calendar#thisWeek" class="">All events</a>
-      </div>
-
-      <div class="p-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {% set futureEvents = events | eventsFuture(0, 'day') | eventsSort | limit(4) %}
-        {% for event in futureEvents %}
-          {% include 'blocks/simpleEvent.njk' %}
-        {% endfor %}
-      </div>
-
-    </aside>
   </div>
 
-
 </main>
+
+{% include 'blocks/eventsUpcoming.njk' %}
