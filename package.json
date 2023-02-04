@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.2",
+    "@11ty/eleventy": "^2.0.0-beta.3",
     "@11ty/eleventy-cache-assets": "^2.3.0",
     "@11ty/eleventy-img": "^2.0.1",
     "@11ty/eleventy-plugin-directory-output": "^1.0.1",
@@ -32,6 +32,7 @@
     "ent": "^2.2.0",
     "esbuild": "^0.15.13",
     "front-matter": "^4.0.2",
+    "glob": "^8.1.0",
     "jest": "^29.3.1",
     "moment": "^2.29.4",
     "netlify-plugin-cache": "^1.0.3",
@@ -43,5 +44,10 @@
   },
   "dependencies": {
     "alpinejs": "^3.10.5"
+  },
+  "overrides": {
+    "eleventy-plugin-svg-sprite": {
+      "@11ty/eleventy": "^2.0.0-beta.3"
+    }
   }
 }
