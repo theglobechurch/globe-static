@@ -1,6 +1,6 @@
 require("dotenv").config();
 const fetch = require("node-fetch");
-const { AssetCache } = require("@11ty/eleventy-cache-assets");
+const { AssetCache } = require("@11ty/eleventy-fetch");
 const ent = require('ent');
 const striptags = require('striptags');
 const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';

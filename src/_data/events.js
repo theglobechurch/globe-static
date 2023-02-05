@@ -7,7 +7,7 @@ if (!process.env.EVENTS_ICAL_FEED) {
   return false;
 }
 
-const { AssetCache } = require("@11ty/eleventy-cache-assets");
+const { AssetCache } = require("@11ty/eleventy-fetch");
 const slugify = require("slugify");
 const fetch = require("node-fetch");
 const ical = require('node-ical');
