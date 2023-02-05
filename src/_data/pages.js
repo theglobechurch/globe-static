@@ -19,11 +19,11 @@ module.exports = () => {
   let wpPages = new AssetCache("pages");
 
   if (ENABLE_11TY_CACHE && wpPages.isCacheValid(WP_CACHE_LENGTH)) {
-    console.log("📃 Serving pages from the cache…");
+    console.log("[ 📃 ] Serving pages from the cache…");
     return wpPages.getCachedValue();
   }
 
-  console.log("📃 Fetching pages");
+  console.log("[ 📃 ] Fetching pages");
 
   return new Promise(async (resolve, reject) => {
     let pages = await fetchPages();
@@ -35,7 +35,7 @@ module.exports = () => {
     }
 
     wpPages.save(pages, "json");
-    console.log(`✏️  Imported ${pages.length} pages`);
+    console.log(`[ 📃 ] Imported ${pages.length} pages`);
     resolve(pages);
   });
 };

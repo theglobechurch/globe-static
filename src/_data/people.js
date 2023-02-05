@@ -18,11 +18,11 @@ module.exports = () => {
   let wpUsers = new AssetCache("users");
 
   if (ENABLE_11TY_CACHE && wpUsers.isCacheValid(WP_CACHE_LENGTH)) {
-    console.log("👤 Serving users from the cache…");
+    console.log("[ 👤 ] Serving users from the cache…");
     return wpUsers.getCachedValue();
   }
 
-  console.log("👤 Fetching users");
+  console.log("[ 👤 ] Fetching users");
 
   return new Promise(async (resolve, reject) => {
     // Get the first page of users
@@ -34,7 +34,7 @@ module.exports = () => {
     }
 
     wpUsers.save(users, "json");
-    console.log(`✏️  Imported ${users.length} users`);
+    console.log(`[ 👤 ] Imported ${users.length} users`);
     resolve(users);
   });
 };
