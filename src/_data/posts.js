@@ -19,11 +19,11 @@ module.exports = async () => {
   let asset = new AssetCache("posts");
 
   if (ENABLE_11TY_CACHE && asset.isCacheValid(WP_CACHE_LENGTH)) {
-    console.log("✏️  Serving posts from the cache…");
+    console.log("[ 📝 ] Serving posts from the cache…");
     return asset.getCachedValue();
   }
 
-  console.log("✏️  Fetching posts");
+  console.log("[ 📝 ] Fetching posts");
 
   return new Promise(async (resolve, reject) => {
     // Get the first round of posts
@@ -36,7 +36,7 @@ module.exports = async () => {
     }
 
     asset.save(posts, "json");
-    console.log(`✏️  Imported ${posts.length} posts`);
+    console.log(`[ 📝 ] Imported ${posts.length} posts`);
     resolve(posts);
   });
 };

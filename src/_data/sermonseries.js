@@ -19,11 +19,11 @@ module.exports = () => {
   let wpSeries = new AssetCache("sermonsseries");
 
   if (ENABLE_11TY_CACHE && wpSeries.isCacheValid(WP_CACHE_LENGTH)) {
-    console.log(`🖼️  Serving sermon series from the cache…`);
+    console.log(`[ 🖌️  ] Serving sermon series from the cache…`);
     return wpSeries.getCachedValue();
   }
 
-  console.log("🖼️  Fetching sermon series");
+  console.log("[ 🖌️  ] Fetching sermon series");
 
   return new Promise(async (resolve, reject) => {
     let series = await fetchSermonSeries();
@@ -35,7 +35,7 @@ module.exports = () => {
     }
 
     wpSeries.save(series, "json");
-    console.log(`🖼️  Imported ${series.length} series`);
+    console.log(`[ 🖌️  ] Imported ${series.length} series`);
     resolve(series);
   })
 

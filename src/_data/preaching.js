@@ -19,11 +19,11 @@ module.exports = () => {
   let wpSermons = new AssetCache("preaching");
 
   if (ENABLE_11TY_CACHE && wpSermons.isCacheValid(WP_CACHE_LENGTH)) {
-    console.log(`🎤 Serving sermons from the cache…`);
+    console.log(`[ 🎤 ] Serving sermons from the cache…`);
     return wpSermons.getCachedValue();
   }
 
-  console.log("🎤 Fetching sermons");
+  console.log("[ 🎤 ] Fetching sermons");
 
   return new Promise(async (resolve, reject) => {
     let sermons = await fetchSermons();
@@ -35,7 +35,7 @@ module.exports = () => {
     }
 
     wpSermons.save(sermons, "json");
-    console.log(`✏️  Imported ${sermons.length} sermons`);
+    console.log(`[ 🎤 ] Imported ${sermons.length} sermons`);
     resolve(sermons);
   })
 
