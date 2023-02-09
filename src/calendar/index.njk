@@ -47,34 +47,35 @@ featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
   </div>
 
 
-  {% set oneOffEvent = events | eventsFuture | eventsOneOff | eventsSort | limit(1) | first %}
-  {# TODO: SWITCH THIS TO FIRST FEATURED EVENT #}
-  {% if oneOffEvent %}
+  {# {% set featuredEvent = events | eventsFuture | eventsFeatured | eventsSort | limit(1) | first %}
+  {% if featuredEvent %}
   <div class="mx-auto lg:container mb-4 grid gap-4">
-    <a href="/calendar/{{ oneOffEvent.startDate | formatDate}}/{{ oneOffEvent.slug }}/" class="w-full border border-[#ccc] text-blue group no-underline transition-colors bg-orange/10 p-4 hover:bg-orange/20">
+    <h2 class="glbHeading px-4 mt-4">Featured event</h2>
 
-      {% if oneOffEvent.data.tags %}
+    <a href="/calendar/{{ featuredEvent.startDate | formatDate}}/{{ featuredEvent.slug }}/" class="w-full group text-blue no-underline p-4">
+
+      {% if featuredEvent.data.tags %}
       <div class="rounded bg-orange px-2 py-1 mb-1 text-xs text-white inline-block uppercase font-bold">
-        {{ oneOffEvent.data.tags | first }}
+        {{ featuredEvent.data.tags | first }}
       </div>
       {% endif %}
 
-      <p class="font-bold">{{ oneOffEvent.title }}</p>
+      <p class="font-bold group-hover:text-orange">{{ featuredEvent.title }}</p>
 
-      <date class="flex gap-2 items-start" content="{{ oneOffEvent.startDate }}">
+      <date class="flex gap-2 items-start" content="{{ featuredEvent.startDate }}">
         {% svgIcon "icon-calendar", "shrink-0 h-4 w-4 mt-1", "Event time" %}
-        <spon>{{ oneOffEvent.startDate | formatDate('dddd Do MMMM, H:mm') }} ({{ oneOffEvent.duration }})</span>
+        <spon>{{ featuredEvent.startDate | formatDate('dddd Do MMMM, H:mm') }} ({{ featuredEvent.duration }})</span>
       </date>
 
-      {% if oneOffEvent.location %}
+      {% if featuredEvent.location %}
       <p class="flex gap-2 items-start">
         {% svgIcon "pin", "shrink-0 h-4 w-4 mt-1", "Event location" %}
-        <span>{{ oneOffEvent.location }}</span>
+        <span>{{ featuredEvent.location }}</span>
       </p>
       {% endif %}
     </a>
   </div>
-  {% endif %}
+  {% endif %} #}
 
 
   <div class="mx-auto lg:container mb-4 scroll-mt-4" id="futureEvents">
