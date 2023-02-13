@@ -1,29 +1,38 @@
----
-permalink: blog/feed.xml
-eleventyExcludeFromCollections: true
+---json
+{
+  "permalink": "blog/feed.xml",
+  "eleventyExcludeFromCollections": true,
+  "metadata": {
+    "language": "en",
+    "url": "https://www.globe.church",
+    "author": {
+      "name": "The Globe Church"
+    }
+  }
+}
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<title>{{ meta.title }}</title>
-	<subtitle>{{ meta.subtitle }}</subtitle>
-	<link href="{{ meta.feed.url }}" rel="self"/>
-	<link href="{{ meta.url }}"/>
-	<updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
-	<id>{{ meta.feed.url }}</id>
-	<author>
-		<name>{{ metadata.title }}</name>
-	</author>
-	{% for post in posts %}
+  <title>{{ meta.title }}</title>
+  <subtitle>{{ meta.subtitle }}</subtitle>
+  <link href="{{ permalink | absoluteUrl(metadata.url) }}" rel="self"/>
+  <link href="{{ metadata.url }}"/>
+  <updated>{% set latest = posts | first %}{{ latest.date | jsDate | dateToRfc3339 }}</updated>
+  <id>{{ metadata.url }}</id>
+  <author>
+    <name>{{ metadata.author.name }}</name>
+  </author>
+  {% for post in posts %}
     {% set authorDetails = post.author | authorLookup(people) %}
     {% set path %}blog/{{ post.slug }}/{% endset %}
     {% set absolutePostUrl %}{{ path | url | absoluteUrl(meta.url) }}{% endset %}
     <entry>
-      <title>{{ post.title.rendered | safe }}</title>
+      <title>{{ post.title }}</title>
       <link href="{{ absolutePostUrl }}" />
       <author>{{ authorDetails.name }}</author>
-      <pubdate>{{ post.date | jsDate | rssDate }}</pubdate>
+      <pubdate>{{ post.date | jsDate | dateToRfc3339 }}</pubdate>
       <id>{{ absolutePostUrl }}</id>
-      <content type="html">{{ post.content.rendered | safe | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+      <content xml:lang="{{ metadata.language }}" type="html">{{ post.content.rendered | safe | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
     </entry>
-	{% endfor %}
+  {% endfor %}
 </feed>
