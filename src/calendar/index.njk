@@ -41,8 +41,8 @@ featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
 <main class="mt-16 px-4">
 
   <div class="mx-auto lg:container mb-4 scroll-mt-4 lg:scroll-mt-12" id="thisWeek">
-    {% set eventList = events | eventThisWeek | eventsSort %}
-    <h2 class="glbHeading px-4 mb-4">Events this week</h2>
+    {% set eventList = events | eventsFuture | eventsSort %}
+    {# <h2 class="glbHeading px-4 mb-4">Events this week</h2> #}
     {% include 'blocks/eventList.njk' %}
   </div>
 
@@ -78,9 +78,9 @@ featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
   {% endif %} #}
 
 
-  <div class="mx-auto lg:container mb-4 scroll-mt-4" id="futureEvents">
-    {% set eventList = events | eventsFuture(7, 'day') | eventsSort %}
+  {# <div class="mx-auto lg:container mb-4 scroll-mt-4" id="futureEvents">
+    {% set eventList = events | eventsFuture(8, 'day') | eventsSort %}
     <h2 class="glbHeading px-4 mb-4">Future events</h2>
     {% include 'blocks/eventList.njk' %}
-  </div>
+  </div> #}
 </main>

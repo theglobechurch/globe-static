@@ -1,6 +1,12 @@
 <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
   {% set d = null %}
+  {% set m = null %}
   {% for event in eventList %}
+
+    {% if event.startDate | formatDate('MMMM') !== m %}
+      <h2 class="glbHeading px-4 mt-8 col-span-full">{{ event.startDate | formatDate('MMMM') }}</h2>
+      {% set m = event.startDate | formatDate('MMMM') %}
+    {% endif %}
 
     {% if event.startDate | formatDate !== d %}
       <h3 class="py-2 px-4 text-lg text-black font-bold border-b col-span-full">
