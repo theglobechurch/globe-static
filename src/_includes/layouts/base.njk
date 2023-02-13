@@ -53,8 +53,6 @@
     <link rel="me" href="https://youtube.com/{{ meta.youtube }}"/>
     <link rel="me" href="https://linkedin.com/company/{{ meta.linkedin }}"/>
 
-    <script defer src="/_assets/js/main.js"></script>
-
     <link rel="alternate" type="application/rss+xml" title="{{ meta.title }} Blog" href="/blog/feed.xml" />
 
     {% if data.env === "production" %}<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-K5WB4B6');</script>{% endif %}
@@ -73,5 +71,6 @@
     </div>
 
     <!-- last build: {{ data.env }} | {{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }} -->
+    <script defer src="/_assets/js/main.js"></script>
   </body>
 </html>
