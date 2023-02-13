@@ -55,6 +55,10 @@
 }
 
 
+footer a {
+  @apply text-blue;
+  text-decoration-color: theme('colors.orange.DEFAULT');
+}
 
 
 .c-church-value {

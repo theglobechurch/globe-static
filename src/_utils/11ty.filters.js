@@ -40,7 +40,7 @@ module.exports = {
     });
   },
 
-  eventsFuture: (events, offset = 0, offsetUnit = 'days') => {
+  eventsFuture: (events, offset = 0, offsetUnit = 'day') => {
     startDate = dayjs().add(offset, offsetUnit);
     return events.filter(event => {
       return dayjs(event.endDate).isSameOrAfter(startDate, "day");

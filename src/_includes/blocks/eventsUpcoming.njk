@@ -1,7 +1,7 @@
 <section class="m-4 border border-white lg:container mx-auto sm:my-8">
   <div class="justify-between items-center p-4 pb-0 sm:pb-4 sm:border-b sm:flex sm:gap-4">
     <h2 class="glbHeading">Upcoming events</h2>
-    <a href="/calendar" class="">See the church calendar</a>
+    <a href="/calendar" class="text-blue decoration-orange">See the church calendar</a>
   </div>
 
   <div class="p-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -14,7 +14,7 @@
       {% set eventCount = 3 %}
     {% endif %}
 
-    {% set soonEvents = events | eventsFuture | eventsSort | limit(eventCount + 1) %}
+    {% set soonEvents = events | eventsFuture(0, 'day') | eventsSort | limit(eventCount + 1) %}
     {% set displayedEvents = 0 %}
     {% for event in soonEvents %}
       {% if event.title == featuredEvent.title or displayedEvents == eventCount%}
