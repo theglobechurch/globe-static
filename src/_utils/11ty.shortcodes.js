@@ -26,7 +26,7 @@ module.exports = {
 
   },
 
-  rwdImg: async function(filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw") {
+  rwdImg: async function(filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw", lazy = true) {
 
     let options = {
       formats: ["avif", "webp", "jpg"],
@@ -44,7 +44,7 @@ module.exports = {
 
     return eleventyImage.generateHTML(stats, {
       alt,
-      loading: "lazy",
+      loading: lazy ? "lazy" : "eager",
       decoding: "async",
       sizes: sizes,
       class: classes,

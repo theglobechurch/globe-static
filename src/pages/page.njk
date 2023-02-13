@@ -11,7 +11,7 @@
 
     {% if p.featured_img_url %}
     <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">
-      {% rwdImg p.featured_img_url, "", [550, 1024, 1512, 2056], "sm:inset-0 sm:absolute sm:h-full sm:object-cover", "100vw" %}
+      {% rwdImg p.featured_img_url, "", [550, 1024, 1512, 2056], "sm:inset-0 sm:absolute sm:h-full sm:object-cover", "100vw", false %}
       <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
         {% if parentPage %}
           <a href="/{{ parentPage.url }}" class=" flex gap-1 items-center group">
