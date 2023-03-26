@@ -56,7 +56,12 @@ eleventyComputed:
   <div class="mx-auto lg:container">
     <article class="px-4 prose prose-globeBlue lg:prose-xl lg:col-span-3">
 
-      <div itemprop="description">{{ event.body }}</div>
+      <div itemprop="description">
+
+        {% renderTemplate "njk,md", event %}
+        {{ body }}
+        {% endrenderTemplate %}
+      </div>
 
       {% if event.data.url %}
         <div class="my-8 py-4">
