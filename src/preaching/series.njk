@@ -77,10 +77,12 @@ eleventyComputed:
         <a href="/resources/{{ sermon.slug }}" class="p-4 no-underline flex gap-2 justify-between items-center hover:underline group">
           <div>
             <h3 class="font-bold">{{ sermon.title }}</h3>
+            {% if sermon.meta.glb_sermon_passage %}
             <p class="text-sm text-blue flex gap-2 items-top">
               {% svgIcon "icon-book", "shrink-0 h-4 w-4", "Preaching passage" %}
               <span>{{ sermon.meta.glb_sermon_passage }}</span>
             </p>
+            {% endif %}
             <p class="text-sm text-blue flex gap-2 items-top">
               {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
               <span>{{ sermon.date | formatDate('Do MMMM YYYY') }}</span>
