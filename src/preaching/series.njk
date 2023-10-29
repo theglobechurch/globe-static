@@ -35,7 +35,7 @@ eleventyComputed:
           {% if series.start_date %}
           <p class="text-sm flex gap-2 items-center">
             {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
-            <span>{% dateRange series.start_date, series.end_date %}</span>
+            <span>{% dateRange sermons.at(0).date, sermons.at(-1).date %}</span>
           </p>
           {% endif %}
         </div>
@@ -55,7 +55,9 @@ eleventyComputed:
 
         <h1 class="glbHeading md:text-2xl">{{ series.title }}</h1>
         {% if series.start_date %}
-          <p class="text-sm block">{% dateRange series.start_date, series.end_date %}</p>
+          {{ sermons.at(0).date}} {{ sermons.at(-1).date}}
+          {{ sermons[0].date}} {{ sermons.at(-1).date}}
+          <p class="text-sm block">{% dateRange sermons.at(0).date, sermons.at(-1).date %}</p>
         {% endif %}
         {% if series.description %}
           <div class="prose lg:prose-xl">

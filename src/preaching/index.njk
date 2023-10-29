@@ -60,7 +60,8 @@ featuredImage: ./src/_assets/img/core/the-globe-church-bible-study.jpg
           <div class="px-1">
             <p class="uppercase font-bold">{{ series.title }}</p>
             {% if series.start_date %}
-              <p class="text-sm text-blue">{% dateRange series.start_date, series.end_date %}</p>
+              {% set sermons = series | sermonsInSeries(preaching) | sort(false, true, 'date') %}
+              <p class="text-sm text-blue">{% dateRange sermons.at(0).date, sermons.at(-1).date %}</p>
             {% endif %}
           </div>
         </a>
