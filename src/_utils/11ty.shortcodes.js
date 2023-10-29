@@ -64,7 +64,11 @@ module.exports = {
     const y = 'YYYY';
 
     startDate = dayjs(startDate);
-    endDate = dayjs(endDate);
+    if (endDate) {
+      endDate = dayjs(endDate);
+    } else {
+      endDate = startDate;
+    }
 
     if (startDate.format(my) === endDate.format(my)) {
       return startDate.format(my);
