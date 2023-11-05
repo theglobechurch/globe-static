@@ -35,6 +35,21 @@ eleventyComputed:
           this Sunday
         </h2>
 
+        {% if meta.overrides and meta.overrides.location %}
+          <p class="max-w-lg">
+            <span class="rounded bg-orange px-2 py-1 mb-2 text-xs text-white inline-block uppercase font-bold">
+              venue change
+            </span>
+            <br />
+            The Globe Church is meeting this Sunday, <strong>{{ meta.overrides.serviceTime }}</strong> at <strong>{{ meta.overrides.location }}</strong>.
+            <br /><br />
+            It's a few minutes walk from {{ meta.overrides.nearestUnderground }} Underground station.
+          </p>
+          <p class="mt-8">
+            <a href="/sundays" class="px-2 py-1 mr-2 rounded bg-blue text-white no-underline transition-colors hover:bg-orange">Find out more</a>
+            <a href="{% mapUrl meta.overrides.location %}" class="text-blue decoration-orange" target="_blank" rel="noopener">See a map</a>
+          </p>
+        {% else %}
         <div>
           <p class="max-w-lg">{{ meta.sundays | safe }}</p>
           <p class="mt-8">
@@ -42,6 +57,7 @@ eleventyComputed:
             <a href="https://goo.gl/maps/ZYWE7cPGxr9NWBB1A" class="text-blue decoration-orange" target="_blank" rel="noopener">See a map</a>
           </p>
         </div>
+        {% endif %}
       </div>
 
       <div class="block relative min-h-[200px] order-1 sm:order-2 sm:min-h-[400px] w-full bg-cover bg-center text-white overflow-hidden">

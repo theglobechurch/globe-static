@@ -18,5 +18,10 @@ module.exports = function () {
     linkedin: "theglobechurch",
     email: "info@globe.church",
     registeredAddress: "GlobeOffice, 83 Mill Lofts, County St, London SE1 4AD",
+    overrides: {
+      serviceTime: "4pm",
+      location: "Haberdashers’ Borough Academy,94b Southwark Bridge Rd, London SE1 0EX",
+      nearestUnderground: "Borough"
+    }
   };
 };

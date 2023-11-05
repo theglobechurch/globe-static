@@ -22,6 +22,7 @@ module.exports = function (eleventyConfig) {
   // Shortcodes
   eleventyConfig.addNunjucksAsyncShortcode("rwdImg", shortcodes.rwdImg);
   eleventyConfig.addNunjucksAsyncShortcode("socialImg", shortcodes.socialImg);
+  eleventyConfig.addNunjucksShortcode("mapUrl", shortcodes.mapUrl);
   eleventyConfig.addNunjucksShortcode("svgIcon", shortcodes.svgIcon);
   eleventyConfig.addNunjucksShortcode("dateRange", shortcodes.dateRange);
 

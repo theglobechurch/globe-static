@@ -58,6 +58,12 @@ module.exports = {
     return `<svg class="${cls}">${title}<use xlink:href="/_assets/svgSprite.svg#svg-${name}"></use></svg>`;
   },
 
+  mapUrl: function(address) {
+    if (!address) { return null }
+
+    return `https://www.google.com/maps/search/?api=1&query=${ encodeURIComponent(address) }`;
+  },
+
   dateRange: function(startDate, endDate) {
 
     const my = 'MMMM YYYY';

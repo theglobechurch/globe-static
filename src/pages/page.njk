@@ -33,6 +33,9 @@
     {% endif %}
   </header>
 
+  {% set augLocation = "top" %}
+  {% include 'blocks/augmentedPages.njk' %}
+
 
   <div class="mx-auto lg:container">
     <article class="px-4 prose prose-globeBlue">
@@ -42,6 +45,7 @@
 
 </main>
 
+{% set augLocation = "bottom" %}
 {% include 'blocks/augmentedPages.njk' %}
 
 {% if childPages | length > 0 or parentPage | length > 0 %}
