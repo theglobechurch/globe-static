@@ -40,6 +40,10 @@
     display: none !important;
   }
 
+  h1, h2, h3, h4, h5, h6, caption, figcaption {
+    text-wrap:balance;
+  }
+
   .glbHeading {
     @apply uppercase font-bold tracking-wider text-xl lg:text-2xl;
     color: theme('colors.blue.DEFAULT');
@@ -304,4 +308,10 @@ footer a {
 
 .glb_peopleList p {
   margin: 0;
+}
+
+@layer utilities {
+  .balance {
+    text-wrap:balance;
+  }
 }
