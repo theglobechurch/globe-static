@@ -2,17 +2,17 @@
 pagePosition: top
 ---
 
-{% if meta.overrides and meta.overrides.location %}
+{% if meta.service.overrides %}
 <div class="mx-auto lg:container mb-4 border-orange border p-4">
 
     <span class="rounded bg-orange px-2 py-1 mb-2 text-xs text-white inline-block uppercase font-bold">
-      venue change
+      gathering change
     </span>
 
-    <p>The Globe Church is meeting this Sunday, <strong>{{ meta.overrides.serviceTime }}</strong> at <strong>{{ meta.overrides.location }}</strong>.</p>
+    <p>The Globe Church is meeting this Sunday, <strong>{{ meta.service.time }}</strong> at <strong>{{ meta.service.fullAddress }}</strong>.</p>
 
-    <p>It's a few minutes walk from {{ meta.overrides.nearestUnderground }} Underground station.</p>
+    <p>It's a few minutes walk from {{ meta.service.tube }} Underground station.</p>
 
-    <p><a href="{% mapUrl meta.overrides.location %}" class="text-blue decoration-orange" target="_blank" rel="noopener">See a map</a>.</p>
+    <p><a href="{% mapUrl meta.service.fullAddress %}" class="text-blue decoration-orange" target="_blank" rel="noopener">See a map</a>.</p>
 </div>
 {% endif %}

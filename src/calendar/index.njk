@@ -21,21 +21,14 @@ featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
       <div class="p-8 sm:px-4 sm:max-w-[40%] text-white lg:text-lg">
         <h1 class="glbHeading text-white lg:text-2xl">Church Calendar</h1>
 
-        {% if meta.overrides and meta.overrides.location %}
-          <p class="max-w-lg mt-4">
-            <span class="rounded bg-white px-2 py-1 mb-2 text-xs text-orange inline-block uppercase font-bold">
-              venue change
-            </span>
-            <br />
-            The Globe Church is meeting this Sunday, <strong>{{ meta.overrides.serviceTime }}</strong> at <strong>{{ meta.overrides.location }}</strong>.
-            <br /><br />
-            It's a few minutes walk from {{ meta.overrides.nearestUnderground }} Underground station.
-          </p>
-        {% else %}
-        <p class="my-4">
+        {% if meta.service.overrides %}
+        <span class="mt-6 rounded text-orange px-2 py-1 mb-2 text-xs bg-white inline-block uppercase font-bold">
+          gathering change
+        </span>
+        {% endif %}
+        <p class="mb-4">
           {{ meta.sundays | safe }}
         </p>
-        {% endif %}
 
         <p class="my-4"><a href="/sundays" class="glbBtn bg-blue hover:bg-white hover:text-orange">Join us this Sunday</a></p>
 

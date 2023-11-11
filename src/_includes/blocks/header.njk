@@ -59,8 +59,15 @@
       </nav>
 
       <div class="bg-green text-white p-4 m-4">
+
+        {% if meta.service.overrides %}
+        <span class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-white inline-block uppercase font-bold">
+          gathering change
+        </span>
+        {% endif %}
+
         <p class="font-bold">Sundays at The Globe Church</p>
-        <p class="my-2">Join The Globe Church this Sunday, 4pm at Globe Ark Accademy.</p>
+        <p class="my-2">Join The Globe Church this Sunday, {{ meta.service.time }} at {{ meta.service.locationName }}.</p>
         <p><a href="/sundays" class="text-white">Find out more</a></p>
       </div>
     </div>

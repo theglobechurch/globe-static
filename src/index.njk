@@ -4,7 +4,7 @@ eleventyComputed:
   description: "{{ meta.subtitle }}"
 ---
 
-<section class="mt-12 bg-orange/10 sm:grid sm:grid-cols-3 sm:h-[80vh] uppercase text-white font tracking-wider text-lg text-center md:text-3xl" aria-label="About The Globe Church"">
+<section class="mt-12 bg-orange/10 sm:grid sm:grid-cols-3 sm:h-[80vh] uppercase text-white font tracking-wider text-lg text-center md:text-3xl" aria-label="About The Globe Church">
   <a href="/about#jesus" class="block relative h-[200px] w-full bg-cover bg-center sm:h-[80vh] text-white overflow-hidden group">
     {% rwdImg "./src/_assets/img/core/the-globe-church-bible-study.jpg", "People looking reading the Bible at a church service", [330, 550, 1024, 1500, 2560], "block h-full w-full left-0 right-0 absolute object-cover transition group-hover:scale-110", "100vw", false %}
     <div class="absolute inset-0 flex items-center justify-center bg-blue/80 px-2">
@@ -35,29 +35,19 @@ eleventyComputed:
           this Sunday
         </h2>
 
-        {% if meta.overrides and meta.overrides.location %}
-          <p class="max-w-lg">
-            <span class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-black inline-block uppercase font-bold">
-              venue change
-            </span>
-            <br />
-            The Globe Church is meeting this Sunday, <strong>{{ meta.overrides.serviceTime }}</strong> at <strong>{{ meta.overrides.location }}</strong>.
-            <br /><br />
-            It's a few minutes walk from {{ meta.overrides.nearestUnderground }} Underground station.
-          </p>
-          <p class="mt-8">
-            <a href="/sundays" class="px-2 py-1 mr-2 rounded bg-blue text-white no-underline transition-colors hover:bg-orange">Find out more</a>
-            <a href="{% mapUrl meta.overrides.location %}" class="text-blue decoration-orange" target="_blank" rel="noopener">See a map</a>
-          </p>
-        {% else %}
-        <div>
-          <p class="max-w-lg">{{ meta.sundays | safe }}</p>
-          <p class="mt-8">
-            <a href="/sundays" class="px-2 py-1 mr-2 rounded bg-blue text-white no-underline transition-colors hover:bg-orange">Find out more</a>
-            <a href="https://goo.gl/maps/ZYWE7cPGxr9NWBB1A" class="text-blue decoration-orange" target="_blank" rel="noopener">See a map</a>
-          </p>
-        </div>
-        {% endif %}
+        <p class="max-w-lg">
+          {% if meta.service.overrides %}
+          <span class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-black inline-block uppercase font-bold">
+            gathering change
+          </span>
+          {% endif %}
+          <br />
+          {{ meta.sundays | safe }}
+        </p>
+        <p class="mt-8">
+          <a href="/sundays" class="px-2 py-1 mr-2 rounded bg-blue text-white no-underline transition-colors hover:bg-orange">Find out more</a>
+          <a href="{% mapUrl meta.service.fullAddress %}" class="text-blue decoration-orange" target="_blank" rel="noopener">See a map</a>
+        </p>
       </div>
 
       <div class="block relative min-h-[200px] order-1 sm:order-2 sm:min-h-[400px] w-full bg-cover bg-center text-white overflow-hidden">
