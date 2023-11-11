@@ -81,7 +81,11 @@ function fetchPages() {
             page.featured_img_url = page.featured_img_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
           }
 
+          // Make sure all assets are served from assets.
           page.body = page.content.rendered.replaceAll('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+
+          // Make sure any CMS URL is wiped out
+          page.body = page.content.rendered.replaceAll('https://tgc-cms.globe.church/', '/');
 
           return page;
         });
