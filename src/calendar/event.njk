@@ -66,7 +66,7 @@ eleventyComputed:
       {% if event.data.url %}
         <div class="my-8 py-4">
           Find out more at:<br />
-          <a itemprop="url" href="{{ event.data.url }}">{{ event.data.url | replace('https://','') }}</a>
+          <a itemprop="url" href="{{ event.data.url }}">{{ event.data.url | replace('https://','') | replace('www.','') }}</a>
 
         </div>
       {% endif %}
