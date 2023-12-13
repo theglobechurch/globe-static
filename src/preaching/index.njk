@@ -58,7 +58,7 @@ featuredImage: ./src/_assets/img/core/the-globe-church-bible-study.jpg
             {% rwdImg series.artwork_url, "", [450, 600], "inset-0 w-full h-full absolute object-cover saturate-100 transition group-hover:saturate-[1.1] group-hover:scale-110", "33vw" %}
           </div>
           <div class="px-1">
-            <p class="uppercase font-bold balance">{{ series.title }}</p>
+            <p class="uppercase font-bold wrap-balance">{{ series.title }}</p>
             {% if series.start_date %}
               {% set sermons = series | sermonsInSeries(preaching) | sort(false, true, 'date') %}
               <p class="text-sm text-blue">{% dateRange sermons.at(0).date, sermons.at(-1).date %}</p>

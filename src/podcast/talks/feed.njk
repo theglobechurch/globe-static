@@ -1,0 +1,51 @@
+---
+permalink: podcast/talks.rss
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:ppg="http://bbc.co.uk/2009/01/ppgRss" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Globe Talks</title>
+    <description>Globe Talks is a podcast designed to encourage and strengthen our church family one conversation at a time. Each episode we'll take the time to focus in on different topics that impact us and our walk with Jesus.</description>
+    <language>en-gb</language>
+    <pubDate>{{ preaching[0].date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
+    <lastBuildDate>{{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</lastBuildDate>
+    <link>https://www.globe.church/podcast/talks</link>
+    <image>
+      <url>https://www.globe.church/assets/img/passThrough/globe-talks-cover.jpg</url>
+      <title>Globe Talks</title>
+      <link>https://www.globe.church/podcast/talks</link>
+    </image>
+    <itunes:author>The Globe Church</itunes:author>
+    <itunes:summary>Globe Talks is a podcast designed to encourage and strengthen our church family one conversation at a time. Each episode we'll take the time to focus in on different topics that impact us and our walk with Jesus.</itunes:summary>
+    <itunes:keywords>The Globe Church, Recordings, Church</itunes:keywords>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="https://www.globe.church/assets/img/passThrough/globe-talks-cover.jpg"/>
+    <itunes:owner>
+      <itunes:name>The Globe Church</itunes:name>
+      <itunes:email>info@globe.church</itunes:email>
+    </itunes:owner>
+    <itunes:block>no</itunes:block>
+    <itunes:category text="Religion &amp; Spirituality">
+      <itunes:category text="Christianity"/>
+    </itunes:category>
+    {% for episode in podcast %}
+    <item>{% set authorDetails = episode.author | authorLookup(people) %}
+      <title>Globe Talks: {{ episode.title }}</title>
+      <description>{{ episode.content | striptags | truncate(250)| entEncode | safe }}</description>
+      <pubDate>{{ episode.date | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }}</pubDate>
+      <link>https://www.globe.church/podcast/talks/{{ episode.slug }}</link>
+      <guid>https://www.globe.church/podcast/talks/{{ episode.slug }}</guid>
+      <enclosure url="{{ episode.podcast_data.url }}" length="{{ episode.podcast_data.filesize }}" type="audio/mpeg" />
+      <ppg:enclosureLegacy url="{{ episode.podcast_data.url }}" length="{{ episode.podcast_data.filesize }}" type="audio/mpeg"/>
+      <ppg:enclosureSecure url="{{ episode.podcast_data.url }}" length="{{ episode.podcast_data.filesize }}" type="audio/mpeg"/>
+      <media:content url="{{ episode.podcast_data.url }}" fileSize="{{ episode.podcast_data.filesize }}" type="audio/mpeg"/>
+      <itunes:duration>{{ episode.podcast_data.length }}</itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:author>The Globe Church</itunes:author>
+      <itunes:subtitle>{{ episode.content | striptags | truncate(250)| entEncode | safe }}</itunes:subtitle>
+      <itunes:summary>{{ episode.content | striptags | entEncode | safe }}</itunes:summary>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

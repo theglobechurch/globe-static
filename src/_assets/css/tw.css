@@ -311,7 +311,11 @@ footer a {
 }
 
 @layer utilities {
-  .balance {
+  .wrap-balance {
     text-wrap:balance;
+  }
+
+  .wrap-pretty {
+    text-wrap: pretty;
   }
 }

@@ -1,0 +1,78 @@
+---
+pagination:
+  data: "podcast"
+  size: 1
+  alias: episode
+permalink: "podcast/talks/{{ episode.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "Globe Talks: {{ episode.title }}"
+  description: "{{ episode.content | striptags }}"
+  featuredImage: "./src/_assets/img/core/the-globe-church-talks-full.jpg"
+---
+
+{% set authorDetails = episode.author | authorLookup(people) %}
+
+<main class="mt-12 px-4">
+  <header class="mx-auto lg:container mb-4">
+    <div class="sm:aspect-[16/7] w-full sm:bg-cover sm:bg-center sm:overflow-hidden sm:relative">
+      {% rwdImg featuredImage, "", [550, 1024, 1512, 2056], "sm:inset-0 w-full h-full sm:absolute sm:object-cover", "100vw" %}
+
+      <div class="px-4 pt-4 sm:absolute sm:inset-0 bg-gradient-to-b from-transparent via-white/20 to-white sm:flex sm:flex-col sm:justify-end sm:items-start">
+
+        <a href="/podcast/talks" class="hidden sm:flex gap-1 items-center group">
+          {% svgIcon "icon-arrowLeft", "shrink-0 h-4 w-4 transition group-hover:-translate-x-2", "Date" %}
+          <span>Globe Talks Podcast</span>
+        </a>
+
+        <h1 class="glbHeading md:text-2xl">
+          {{ title }}
+        </h1>
+      </div>
+
+
+    </div>
+  </header>
+
+  <div class="mx-auto lg:container">
+
+    <div class="md:flex gap-4 px-4 mb-4">
+      {% if episode.date %}
+      <date class="text-sm flex gap-2 items-center">
+        {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+        <span>{{ episode.date | formatDate('dddd, Do MMMM YYYY') }}</span>
+      </date>
+      {% endif %}
+
+      {% if preaching.meta.glb_sermon_passage %}
+      <p class="text-sm flex gap-2 items-center">
+        {% svgIcon "icon-book", "shrink-0 h-4 w-4", "Preaching passage" %}
+        <span>{{ preaching.meta.glb_sermon_passage }}</span>
+      </p>
+      {% endif %}
+
+      {# {% if authorDetails %}
+      <p class="text-sm flex gap-2 items-center">
+        {% svgIcon "icon-person", "shrink-0 h-4 w-4", "Preached by" %}
+        <span>{{ authorDetails.name }}</span>
+      </p>
+      {% endif %} #}
+    </div>
+
+    <div class="px-4 prose prose-globeBlue lg:prose-xl mb-4">
+      {{ episode.content | safe }}
+    </div>
+
+    <audio class="px-4 mb-4 w-full" src="{{ episode.podcast_data.url }}" preload="metadata" controls></audio>
+
+  </div>
+
+</main>
+
+<section class="mt-12 px-4">
+  <div class="mx-auto lg:container mb-4">
+
+    {% include 'blocks/latestSermon.njk' %}
+
+  </div>
+</section>

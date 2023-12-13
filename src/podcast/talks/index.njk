@@ -1,0 +1,93 @@
+---
+layout: layouts/base.njk
+title: "Globe Talks"
+description: ""
+featuredImage: ./src/_assets/img/core/the-globe-church-talks.jpg
+---
+
+<header class="relative">
+
+  <div class="sm:grid sm:grid-cols-2 min-h-[30vh] sm:min-h-[80vh]">
+    <div class="hidden sm:block bg-orange text-white">
+    </div>
+
+    <div class="min-h-[30vh] sm:min-h-[auto] bg-[#ccc] relative w-full bg-cover bg-center overflow-hidden">
+      {% rwdImg featuredImage, "", [330, 550, 1024, 1500, 2560], "block h-full w-full inset-0 absolute object-cover", "50vw" %}
+    </div>
+  </div>
+
+  <div class="bg-orange">
+    <div class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute">
+      <div class="p-8 sm:px-4 sm:max-w-[40%] text-white lg:text-lg">
+        <h1 class="glbHeading text-white lg:text-2xl">{{ title }}</h1>
+        <p class="my-4 wrap-pretty">
+          Globe Talks is a podcast designed to encourage and strengthen our church family one conversation at a time. Each episode we'll take the time to focus in on different topics that impact us and our walk with Jesus.
+        </p>
+
+        <p>
+          <a href="/podcast/talks/{{ podcast[0].slug }}" class="text-white no-underline inline-flex gap-2 items-center group">
+            {% svgIcon "icon-play", "h-6 w-6 inline-block transition group-hover:translate-x-1" %}
+            <span class="underline hover:no-underline">Latest episode: {{ podcast[0].title }}</span>
+          </a>
+        </p>
+
+        <p class="">
+          <a href="#allEpisodes" class="text-white no-underline inline-flex gap-2 items-center group">
+            {% svgIcon "icon-arrowDown", "h-6 w-6 inline-block transition group-hover:translate-y-1" %}
+            <span class="underline hover:no-underline">All episodes</span>
+          </a>
+        </p>
+
+        <div class="@container">
+          <div class="grid @sm:grid-cols-2 @md:flex gap-4 my-4">
+            <a href="#" target="_blank" rel="noopener" class="transition hover:scale-105">
+              <img class="w-full max-w-[200px]" src="/assets/img/passThrough/spotify.svg" loading="lazy" decoding="async" alt="Listen on Spotify" />
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="transition hover:scale-105">
+              <img class="w-full max-w-[200px]" src="/assets/img/passThrough/apple-podcasts.svg" loading="lazy" decoding="async" alt="Listen on Apple Podcasts" />
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="transition hover:scale-105">
+              <img class="w-full max-w-[200px]" src="/assets/img/passThrough/pocketcasts.svg" loading="lazy" decoding="async" alt="Listen on Pocket Casts" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="mt-12 px-4 scroll-mt-4" id="allEpisodes">
+  <div class="mx-auto lg:container mb-4">
+
+    <div class="w-full grid grid-cols-1 divide-y divide-orange/30">
+    {% for episode in podcast %}
+      <a href="/podcast/talks/{{ episode.slug }}" class="p-4 no-underline flex gap-2 justify-between items-center hover:underline group">
+        <div>
+          <h3 class="font-bold">Globe Talks: {{ episode.title }}</h3>
+
+          <p class="text-sm text-blue flex gap-2 items-top">
+            {% svgIcon "icon-calendar", "shrink-0 h-4 w-4", "Date" %}
+            <span>{{ episode.date | formatDate('Do MMMM YYYY') }}</span>
+          </p>
+        </div>
+        <div class="flex-shrink-0">
+          <p class="flex items-center">
+            <span>Listen now</span>
+            {% svgIcon "icon-play", "ml-1 h-6 w-6 inline-block transition group-hover:translate-x-1", "Play icon" %}
+          </p>
+        </div>
+      </a>
+    {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<section class="mt-12 px-4">
+  <div class="mx-auto lg:container mb-4">
+
+    {% include 'blocks/latestSermon.njk' %}
+
+  </div>
+</section>
