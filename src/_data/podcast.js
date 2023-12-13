@@ -11,8 +11,7 @@ if (!process.env.API_BASE) {
   return false;
 }
 
-const base = `https://wp.test/wp-json/wp/v2/podcast?per_page=50`;
-// const base = `${process.env.API_BASE}podcast?per_page=50`;
+const base = `${process.env.API_BASE}podcast?per_page=50`;
 let thisPage = 1;
 let totalPages = 1;
 
@@ -51,16 +50,9 @@ async function fetchPodcastEpisodes() {
     headers.set('Authorization', `Basic ${auth}`)
   }
 
-  // TODO REMOVE
-  const https = require('https');
-  const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,
-  });
-
   return fetch(url, {
     method: 'GET',
-    headers,
-    agent: httpsAgent
+    headers
   })
     .then((res) => {
       return {
