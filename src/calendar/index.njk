@@ -32,7 +32,7 @@ featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
 
         <p class="my-4"><a href="/sundays" class="glbBtn bg-blue hover:bg-white hover:text-orange">Join us this Sunday</a></p>
 
-        <p>
+        <p class="py-2">
           <a href="#thisWeek" class="text-white no-underline inline-flex gap-2 items-center group">
             {% svgIcon "icon-arrowDown", "h-6 w-6 inline-block transition group-hover:translate-y-1" %}
             <span class="underline hover:no-underline">All events</span>
@@ -50,7 +50,7 @@ featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
   <div class="mx-auto lg:container mb-4 scroll-mt-4 lg:scroll-mt-12" id="thisWeek">
     {% set eventList = events | eventsFuture | eventsSort %}
     {# <h2 class="glbHeading px-4 mb-4">Events this week</h2> #}
-    {% include 'blocks/eventList.njk' %}
+    {% include 'blocks/cal/eventList.njk' %}
   </div>
 
 
@@ -88,6 +88,6 @@ featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
   {# <div class="mx-auto lg:container mb-4 scroll-mt-4" id="futureEvents">
     {% set eventList = events | eventsFuture(8, 'day') | eventsSort %}
     <h2 class="glbHeading px-4 mb-4">Future events</h2>
-    {% include 'blocks/eventList.njk' %}
+    {% include 'blocks/cal/eventList.njk' %}
   </div> #}
 </main>

@@ -4,8 +4,14 @@
   {% for event in eventList %}
 
     {% if event.startDate | formatDate('MMMM') !== m %}
-      <h2 class="glbHeading px-4 mt-8 col-span-full">{{ event.startDate | formatDate('MMMM') }}</h2>
-      {% set m = event.startDate | formatDate('MMMM') %}
+      <div class="col-span-full px-4 sm:flex justify-between items-baseline">
+        <h2 class="glbHeading mt-8">
+          {{ event.startDate | formatDate('MMMM') }}
+        </h2>
+
+        {% include 'blocks/cal/subscribe.njk' %}
+        {% set m = event.startDate | formatDate('MMMM') %}
+      </div>
     {% endif %}
 
     {% if event.startDate | formatDate !== d %}

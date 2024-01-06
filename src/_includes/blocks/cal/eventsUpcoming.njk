@@ -10,7 +10,7 @@
     {% set featuredEvent = events | eventsFuture | eventsFeatured | eventsSort | limit(1) | first %}
     {% if featuredEvent %}
       {% set event = featuredEvent %}
-      {% include 'blocks/simpleEvent.njk' %}
+      {% include 'blocks/cal/simpleEvent.njk' %}
       {% set eventCount = 3 %}
     {% endif %}
 
@@ -20,7 +20,7 @@
       {% if event.title == featuredEvent.title or displayedEvents == eventCount%}
         {# nothing to see here #}
       {% else %}
-        {% include 'blocks/simpleEvent.njk' %}
+        {% include 'blocks/cal/simpleEvent.njk' %}
         {% set displayedEvents = displayedEvents + 1 %}
       {% endif %}
 
