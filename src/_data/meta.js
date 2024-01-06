@@ -44,11 +44,11 @@ module.exports = async () => {
 
 function sundaysLine(overrides) {
   return `
-    The Globe Church ${overrides ? 'is meeting this' : 'meets each'} Sunday,
+    <p>The Globe Church ${overrides ? 'is meeting this' : 'meets each'} Sunday,
     <strong>${overrides['serviceTime'] || defaultTime}</strong> at
-    <strong>${overrides['location'] || defaultLocation}</strong>.<br /><br />
-    It's just a few minutes walk from ${overrides['nearestUnderground'] || defaultTube}
-    station.`;
+    <strong>${overrides['location'] || defaultLocation}</strong>.</p>
+    <p>It's just a few minutes walk from ${overrides['nearestUnderground'] || defaultTube}
+    station.</p>`;
 }
 
 function serviceDetails(overrides) {
