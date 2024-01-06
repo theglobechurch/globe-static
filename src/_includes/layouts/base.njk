@@ -1,31 +1,36 @@
 <!doctype html>
 <html lang="en" dir="ltr" class="scroll-smooth">
-  <head>
+  {% set pageTitle %}
+    {% if title %}{{ title | safe }} &middot; {% endif %}{{ meta.title }}
+  {% endset %}
+  {% set pageDescription %}
+    {% if description %}
+      {{ description }}
+    {% else %}
+      {{ content | striptags | truncate(256) }}
+    {% endif %}
+  {% endset %}
+  {% set pageImg %}
+    {% if featuredImage %}
+      {% socialImg featuredImage %}
+    {% else %}
+      https://globe.church/_assets/img/the-globe-church-og.jpg
+    {% endif %}
+  {% endset %}
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+    <title>{{ pageTitle | safe | trim }}</title>
+
+    <link rel="preconnect" href="https://use.typekit.net"/>
+    <link rel="preconnect" href="https://www.googletagmanager.com/"/>
 
     <link rel="stylesheet" href="/_assets/css/tw.css?v={{ data.timestamp }}" media="screen" type="text/css">
 
-    {% set pageTitle %}
-      {% if title %}{{ title | safe }} &middot; {% endif %}{{ meta.title }}
-    {% endset %}
-    {% set pageDescription %}
-      {% if description %}
-        {{ description }}
-      {% else %}
-        {{ content | striptags | truncate(256) }}
-      {% endif %}
-    {% endset %}
-    {% set pageImg %}
-      {% if featuredImage %}
-        {% socialImg featuredImage %}
-      {% else %}
-        https://globe.church/_assets/img/the-globe-church-og.jpg
-      {% endif %}
-    {% endset %}
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="view-transition" content="same-origin">
 
-    <title>{{ pageTitle | safe | trim }}</title>
     <meta name="description" content="{{ pageDescription | trim }}" />
     <meta itemprop="description" content="{{ pageDescription | trim }}">
     <meta property="og:site_name" content="{{ meta.title }}" />
@@ -41,8 +46,6 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="application-name" content="{{ meta.title }}"/>
     <meta name="theme-color" content="#d06348">
-
-    <link rel="preconnect" href="https://use.typekit.net"/>
 
     <meta name="generator" content="{{ eleventy.generator }}"/>
     <link rel="author" href="/humans.txt"/>
