@@ -4,29 +4,73 @@ eleventyComputed:
   description: "{{ meta.subtitle }}"
 ---
 
-<section class="mt-12 bg-orange/10 sm:grid sm:grid-cols-3 sm:h-[80vh] uppercase text-white font tracking-wider text-lg text-center md:text-3xl" aria-label="About The Globe Church">
-  <a href="/about#jesus" class="block relative h-[200px] w-full bg-cover bg-center sm:h-[80vh] text-white overflow-hidden group">
-    {% rwdImg "./src/_assets/img/core/the-globe-church-bible-study.jpg", "People looking reading the Bible at a church service", [330, 550, 1024, 1500, 2560], "block h-full w-full left-0 right-0 absolute object-cover transition group-hover:scale-110", "100vw", false %}
-    <div class="absolute inset-0 flex items-center justify-center bg-blue/80 px-2">
-      <p class="max-w-[240px]">The Globe Church is all about <span class="border-2 border-white font-bold px-1 inline-block transition group-hover:bg-white group-hover:text-blue">Jesus</span></p>
+<section
+  class="mt-12 bg-orange/10 sm:grid sm:grid-cols-3 sm:h-[80vh] uppercase text-white font tracking-wider text-lg text-center md:text-3xl"
+  aria-label="About The Globe Church"
+>
+  <a
+    href="/about#jesus"
+    class="block relative h-[200px] w-full bg-cover bg-center sm:h-[80vh] text-white overflow-hidden group"
+  >
+    {% rwdImg "./src/_assets/img/core/the-globe-church-bible-study.jpg", "People
+    looking reading the Bible at a church service", [330, 550, 1024, 1500,
+    2560], "block h-full w-full left-0 right-0 absolute object-cover transition
+    group-hover:scale-110", "100vw", false %}
+    <div
+      class="absolute inset-0 flex items-center justify-center bg-blue/80 px-2"
+    >
+      <p class="max-w-[240px]">
+        The Globe Church is all about
+        <span
+          class="border-2 border-white font-bold px-1 inline-block transition group-hover:bg-white group-hover:text-blue"
+          >Jesus</span
+        >
+      </p>
     </div>
   </a>
-  <a href="/about#people" class="block relative h-[200px] w-full bg-cover bg-center sm:h-[80vh] text-white overflow-hidden group">
-    {% rwdImg "./src/_assets/img/core/the-globe-church-people.jpg", "Members of The Globe Church", [330, 550, 1024, 1500, 2560], "block h-full w-full left-0 right-0 absolute object-cover transition group-hover:scale-110", "100vw", false %}
-    <div class="absolute inset-0 flex items-center justify-center bg-gold/60 px-2">
-      <p class="max-w-[240px]">Made up of all sorts of <span class="border-2 border-white font-bold px-1 inline-block transition group-hover:bg-white group-hover:text-gold">people</span></p>
+  <a
+    href="/about#people"
+    class="block relative h-[200px] w-full bg-cover bg-center sm:h-[80vh] text-white overflow-hidden group"
+  >
+    {% rwdImg "./src/_assets/img/core/the-globe-church-calendar.jpg", "Members
+    of The Globe Church", [330, 550, 1024, 1500, 2560], "block h-full w-full
+    left-0 right-0 absolute object-cover transition group-hover:scale-110",
+    "100vw", false %}
+    <div
+      class="absolute inset-0 flex items-center justify-center bg-gold/60 px-2"
+    >
+      <p class="max-w-[240px]">
+        Made up of all sorts of
+        <span
+          class="border-2 border-white font-bold px-1 inline-block transition group-hover:bg-white group-hover:text-gold"
+          >people</span
+        >
+      </p>
     </div>
   </a>
-  <a href="/about#mission" class="block relative h-[200px] w-full bg-cover bg-center sm:h-[80vh] text-white overflow-hidden group">
-    {% rwdImg "./src/_assets/img/core/the-globe-church-london-southwark.jpg", "London, The Shard", [330, 550, 1024, 1500, 2560], "block h-full w-full left-0 right-0 absolute object-cover transition group-hover:scale-110", "100vw", false %}
-    <div class="absolute inset-0 flex items-center justify-center bg-green/80 px-2">
-     <p class="max-w-[240px]">Involved in the greatest <span class="border-2 border-white font-bold px-1 inline-block transition group-hover:bg-white group-hover:text-green">mission</span></p>
+  <a
+    href="/about#mission"
+    class="block relative h-[200px] w-full bg-cover bg-center sm:h-[80vh] text-white overflow-hidden group"
+  >
+    {% rwdImg "./src/_assets/img/core/the-globe-church-london-southwark.jpg",
+    "London, The Shard", [330, 550, 1024, 1500, 2560], "block h-full w-full
+    left-0 right-0 absolute object-cover transition group-hover:scale-110",
+    "100vw", false %}
+    <div
+      class="absolute inset-0 flex items-center justify-center bg-green/80 px-2"
+    >
+      <p class="max-w-[240px]">
+        Involved in the greatest
+        <span
+          class="border-2 border-white font-bold px-1 inline-block transition group-hover:bg-white group-hover:text-green"
+          >mission</span
+        >
+      </p>
     </div>
   </a>
 </section>
 
 <main class="p-4">
-
   <section class="mb-4 lg:container mx-auto sm:mb-8">
     <div class="bg-orange/10 grid sm:grid-cols-2">
       <div class="p-4 text-xl flex flex-col justify-around order-2 sm:order-1">
@@ -37,7 +81,9 @@ eleventyComputed:
 
         <p class="max-w-lg">
           {% if meta.service.overrides %}
-          <span class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-black inline-block uppercase font-bold">
+          <span
+            class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-black inline-block uppercase font-bold"
+          >
             gathering change
           </span>
           {% endif %}
@@ -45,13 +91,28 @@ eleventyComputed:
           {{ meta.sundays | safe }}
         </p>
         <p class="mt-8">
-          <a href="/sundays" class="px-2 py-1 mr-2 rounded bg-blue text-white no-underline transition-colors hover:bg-orange">Find out more</a>
-          <a href="{% mapUrl meta.service.fullAddress %}" class="text-blue decoration-orange" target="_blank" rel="noopener">See a map</a>
+          <a
+            href="/sundays"
+            class="px-2 py-1 mr-2 rounded bg-blue text-white no-underline transition-colors hover:bg-orange"
+            >Find out more</a
+          >
+          <a
+            href="{% mapUrl meta.service.fullAddress %}"
+            class="text-blue decoration-orange"
+            target="_blank"
+            rel="noopener"
+            >See a map</a
+          >
         </p>
       </div>
 
-      <div class="block relative min-h-[200px] order-1 sm:order-2 sm:min-h-[400px] w-full bg-cover bg-center text-white overflow-hidden">
-        {% rwdImg "./src/_assets/img/core/the-globe-church-at-ark-academy.jpg", "Sunday service at The Globe Church", [330, 550, 1024, 1500], "block h-full w-full inset-0 absolute object-cover", "(min-width: 640px) 50vw, 100vw" %}
+      <div
+        class="block relative min-h-[200px] order-1 sm:order-2 sm:min-h-[400px] w-full bg-cover bg-center text-white overflow-hidden"
+      >
+        {% rwdImg "./src/_assets/img/core/the-globe-church-at-ark-academy.jpg",
+        "Sunday service at The Globe Church", [330, 550, 1024, 1500], "block
+        h-full w-full inset-0 absolute object-cover", "(min-width: 640px) 50vw,
+        100vw" %}
       </div>
     </div>
   </section>
@@ -59,6 +120,6 @@ eleventyComputed:
   {% include 'blocks/cal/eventsUpcoming.njk' %}
 
   <div class="mx-auto lg:container mb-4">
-  {% include 'blocks/latestSermon.njk' %}
+    {% include 'blocks/latestSermon.njk' %}
   </div>
 </main>

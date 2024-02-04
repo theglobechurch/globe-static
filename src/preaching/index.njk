@@ -2,33 +2,48 @@
 title: Preaching
 description: We believe that the Bible is the Word of God. God speaks to us today as we carefully and humbly listen to His Word, That is why preaching is so central to all we do at The Globe Church…
 layout: layouts/base.njk
-featuredImage: ./src/_assets/img/core/the-globe-church-bible-study.jpg
+featuredImage: ./src/_assets/img/core/the-globe-church-preaching.jpg
 ---
+
 <header class="relative">
-
   <div class="sm:grid sm:grid-cols-2 min-h-[30vh] sm:min-h-[80vh]">
-    <div class="hidden sm:block bg-orange text-white">
-    </div>
+    <div class="hidden sm:block bg-orange text-white"></div>
 
-    <div class="min-h-[30vh] sm:min-h-[auto] bg-[#ccc] relative w-full bg-cover bg-center overflow-hidden">
-      {% rwdImg "./src/_assets/img/core/the-globe-church-bible-study.jpg", "Members of The Globe Church", [330, 550, 1024, 1500, 2560], "block h-full w-full inset-0 absolute object-cover", "50vw" %}
+    <div
+      class="min-h-[30vh] sm:min-h-[auto] bg-[#ccc] relative w-full bg-cover bg-center overflow-hidden"
+    >
+      {% rwdImg "./src/_assets/img/core/the-globe-church-preaching.jpg",
+      "Members of The Globe Church", [330, 550, 1024, 1500, 2560], "block h-full
+      w-full inset-0 absolute object-cover", "50vw" %}
     </div>
   </div>
 
   <div class="bg-orange">
-    <div class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute">
+    <div
+      class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute"
+    >
       <div class="p-8 sm:px-4 sm:max-w-[40%] text-white lg:text-lg">
         <h1 class="glbHeading text-white lg:text-2xl">{{ title }}</h1>
         <p class="my-4">
-          We believe that the Bible is the Word of God. It is utterly true, relevant and life transforming. God speaks to us today as we carefully and humbly listen to His Word.
+          We believe that the Bible is the Word of God. It is utterly true,
+          relevant and life transforming. God speaks to us today as we carefully
+          and humbly listen to His Word.
         </p>
         <p class="my-4">
-          That is why preaching is so central to all we do at The Globe Church. As God’s Word is unfolded and applied then we understand God’s Word to us. It isn’t just preaching though… in small groups, one to one, individually, we are serious about being changed by what God says in the Bible.
+          That is why preaching is so central to all we do at The Globe Church.
+          As God’s Word is unfolded and applied then we understand God’s Word to
+          us. It isn’t just preaching though… in small groups, one to one,
+          individually, we are serious about being changed by what God says in
+          the Bible.
         </p>
 
         <p>
-          <a href="#allSeries" class="text-white no-underline inline-flex gap-2 items-center group">
-            {% svgIcon "icon-arrowDown", "h-6 w-6 inline-block transition group-hover:translate-y-1" %}
+          <a
+            href="#allSeries"
+            class="text-white no-underline inline-flex gap-2 items-center group"
+          >
+            {% svgIcon "icon-arrowDown", "h-6 w-6 inline-block transition
+            group-hover:translate-y-1" %}
             <span class="underline hover:no-underline">All series</span>
           </a>
         </p>
@@ -39,9 +54,7 @@ featuredImage: ./src/_assets/img/core/the-globe-church-bible-study.jpg
 
 <section class="mt-12 px-4">
   <div class="mx-auto lg:container mb-4">
-
     {% include 'blocks/latestSermon.njk' %}
-
   </div>
 </section>
 
@@ -51,17 +64,25 @@ featuredImage: ./src/_assets/img/core/the-globe-church-bible-study.jpg
       <h2 class="px-4 glbHeading">Sermon Series</h2>
     </div>
     <div class="px-4 pt-4">
-      <div class="grid gap-4 grid-cols-2 sm:gap-8 sm:grid-cols-3 md:grid-cols-4">
+      <div
+        class="grid gap-4 grid-cols-2 sm:gap-8 sm:grid-cols-3 md:grid-cols-4"
+      >
         {% for series in sermonseries | sort(true, true, 'start_date') %}
         <a href="/preaching/{{ series.slug }}" class="block no-underline group">
-          <div class="aspect-square rounded bg-cover bg-center overflow-hidden relative">
-            {% rwdImg series.artwork_url, "", [450, 600], "inset-0 w-full h-full absolute object-cover saturate-100 transition group-hover:saturate-[1.1] group-hover:scale-110", "33vw" %}
+          <div
+            class="aspect-square rounded bg-cover bg-center overflow-hidden relative"
+          >
+            {% rwdImg series.artwork_url, "", [450, 600], "inset-0 w-full h-full
+            absolute object-cover saturate-100 transition
+            group-hover:saturate-[1.1] group-hover:scale-110", "33vw" %}
           </div>
           <div class="px-1">
             <p class="uppercase font-bold wrap-balance">{{ series.title }}</p>
-            {% if series.start_date %}
-              {% set sermons = series | sermonsInSeries(preaching) | sort(false, true, 'date') %}
-              <p class="text-sm text-blue">{% dateRange sermons.at(0).date, sermons.at(-1).date %}</p>
+            {% if series.start_date %} {% set sermons = series |
+            sermonsInSeries(preaching) | sort(false, true, 'date') %}
+            <p class="text-sm text-blue">
+              {% dateRange sermons.at(0).date, sermons.at(-1).date %}
+            </p>
             {% endif %}
           </div>
         </a>
@@ -73,9 +94,5 @@ featuredImage: ./src/_assets/img/core/the-globe-church-bible-study.jpg
 
 {# TODO: This needs a bit of a tidy here #}
 <div class="mt-12 px-4">
-  <div class="mx-auto lg:container">
-
-    {% include 'blocks/podcast.njk' %}
-
-  </div>
+  <div class="mx-auto lg:container">{% include 'blocks/podcast.njk' %}</div>
 </div>

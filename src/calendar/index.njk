@@ -2,76 +2,99 @@
 title: Calendar
 layout: layouts/base.njk
 description: "We would love to meet you at The Globe Church. We gather each Sunday, 4pm, and there are other events throughout the month from Bible Studies, to Prayer Meetings and more…"
-featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
+featuredImage: "./src/_assets/img/core/the-globe-church-calendar.jpg"
 ---
 
 <header class="relative">
-
   <div class="sm:grid sm:grid-cols-2 min-h-[30vh] sm:min-h-[80vh]">
-    <div class="hidden sm:block bg-orange text-white">
-    </div>
+    <div class="hidden sm:block bg-orange text-white"></div>
 
-    <div class="min-h-[30vh] sm:min-h-[auto] bg-[#ccc] relative w-full bg-cover bg-center overflow-hidden">
-      {% rwdImg "./src/_assets/img/core/the-globe-church-people.jpg", "Members of The Globe Church", [330, 550, 1024, 1500, 2560], "block h-full w-full inset-0 absolute object-cover", "50vw" %}
+    <div
+      class="min-h-[30vh] sm:min-h-[auto] bg-[#ccc] relative w-full bg-cover bg-center overflow-hidden"
+    >
+      {% rwdImg "./src/_assets/img/core/the-globe-church-calendar.jpg", "Members
+      of The Globe Church", [330, 550, 1024, 1500, 2560], "block h-full w-full
+      inset-0 absolute object-cover", "50vw" %}
     </div>
   </div>
 
   <div class="bg-orange">
-    <div class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute">
+    <div
+      class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute"
+    >
       <div class="p-8 sm:px-4 sm:max-w-[40%] text-white lg:text-lg">
         <h1 class="glbHeading text-white lg:text-2xl">Church Calendar</h1>
 
         {% if meta.service.overrides %}
-        <span class="mt-6 rounded text-orange px-2 py-1 mb-2 text-xs bg-white inline-block uppercase font-bold">
+        <span
+          class="mt-6 rounded text-orange px-2 py-1 mb-2 text-xs bg-white inline-block uppercase font-bold"
+        >
           gathering change
         </span>
         {% endif %}
-        <p class="mb-4">
-          {{ meta.sundays | safe }}
+        <p class="mb-4">{{ meta.sundays | safe }}</p>
+
+        <p class="my-4">
+          <a
+            href="/sundays"
+            class="glbBtn bg-blue hover:bg-white hover:text-orange"
+            >Join us this Sunday</a
+          >
         </p>
 
-        <p class="my-4"><a href="/sundays" class="glbBtn bg-blue hover:bg-white hover:text-orange">Join us this Sunday</a></p>
-
         <p class="py-2">
-          <a href="#thisWeek" class="text-white no-underline inline-flex gap-2 items-center group">
-            {% svgIcon "icon-arrowDown", "h-6 w-6 inline-block transition group-hover:translate-y-1" %}
+          <a
+            href="#thisWeek"
+            class="text-white no-underline inline-flex gap-2 items-center group"
+          >
+            {% svgIcon "icon-arrowDown", "h-6 w-6 inline-block transition
+            group-hover:translate-y-1" %}
             <span class="underline hover:no-underline">All events</span>
           </a>
         </p>
-
       </div>
     </div>
   </div>
 </header>
 
-
 <main class="mt-16 px-4">
-
-  <div class="mx-auto lg:container mb-4 scroll-mt-4 lg:scroll-mt-12" id="thisWeek">
-    {% set eventList = events | eventsFuture | eventsSort %}
-    {# <h2 class="glbHeading px-4 mb-4">Events this week</h2> #}
-    {% include 'blocks/cal/eventList.njk' %}
+  <div
+    class="mx-auto lg:container mb-4 scroll-mt-4 lg:scroll-mt-12"
+    id="thisWeek"
+  >
+    {% set eventList = events | eventsFuture | eventsSort %} {#
+    <h2 class="glbHeading px-4 mb-4">Events this week</h2>
+    #} {% include 'blocks/cal/eventList.njk' %}
   </div>
 
-
-  {# {% set featuredEvent = events | eventsFuture | eventsFeatured | eventsSort | limit(1) | first %}
-  {% if featuredEvent %}
+  {# {% set featuredEvent = events | eventsFuture | eventsFeatured | eventsSort
+  | limit(1) | first %} {% if featuredEvent %}
   <div class="mx-auto lg:container mb-4 grid gap-4">
     <h2 class="glbHeading px-4 mt-4">Featured event</h2>
 
-    <a href="/calendar/{{ featuredEvent.startDate | formatDate}}/{{ featuredEvent.slug }}/" class="w-full group text-blue no-underline p-4">
-
+    <a
+      href="/calendar/{{ featuredEvent.startDate | formatDate}}/{{ featuredEvent.slug }}/"
+      class="w-full group text-blue no-underline p-4"
+    >
       {% if featuredEvent.data.tags %}
-      <div class="rounded bg-orange px-2 py-1 mb-1 text-xs text-white inline-block uppercase font-bold">
+      <div
+        class="rounded bg-orange px-2 py-1 mb-1 text-xs text-white inline-block uppercase font-bold"
+      >
         {{ featuredEvent.data.tags | first }}
       </div>
       {% endif %}
 
       <p class="font-bold group-hover:text-orange">{{ featuredEvent.title }}</p>
 
-      <date class="flex gap-2 items-start" content="{{ featuredEvent.startDate }}">
+      <date
+        class="flex gap-2 items-start"
+        content="{{ featuredEvent.startDate }}"
+      >
         {% svgIcon "icon-calendar", "shrink-0 h-4 w-4 mt-1", "Event time" %}
-        <spon>{{ featuredEvent.startDate | formatDate('dddd Do MMMM, H:mm') }} ({{ featuredEvent.duration }})</span>
+        <span
+          >{{ featuredEvent.startDate | formatDate('dddd Do MMMM, H:mm') }} ({{
+          featuredEvent.duration }})</span
+        >
       </date>
 
       {% if featuredEvent.location %}
@@ -82,12 +105,11 @@ featuredImage: "./src/_assets/img/core/the-globe-church-people.jpg"
       {% endif %}
     </a>
   </div>
-  {% endif %} #}
-
-
-  {# <div class="mx-auto lg:container mb-4 scroll-mt-4" id="futureEvents">
+  {% endif %} #} {#
+  <div class="mx-auto lg:container mb-4 scroll-mt-4" id="futureEvents">
     {% set eventList = events | eventsFuture(8, 'day') | eventsSort %}
     <h2 class="glbHeading px-4 mb-4">Future events</h2>
     {% include 'blocks/cal/eventList.njk' %}
-  </div> #}
+  </div>
+  #}
 </main>
