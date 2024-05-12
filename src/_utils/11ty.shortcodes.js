@@ -51,8 +51,8 @@ module.exports = {
     });
   },
 
-  svgIcon: function(name, cls = null, title = null) {
-    if (title !== null) {
+  svgIcon: function(name, cls = null, title = "") {
+    if (title !== "") {
       title = `<title>${title}</title>`;
     }
     return `<svg class="${cls}">${title}<use xlink:href="/_assets/svgSprite.svg#svg-${name}"></use></svg>`;
