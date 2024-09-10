@@ -1,3 +1,5 @@
+{% set currentMonth = buildDate.getMonth() + 1 %}
+
 <a class="sr-only" href="#site-content">
   Skip to site content
 </a>
@@ -55,6 +57,10 @@
         <a class="text-white text-xl no-underline hover:underline" href="/preaching">Preaching</a>
         <a class="text-white text-xl no-underline hover:underline" href="/blog">Church Blog</a>
         <a class="text-white text-xl no-underline hover:underline" href="/get-involved">Get Involved</a>
+        {# conditionally show if July–October #}
+        {% if (currentMonth > 7) and (currentMonth < 11) %}
+        <a class="text-white text-xl no-underline hover:underline" href="/get-involved/students/">Students</a>
+        {% endif %}
         <a class="text-white text-xl no-underline hover:underline" href="/contact">Contact</a>
       </nav>
 

@@ -53,6 +53,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/the-globe-church-og.jpg": "_assets/img/the-globe-church-og.jpg"});
   eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/**": "assets/img/passThrough"});
 
+  eleventyConfig.addGlobalData("buildDate", new Date());
+
   return {
     templateFormats: ["html", "njk", "md", "11ty.js"],
     pathPrefix: "/",
