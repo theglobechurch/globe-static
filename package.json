@@ -22,7 +22,7 @@
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-img": "^4.0.2",
     "@11ty/eleventy-plugin-directory-output": "^1.0.1",
-    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.2",
     "@jest/globals": "^29.7.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.9",
