@@ -1,3 +1,13 @@
+{% set eventCount = 4 %}
+
+{% if eventFilter %}
+  {% set taggedEvents = events | eventsFuture | eventsTagged(eventFilter) | eventsSort | limit(4) %}
+{% endif %}
+
+{% if eventFilter and taggedEvents|length == 0 %}
+  <!-- No events to display -->
+{% else %}
+
 <section class="m-4 border border-cream lg:container mx-auto sm:my-8">
   <div class="justify-between items-center p-4 pb-0 sm:pb-4 sm:border-b sm:flex sm:gap-4">
     <h2 class="glbHeading">Upcoming events</h2>
@@ -5,26 +15,36 @@
   </div>
 
   <div class="p-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    {% set eventCount = 4 %}
-
-    {% set featuredEvent = events | eventsFuture | eventsFeatured | eventsSort | limit(1) | first %}
-    {% if featuredEvent %}
-      {% set event = featuredEvent %}
-      {% include 'blocks/cal/simpleEvent.njk' %}
-      {% set eventCount = 3 %}
-    {% endif %}
-
-    {% set soonEvents = events | eventsFuture(0, 'day') | eventsSort | limit(eventCount + 1) %}
-    {% set displayedEvents = 0 %}
-    {% for event in soonEvents %}
-      {% if event.title == featuredEvent.title or displayedEvents == eventCount%}
-        {# nothing to see here #}
-      {% else %}
+    {% if eventFilter and taggedEvents %}
+      
+      {% for event in taggedEvents %}
         {% include 'blocks/cal/simpleEvent.njk' %}
-        {% set displayedEvents = displayedEvents + 1 %}
+      {% endfor %}
+
+    {% else %}
+      
+
+      {% set featuredEvent = events | eventsFuture | eventsFeatured | eventsSort | limit(1) | first %}
+      {% if featuredEvent %}
+        {% set event = featuredEvent %}
+        {% include 'blocks/cal/simpleEvent.njk' %}
+        {% set eventCount = 3 %}
       {% endif %}
 
-    {% endfor %}
+      {% set soonEvents = events | eventsFuture(0, 'day') | eventsSort | limit(eventCount + 1) %}
+      {% set displayedEvents = 0 %}
+      {% for event in soonEvents %}
+        {% if event.title == featuredEvent.title or displayedEvents == eventCount%}
+          {# nothing to see here #}
+        {% else %}
+          {% include 'blocks/cal/simpleEvent.njk' %}
+          {% set displayedEvents = displayedEvents + 1 %}
+        {% endif %}
 
+      {% endfor %}
+      
+    {% endif %}
   </div>
 </section>
+
+{%endif %}

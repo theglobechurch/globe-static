@@ -53,6 +53,12 @@ module.exports = {
     });
   },
 
+  eventsTagged: (events, tagName) => {
+    return events.filter(event => {
+      return event.data.tags && event.data.tags.includes(tagName);
+    });
+  },
+
   eventsSort: (events) => {
     return events.sort((a, b) => {
       if (a.startDate > b.startDate) {
