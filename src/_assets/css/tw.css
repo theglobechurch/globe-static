@@ -28,7 +28,7 @@
 
 @layer base {
   html {
-    @apply text-blue;
+    @apply text-blue bg-cream;
     font-family: 'Brandon Grotesque', 'brandon-grotesque', sans-serif;
   }
 

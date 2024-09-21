@@ -7,6 +7,9 @@ module.exports = {
       current: 'currentColor',
       'white': '#ffffff',
       'black': '#12131a',
+      'cream': {
+        DEFAULT: '#F1EBE8'
+      },
       'orange': {
         DEFAULT: '#d06348'
       },
