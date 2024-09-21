@@ -16,10 +16,10 @@ module.exports = {
       'blue': {
         DEFAULT: '#282938'
       },
-      'gold': {
+      'gold-braid': {
         DEFAULT: '#c6ae40'
       },
-      'green': {
+      'lark-green': {
         DEFAULT: '#83c3a5'
       },
     },

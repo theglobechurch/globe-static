@@ -21,7 +21,7 @@ featuredImage: ./src/_assets/img/core/blog.jpg
     </div>
   </div>
 
-  <div class="bg-green">
+  <div class="bg-lark-green">
     <div class="inset-4 mx-auto lg:container grid items-center sm:bg-transparent sm:absolute">
       <div class="p-8 sm:px-4 sm:max-w-[40%] text-blue lg:text-lg">
         <h1 class="glbHeading text-blue lg:text-2xl">Church Blog</h1>
@@ -45,7 +45,7 @@ featuredImage: ./src/_assets/img/core/blog.jpg
   <div class="m-4 mx-auto lg:container grid gap-4 scroll-mt-4 lg:scroll-mt-12" id="posts">
     {% for item in pagination.items %}
       {% set authorDetails = item.author | authorLookup(people) %}
-      <a href="/blog/{{ item.slug }}" class="w-full text-blue group no-underline transition-colors bg-green/10 p-4 hover:bg-green/20">
+      <a href="/blog/{{ item.slug }}" class="w-full text-blue group no-underline transition-colors bg-lark-green/10 p-4 hover:bg-lark-green/20">
         <div class="flex flex-col sm:flex-col-reverse">
           <h2 class="uppercase font-bold">{{ item.title | safe }}</h2>
           <div class="flex flex-col sm:flex-row gap-1 sm:gap-4">
