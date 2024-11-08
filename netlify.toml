@@ -1,26 +1,28 @@
 [build.environment]
-  TZ="Europe/London"
+TZ = "Europe/London"
 
 [[plugins]]
 package = "netlify-plugin-cache"
 
-  [plugins.inputs]
-  paths = [
-    "./dist/_assets/img",
-    ".imgCache"
-  ]
+[plugins.inputs]
+paths = ["./dist/_assets/img", ".imgCache"]
 
 [[redirects]]
-  from = "/prayer"
-  to = "/prayer-meeting/"
-  status = 301
+from = "/prayer"
+to = "/prayer-meeting/"
+status = 301
 
 [[redirects]]
-  from = "/focus"
-  to = "/bible-study/"
-  status = 302
+from = "/focus"
+to = "/bible-study/"
+status = 302
 
 [[redirects]]
-  from = "/privacy"
-  to = "/about/policies/our-privacy-policy/"
-  status = 302
+from = "/giving"
+to = "/get-involved/giving/"
+status = 302
+
+[[redirects]]
+from = "/privacy"
+to = "/about/policies/our-privacy-policy/"
+status = 302
