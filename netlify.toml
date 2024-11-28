@@ -31,3 +31,8 @@ status = 302
 from = "/privacy"
 to = "/about/policies/our-privacy-policy/"
 status = 302
+
+[[redirects]]
+from = "/wonder"
+to = "/"
+status = 302
