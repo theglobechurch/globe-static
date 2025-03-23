@@ -18,33 +18,33 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0-beta.1",
+    "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-img": "^4.0.2",
     "@11ty/eleventy-plugin-directory-output": "^1.0.1",
-    "@11ty/eleventy-plugin-rss": "^2.0.2",
+    "@11ty/eleventy-plugin-rss": "^2.0.3",
     "@jest/globals": "^29.7.0",
     "@tailwindcss/container-queries": "^0.1.1",
-    "@tailwindcss/forms": "^0.5.9",
-    "@tailwindcss/typography": "^0.5.15",
-    "alpinejs": "^3.14.1",
-    "concurrently": "^9.0.1",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "alpinejs": "^3.14.9",
+    "concurrently": "^9.1.2",
     "dayjs": "^1.11.13",
-    "dotenv": "^16.4.5",
-    "eleventy-plugin-svg-sprite": "^2.4.2",
-    "ent": "^2.2.1",
-    "esbuild": "^0.23.1",
+    "dotenv": "^16.4.7",
+    "eleventy-plugin-svg-sprite": "^2.4.3",
+    "ent": "^2.2.2",
+    "esbuild": "^0.25.1",
     "front-matter": "^4.0.2",
     "jest": "^29.7.0",
     "netlify-plugin-cache": "^1.0.3",
     "node-fetch": "^2.6.1",
-    "node-ical": "^0.19.0",
+    "node-ical": "^0.20.1",
     "striptags": "^3.2.0",
-    "tailwindcss": "^3.4.10"
+    "tailwindcss": "^3.4.17"
   },
   "overrides": {
     "eleventy-plugin-svg-sprite": {
-      "@11ty/eleventy": "^3.0.0-beta.1"
+      "@11ty/eleventy": "^3.0.0"
     }
   }
 }
