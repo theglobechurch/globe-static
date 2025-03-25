@@ -1,79 +1,40 @@
-require("dotenv").config();
-const fetch = require("node-fetch");
-const { AssetCache } = require("@11ty/eleventy-fetch");
-const { async } = require("node-ical");
-const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
+import { AssetCache } from "@11ty/eleventy-fetch";
+import 'dotenv/config'
+import { wpPaginator } from '../_utils/wp.paginator.js';
+
 const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH || "1d";
 
-if (!process.env.API_BASE) {
-  console.error("🚨 Oh no! No API base url in the env…");
-  return false;
-}
+export default async () => {
 
-const base = `${process.env.API_BASE}users?per_page=50`;
-let thisPage = 1;
-let totalPages = 1;
-
-module.exports = () => {
-  let wpUsers = new AssetCache("users");
-
-  if (ENABLE_11TY_CACHE && wpUsers.isCacheValid(WP_CACHE_LENGTH)) {
-    console.log("[ 👤 ] Serving users from the cache…");
-    return wpUsers.getCachedValue();
+  if (!process.env.API_BASE) {
+    console.error("🚨 Oh no! No API base url in the env…");
+    return [];
   }
 
-  console.log("[ 👤 ] Fetching users");
+  let asset = new AssetCache("people");
 
-  return new Promise(async (resolve, reject) => {
-    // Get the first page of users
-    let users = await fetchUserPage();
+  if (asset.isCacheValid(WP_CACHE_LENGTH)) {
+    console.log("[ 👤 ] Serving people from the cache…");
+    return asset.getCachedValue();
+  }
 
-    while (totalPages >= thisPage) {
-      t = await fetchUserPage();
-      Array.prototype.push.apply(users, t);
+  console.log("[ 👤 ] Fetching fresh people");
+
+  const allPeople = await wpPaginator(`${process.env.API_BASE}users?per_page=50`);
+
+  allPeople.forEach((person) => {
+
+    if (person.profile_photo_url) {
+      person.profile_photo_url = person.profile_photo_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
     }
 
-    wpUsers.save(users, "json");
-    console.log(`[ 👤 ] Imported ${users.length} users`);
-    resolve(users);
+    person.hasProfilePage = person.hasProfilePage == 1;
   });
-};
 
+  await asset.save(allPeople, "json");
 
-async function fetchUserPage() {
-  const url = `${base}&page=${thisPage}`;
-  const headers = new fetch.Headers();
+  console.log(`[ 👤 ] Imported ${allPeople.length} people`);
 
-  if (process.env.CMS_AUTH_USR) {
-    const auth = Buffer.from(`${process.env.CMS_AUTH_USR}:${process.env.CMS_AUTH_PWD}`).toString('base64');
-    headers.set('Authorization', `Basic ${auth}`)
-  }
+  return allPeople;
 
-  return fetch(url, {
-    method: 'GET',
-    headers,
-  })
-    .then((res) => {
-      return {
-        statusCode: res.status,
-        headers: Object.fromEntries(res.headers.entries()),
-        data: res.json()
-      };
-    })
-    .then((res) => {
-      totalPages = res.headers['x-wp-totalpages'];
-      thisPage++;
-
-      res.data.then((authors) => {
-        authors.forEach((author) => {
-          if (author.profile_photo_url) {
-            author.profile_photo_url = author.profile_photo_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
-          }
-          return author;
-        });
-        return authors;
-      });
-
-      return res.data;
-    });
 }

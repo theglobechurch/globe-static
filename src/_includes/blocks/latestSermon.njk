@@ -1,3 +1,4 @@
+{% if preaching %}
 {% set latestSermon = preaching | first %}
 {% set latestSermonSeries = latestSermon.sermon_series[0] | seriesLookup(sermonseries) %}
 
@@ -20,3 +21,4 @@
     </div>
   </a>
 </div>
+{% endif %}

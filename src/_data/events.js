@@ -1,24 +1,19 @@
-require("dotenv").config();
-const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH;
+import { AssetCache } from "@11ty/eleventy-fetch";
+import 'dotenv/config'
 
-if (!process.env.EVENTS_ICAL_FEED) {
-  console.error("🚨 Oh no! No iCal feed in the env…");
-  return false;
-}
+import globeCal from "../_utils/calendarFeed.js";
+import slugify from "slugify";
+import ical from "node-ical";
+import frontMatter from "front-matter";
+import striptags from "striptags";
+import ent from "ent";
 
-const { AssetCache } = require("@11ty/eleventy-fetch");
-const globeCal = require("./calendarFeed");
-const slugify = require("slugify");
-const ical = require("node-ical");
-const frontMatter = require("front-matter");
-const striptags = require("striptags");
-const ent = require("ent");
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js";
+import timezone from "dayjs/plugin/timezone.js";
+import duration from "dayjs/plugin/duration.js";
+import relativeTime from "dayjs/plugin/relativeTime.js";
 
-const dayjs = require("dayjs");
-const utc = require("dayjs/plugin/utc");
-const timezone = require("dayjs/plugin/timezone");
-const duration = require("dayjs/plugin/duration");
-const relativeTime = require("dayjs/plugin/relativeTime");
 const localTimezone = "Europe/London";
 
 dayjs
@@ -28,34 +23,34 @@ dayjs
   .extend(relativeTime)
   .tz.setDefault(localTimezone);
 
-const ENABLE_11TY_CACHE =
-  process.env.ENABLE_11TY_CACHE.toLowerCase() === "true";
-const icalFeedUrl = process.env.EVENTS_ICAL_FEED;
+const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH || "1d";
 
-module.exports = () => {
-  let globeEvents = new AssetCache("globeEvents");
+export default async () => {
 
-  if (ENABLE_11TY_CACHE && globeEvents.isCacheValid(WP_CACHE_LENGTH)) {
-    console.log("[ 📅 ] Serving events from the cache…");
-    return globeEvents.getCachedValue();
+  if (!process.env.EVENTS_ICAL_FEED) {
+    console.error("🚨 Oh no! No iCal in the env…");
+    return false;
   }
 
-  console.log("[ 📅 ] Fetching events");
+  let asset = new AssetCache("events");
 
-  return new Promise(async (resolve, reject) => {
-    const cal = await globeCal();
+  if (asset.isCacheValid(WP_CACHE_LENGTH)) {
+    console.log("[ 📅 ] Serving events from the cache…");
+    return asset.getCachedValue();
+  }
 
-    // Parse the ical feed
-    const allEvents = parseEvents(cal);
+  console.log("[ 📅 ] Fetching fresh events…");
 
-    // Save the events to the 11ty cache
-    globeEvents.save(allEvents, "json");
-    console.log(`[ 📅 ] Imported ${allEvents.length} events`);
+  const cal = await globeCal();
 
-    // Return everything successfully
-    resolve(allEvents);
-  });
-};
+  const allEvents = parseEvents(cal);
+
+  asset.save(allEvents, "json");
+  console.log(`[ 📅 ] Imported ${allEvents.length} events`);
+
+  return allEvents;
+}
+
 
 function parseEvents(icalRaw) {
   const rangeStart = dayjs().subtract(3, "months");
@@ -132,8 +127,8 @@ function removeHtmlForParsing(input) {
 }
 
 function eventBuilder(event, recurring = false) {
-  start = dayjs(event.start).tz("Etc/UTC");
-  end = dayjs(event.end).tz("Etc/UTC");
+  const start = dayjs(event.start).tz("Etc/UTC");
+  const end = dayjs(event.end).tz("Etc/UTC");
 
   let eventDesc = removeHtmlForParsing(event.description);
   eventDesc = frontMatter(eventDesc);

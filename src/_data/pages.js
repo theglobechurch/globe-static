@@ -1,99 +1,55 @@
-require("dotenv").config();
-const fetch = require("node-fetch");
-const { AssetCache } = require("@11ty/eleventy-fetch");
-const ENABLE_11TY_CACHE = process.env.ENABLE_11TY_CACHE.toLowerCase() === 'true';
+import { AssetCache } from "@11ty/eleventy-fetch";
+import 'dotenv/config'
+import ent from 'ent';
+import striptags from 'striptags';
+import { wpPaginator } from '../_utils/wp.paginator.js';
+
 const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH || "1d";
-const ent = require('ent');
-const striptags = require('striptags');
 
-if (!process.env.API_BASE) {
-  console.error("🚨 Oh no! No API base url in the env…");
-  return false;
-}
+export default async () => {
 
-const base = `${process.env.API_BASE}pages?per_page=50`;
-let thisPage = 1;
-let totalPages = 1;
-
-module.exports = () => {
-  let wpPages = new AssetCache("pages");
-
-  if (ENABLE_11TY_CACHE && wpPages.isCacheValid(WP_CACHE_LENGTH)) {
-    console.log("[ 📃 ] Serving pages from the cache…");
-    return wpPages.getCachedValue();
+  if (!process.env.API_BASE) {
+    console.error("🚨 Oh no! No API base url in the env…");
+    return [];
   }
 
-  console.log("[ 📃 ] Fetching pages");
+  let asset = new AssetCache("pages");
 
-  return new Promise(async (resolve, reject) => {
-    let pages = await fetchPages();
+  if (asset.isCacheValid(WP_CACHE_LENGTH)) {
+    console.log("[ 📄 ] Serving pages from the cache…");
+    return asset.getCachedValue();
+  }
 
-    // Loop through rest of pages…
-    while (totalPages >= thisPage) {
-      t = await fetchPages();
-      Array.prototype.push.apply(pages, t);
+  console.log("[ 📄 ] Fetching fresh pages…");
+
+  const allPages = await wpPaginator(`${process.env.API_BASE}pages?per_page=50`);
+
+  allPages.forEach((page) => {
+    page.title = ent.decode(page.title.rendered);
+    page.description = striptags(ent.decode(page.excerpt.rendered));
+
+    if (page.parent !== 0) {
+      page.url = `${parentSlug(allPages, page.parent)}/${page.slug}`;
+    } else {
+      page.url = page.slug
     }
 
-    wpPages.save(pages, "json");
-    console.log(`[ 📃 ] Imported ${pages.length} pages`);
-    resolve(pages);
+    if (page.featured_img_url) {
+      page.featured_img_url = page.featured_img_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+    }
+
+    // Make sure all assets are served from assets.
+    page.body = page.content.rendered.replaceAll('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+
+    // Make sure any CMS URL is wiped out
+    page.body = page.content.rendered.replaceAll('https://tgc-cms.globe.church/', '/');
   });
-};
 
-function fetchPages() {
-  const url = `${base}&page=${thisPage}`;
-  const headers = new fetch.Headers();
+  await asset.save(allPages, "json");
 
-  if (process.env.CMS_AUTH_USR) {
-    const auth = Buffer.from(`${process.env.CMS_AUTH_USR}:${process.env.CMS_AUTH_PWD}`).toString('base64');
-    headers.set('Authorization', `Basic ${auth}`)
-  }
+  console.log(`[ 📄 ] Imported ${allPages.length} pages`);
 
-  return fetch(url, {
-    method: 'GET',
-    headers,
-  })
-    .then((res) => {
-      return {
-        statusCode: res.status,
-        headers: Object.fromEntries(res.headers.entries()),
-        data: res.json()
-      };
-    })
-    .then((res) => {
-      totalPages = res.headers['x-wp-totalpages'];
-      thisPage++;
-
-      // Loop through each of the responses
-      res.data.then((allPages) => {
-        allPages.forEach((page) => {
-          // Replace all the HTML entities that Wordpress throws into the title…
-          page.title = ent.decode(page.title.rendered);
-          page.description = striptags(ent.decode(page.excerpt.rendered));
-
-          if (page.parent !== 0) {
-            page.url = `${parentSlug(allPages, page.parent)}/${page.slug}`;
-          } else {
-            page.url = page.slug
-          }
-
-          if (page.featured_img_url) {
-            page.featured_img_url = page.featured_img_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
-          }
-
-          // Make sure all assets are served from assets.
-          page.body = page.content.rendered.replaceAll('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
-
-          // Make sure any CMS URL is wiped out
-          page.body = page.content.rendered.replaceAll('https://tgc-cms.globe.church/', '/');
-
-          return page;
-        });
-        return allPages;
-      });
-
-      return res.data;
-    });
+  return allPages;
 }
 
 // Loop through all the pages to find a parent page

@@ -1,6 +1,6 @@
-const { expect, describe, test } = require('@jest/globals');
-const filters = require('../../src/_utils/11ty.filters');
-const events = require('../data/events.json');
+import { jest, expect, describe, test } from '@jest/globals';
+import { filters } from '../../src/_utils/11ty.filters';
+import events from '../data/events.json';
 
 describe('Format date', () => {
   const dateStr = "2024-04-27T10:30:00";
@@ -33,7 +33,7 @@ describe('Events this week', () => {
       .setSystemTime(new Date('2022-11-01'));
 
     const thisWeek = filters.eventThisWeek(events);
-    expect(thisWeek).toBeInstanceOf(Array);
+    expect(Array.isArray(thisWeek)).toBe(true);
     expect(thisWeek.length).toEqual(1);
     expect(thisWeek[0].title).toBe("Sunday Service");
 
@@ -48,7 +48,7 @@ describe('Events in the future', () => {
       .setSystemTime(new Date('2022-11-01'));
 
     const futureEvents = filters.eventsFuture(events);
-    expect(futureEvents).toBeInstanceOf(Array);
+    expect(Array.isArray(futureEvents)).toBe(true);
     expect(futureEvents.length).toEqual(3);
 
     jest.useRealTimers();
@@ -60,7 +60,7 @@ describe('Events in the future', () => {
       .setSystemTime(new Date('2022-11-01'));
 
     const futureEvents = filters.eventsFuture(events, 7);
-    expect(futureEvents).toBeInstanceOf(Array);
+    expect(Array.isArray(futureEvents)).toBe(true);
     expect(futureEvents.length).toEqual(2);
 
     jest.useRealTimers();
@@ -72,7 +72,7 @@ describe('Events in the future', () => {
       .setSystemTime(new Date('2022-11-01'));
 
     const futureEvents = filters.eventsFuture(events, 7, 'months');
-    expect(futureEvents).toBeInstanceOf(Array);
+    expect(Array.isArray(futureEvents)).toBe(true);
     expect(futureEvents.length).toEqual(1);
 
     jest.useRealTimers();
@@ -82,7 +82,7 @@ describe('Events in the future', () => {
 describe('Event sorting', () => {
   test('Events should be sorted by start date', () => {
     const sortedEvents = filters.eventsSort(events);
-    expect(sortedEvents).toBeInstanceOf(Array);
+    expect(Array.isArray(sortedEvents)).toBe(true);
     expect(sortedEvents.length).toEqual(4);
     expect(sortedEvents[0].startDate).toBe("2022-10-30T16:00:00+00:00");
     expect(sortedEvents[1].startDate).toBe("2022-11-06T16:00:00+00:00");
@@ -94,7 +94,7 @@ describe('Event sorting', () => {
 describe('One off events', () => {
   test('Should fish out one off events', () => {
     const oneOffEvents = filters.eventsOneOff(events);
-    expect(oneOffEvents).toBeInstanceOf(Array);
+    expect(Array.isArray(oneOffEvents)).toBe(true);
     expect(oneOffEvents.length).toEqual(2);
     expect(oneOffEvents[0].recurring).toBeFalsy();
   });
@@ -103,9 +103,9 @@ describe('One off events', () => {
 
 describe('Limit filter', () => {
   test('Should limit the input array', () => {
-    const inArr = [1,2,3,4,5,6,7,8,9];
+    const inArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const outArr = filters.limit(inArr, 2);
     expect(outArr.length).toEqual(2);
-    expect(outArr).toEqual([1,2]);
+    expect(outArr).toEqual([1, 2]);
   })
 });

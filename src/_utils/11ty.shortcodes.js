@@ -1,9 +1,9 @@
-const eleventyImage = require("@11ty/eleventy-img");
-const dayjs = require("dayjs");
+import eleventyImage from "@11ty/eleventy-img";
+import dayjs from "dayjs";
 
-module.exports = {
+export const shortcodes = {
 
-  socialImg: async function(filepath) {
+  socialImg: async function (filepath) {
     if (!filepath || filepath === "false") {
       return false
     }
@@ -26,7 +26,7 @@ module.exports = {
 
   },
 
-  rwdImg: async function(filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw", lazy = true) {
+  rwdImg: async function (filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw", lazy = true) {
 
     let options = {
       formats: ["avif", "webp", "jpg"],
@@ -51,20 +51,20 @@ module.exports = {
     });
   },
 
-  svgIcon: function(name, cls = null, title = "") {
+  svgIcon: function (name, cls = null, title = "") {
     if (title !== "") {
       title = `<title>${title}</title>`;
     }
     return `<svg class="${cls}">${title}<use xlink:href="/_assets/svgSprite.svg#svg-${name}"></use></svg>`;
   },
 
-  mapUrl: function(address) {
+  mapUrl: function (address) {
     if (!address) { return null }
 
-    return `https://www.google.com/maps/search/?api=1&query=${ encodeURIComponent(address) }`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
   },
 
-  dateRange: function(startDate, endDate) {
+  dateRange: function (startDate, endDate) {
 
     const my = 'MMMM YYYY';
     const y = 'YYYY';

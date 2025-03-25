@@ -1,27 +1,28 @@
-const dayjs = require("dayjs");
-const isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
-const isSameOrAfter = require('dayjs/plugin/isSameOrAfter');
-const advancedFormat = require('dayjs/plugin/advancedFormat');
-const utc = require('dayjs/plugin/utc');
-const timezone = require('dayjs/plugin/timezone');
+import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore.js';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter.js';
+import advancedFormat from 'dayjs/plugin/advancedFormat.js';
+import utc from 'dayjs/plugin/utc.js';
+import timezone from 'dayjs/plugin/timezone.js';
+import ent from 'ent';
+
 const localTimezone = "Europe/London";
-const ent = require('ent');
 
 dayjs
-  .extend(isSameOrBefore)
-  .extend(isSameOrAfter)
-  .extend(advancedFormat)
-  .extend(utc)
-  .extend(timezone)
-  .tz.setDefault(localTimezone);
+.extend(isSameOrBefore)
+.extend(isSameOrAfter)
+.extend(advancedFormat)
+.extend(utc)
+.extend(timezone)
+.tz.setDefault(localTimezone);
 
-module.exports = {
+export const filters = {
   formatDate: (dateStr, format = 'YYYY-MM-DD') => {
     if (!dateStr) { return; }
 
     const parsedDate = dayjs(dateStr);
 
-    if (!parsedDate.isValid()){
+    if (!parsedDate.isValid()) {
       return;
     }
 
@@ -41,7 +42,10 @@ module.exports = {
   },
 
   eventsFuture: (events, offset = 0, offsetUnit = 'day') => {
-    startDate = dayjs().add(offset, offsetUnit);
+    if(!events) {
+      return [];
+    }
+    const startDate = dayjs().add(offset, offsetUnit);
     return events.filter(event => {
       return dayjs(event.endDate).isSameOrAfter(startDate, "day");
     })
@@ -80,6 +84,7 @@ module.exports = {
   // TODO: When 11ty 2.0 released
   // https://www.11ty.dev/docs/filters/#asynchronous-universal-filters
   authorLookup: (authorId, allAuthors) => {
+    if(!allAuthors) { return }
     return allAuthors.find((author) => parseInt(author.id) === parseInt(authorId))
   },
 
