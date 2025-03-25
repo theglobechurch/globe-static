@@ -1,5 +1,6 @@
-require("dotenv").config();
-const EleventyFetch = require("@11ty/eleventy-fetch");
+import 'dotenv/config'
+import Fetch from "@11ty/eleventy-fetch";
+
 const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH || "1d";
 const additionalsUrl = `${process.env.API_BASE.replace('wp/v2/', 'globe/v1/')}additionals`;
 
@@ -7,11 +8,11 @@ const defaultLocation = "Ark Globe Academy, Harper Road, London, SE1 6AF";
 const defaultTime = "4pm";
 const defaultTube = "Elephant and Castle";
 
-module.exports = async () => {
+export default async () => {
 
   console.log("[ 🐙 ] Fetching meta data");
 
-  const additionals = await EleventyFetch(additionalsUrl, {
+  const additionals = await Fetch(additionalsUrl, {
     duration: WP_CACHE_LENGTH,
     type: "json"
   });
@@ -32,7 +33,7 @@ module.exports = async () => {
     youtube: "theglobechurch",
     linkedin: "theglobechurch",
     email: "info@globe.church",
-    registeredAddress: additionals['registeredAddress'] || "GlobeOffice, 81 Mill Lofts, County St, London SE1 4AD",
+    registeredAddress: additionals['registeredAddress'] || "GlobeOffice, 83b Mill Lofts, County St, London SE1 4AD",
     overrides: additionals['overrides'] || null,
     service: serviceDetails(additionals['overrides'] || {})
   };

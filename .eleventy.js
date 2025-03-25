@@ -1,10 +1,10 @@
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const svgSprite = require("eleventy-plugin-svg-sprite");
-const shortcodes = require("./src/_utils/11ty.shortcodes.js");
-const filters = require("./src/_utils/11ty.filters.js");
-const collections = require("./src/_utils/11ty.collections.js");
+import pluginRss from "@11ty/eleventy-plugin-rss";
+import svgSprite from "eleventy-plugin-svg-sprite";
+import { shortcodes } from "./src/_utils/11ty.shortcodes.js";
+import { filters } from "./src/_utils/11ty.filters.js";
+import { collections } from "./src/_utils/11ty.collections.js";
 
-module.exports = async function(eleventyConfig) {
+export default async function(eleventyConfig) {
   const { EleventyRenderPlugin } = await import("@11ty/eleventy");
   eleventyConfig.setQuietMode(true);
 
@@ -40,7 +40,7 @@ module.exports = async function(eleventyConfig) {
   ];
   layouts.forEach(layout => eleventyConfig.addLayoutAlias(layout.name, layout.path));
 
-  // Copy the files to the right place
+  // // Copy the files to the right place
   [
     "src/humans.txt",
     "src/robots.txt",
@@ -52,19 +52,17 @@ module.exports = async function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/**": "assets/img/passThrough"});
 
   eleventyConfig.addGlobalData("buildDate", new Date());
+}
 
-  return {
-    templateFormats: ["html", "njk", "md", "11ty.js"],
-    pathPrefix: "/",
-    markdownTemplateEngine: "njk",
-    htmlTemplateEngine: "njk",
-    dataTemplateEngine: "njk",
-    passthroughFileCopy: true,
-    dir: {
-      input: `./src`,
-      output: `./dist`,
-      includes: "_includes",
-      data: "_data",
-    },
-  };
+export const config = {
+  templateFormats: ["html", "njk", "md", "11ty.js"],
+  pathPrefix: "/",
+  markdownTemplateEngine: "njk",
+  htmlTemplateEngine: "njk",
+  dataTemplateEngine: "njk",
+  passthroughFileCopy: true,
+  dir: {
+    input: `./src`,
+    output: `./dist`,
+  },
 }

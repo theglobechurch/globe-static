@@ -1,15 +1,22 @@
-const { DateTime } = require("luxon");
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc.js'
 
-module.exports = function () {
-  const currentTime = DateTime.local();
-  const currentTimeHuman = currentTime.toFormat("dd MMMM yyyy");
+const localTimezone = "Europe/London";
+
+dayjs
+  .extend(utc)
+  .tz.setDefault(localTimezone);
+
+export default () => {
+  const currentTime = dayjs.utc().local().format();
+  const currentTimeHuman = dayjs().format("dd MMMM yyyy");
   const buildTime = currentTime.valueOf();
 
   return {
     url: 'https://globe.church',
     timestamp: buildTime,
     updatedTime: currentTimeHuman,
-    currentYear: new Date().getFullYear(),
+    currentYear: dayjs().format('YYYY'),
     env: process.env.ELEVENTY_ENV
   };
 };
