@@ -333,6 +333,10 @@ footer a {
   @apply absolute inset-0 w-full h-full;
 }
 
+.wp-block-audio audio {
+  @apply w-full;
+}
+
 /* Team block */
 .glb_peopleList {
   display: grid;
