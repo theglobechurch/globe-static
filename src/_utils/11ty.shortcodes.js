@@ -29,7 +29,7 @@ export const shortcodes = {
   rwdImg: async function (filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw", lazy = true) {
 
     let options = {
-      formats: ["avif", "webp", "jpg"],
+      formats: ["webp", "jpg"],
       widths: widths || [null],
       urlPath: "/_assets/img/built/",
       outputDir: "./dist/_assets/img/built/",
