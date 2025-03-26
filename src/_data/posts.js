@@ -27,6 +27,13 @@ export default async () => {
   allPosts.forEach((post) => {
     post.title = ent.decode(post.title.rendered);
     post.description = striptags(ent.decode(post.excerpt.rendered));
+
+    // Make sure all assets are served from assets.
+    post.body = post.content.rendered.replaceAll('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
+
+    // Make sure any CMS URL is wiped out
+    post.body = post.body.replaceAll('https://tgc-cms.globe.church/', '/');
+
     if (post.featured_img_url) {
       post.featured_img_url = post.featured_img_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
     }

@@ -42,7 +42,7 @@ export default async () => {
     page.body = page.content.rendered.replaceAll('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
 
     // Make sure any CMS URL is wiped out
-    page.body = page.content.rendered.replaceAll('https://tgc-cms.globe.church/', '/');
+    page.body = page.body.replaceAll('https://tgc-cms.globe.church/', '/');
   });
 
   await asset.save(allPages, "json");
