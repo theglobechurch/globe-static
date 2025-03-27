@@ -4,7 +4,7 @@ import { shortcodes } from "./src/_utils/11ty.shortcodes.js";
 import { filters } from "./src/_utils/11ty.filters.js";
 import { collections } from "./src/_utils/11ty.collections.js";
 
-export default async function(eleventyConfig) {
+export default async function (eleventyConfig) {
   const { EleventyRenderPlugin } = await import("@11ty/eleventy");
   eleventyConfig.setQuietMode(true);
 
@@ -35,8 +35,8 @@ export default async function(eleventyConfig) {
   });
 
   const layouts = [
-    {name: 'default', path: 'layouts/base.njk'},
-    {name: 'textPage', path: 'layouts/textPage.njk'},
+    { name: 'default', path: 'layouts/base.njk' },
+    { name: 'textPage', path: 'layouts/textPage.njk' },
   ];
   layouts.forEach(layout => eleventyConfig.addLayoutAlias(layout.name, layout.path));
 
@@ -46,10 +46,10 @@ export default async function(eleventyConfig) {
     "src/robots.txt",
   ].forEach(path => eleventyConfig.addPassthroughCopy(path));
 
-  eleventyConfig.addPassthroughCopy({"src/_assets/favicon/**": "."});
-  eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/podcast-cover.jpg": "assets/podcast-cover.jpg"});
-  eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/the-globe-church-og.jpg": "_assets/img/the-globe-church-og.jpg"});
-  eleventyConfig.addPassthroughCopy({"src/_assets/img/passThrough/**": "assets/img/passThrough"});
+  eleventyConfig.addPassthroughCopy({ "src/_assets/favicon/**": "." });
+  eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/podcast-cover.jpg": "assets/podcast-cover.jpg" });
+  eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/the-globe-church-og.jpg": "_assets/img/the-globe-church-og.jpg" });
+  eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/**": "assets/img/passThrough" });
 
   eleventyConfig.addGlobalData("buildDate", new Date());
 }

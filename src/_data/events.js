@@ -1,7 +1,7 @@
 import { AssetCache } from "@11ty/eleventy-fetch";
 import 'dotenv/config'
 
-import globeCal from "../_utils/calendarFeed.js";
+import globeCal from "./calendarFeed.js";
 import slugify from "slugify";
 import ical from "node-ical";
 import frontMatter from "front-matter";
