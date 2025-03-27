@@ -89,7 +89,7 @@ export const filters = {
   },
 
   augmentedPageCheck: (pages, slug) => {
-    return pages.find((page) => page.filePathStem.replace('/augmentedPages/', '') === slug)
+    return pages.find((page) => page.fileSlug === slug)
   },
 
   limit: (arr, count = 5) => {
