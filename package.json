@@ -12,9 +12,9 @@
     "dev": "concurrently npm:dev:11ty npm:dev:css",
     "build": "concurrently npm:build:11ty npm:build:css",
     "dev:11ty": "ELEVENTY_ENV=development eleventy --serve",
-    "dev:css": "tailwindcss -i src/_assets/css/tw.css -o dist/_assets/css/tw.css --watch",
+    "dev:css": "tailwindcss -i src/_assets/tw.css -o dist/_assets/tw.css --watch",
     "build:11ty": "ELEVENTY_ENV=production eleventy",
-    "build:css": "tailwindcss -i src/_assets/css/tw.css -o dist/_assets/css/tw.css --minify"
+    "build:css": "tailwindcss -i src/_assets/tw.css -o dist/_assets/tw.css --minify"
   },
   "author": "",
   "license": "ISC",

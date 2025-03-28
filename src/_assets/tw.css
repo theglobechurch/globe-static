@@ -34,19 +34,6 @@
   font-stretch: normal;
 }
 
-:root {
-  --background: #ffffff;
-  --text: hsl(233, 18%, 9%);
-  --cream: hsl(20, 24%, 93%);
-  --sockeye-orange: hsl(12, 59%, 55%);
-  --petrel-blue: hsl(236, 17%, 19%);
-  --gold-braid: hsl(49, 54%, 51%);
-  --lark-green: 	hsl(152, 35%, 64%);
-  --carol-blue: hsl(196, 52%, 45%);
-  --cherry-pink: hsl(353, 54%, 57%);
-  --sheer-lilac: hsl(290, 25%, 67%);
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -59,10 +46,6 @@
 
   a {
     @apply text-orange underline hover:no-underline
-  }
-
-  [x-cloak] {
-    display: none !important;
   }
 
   h1,
@@ -84,12 +67,9 @@
   .glbBtn {
     @apply px-2 py-1 rounded bg-orange text-white no-underline transition-colors hover:bg-blue
   }
-
-  .u-nobr {
-    white-space: nowrap
-  }
 }
 
+/* and the rest of the CSS that needs to be tidied up*/
 
 footer a {
   @apply text-blue;

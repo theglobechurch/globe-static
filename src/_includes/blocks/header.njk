@@ -1,83 +1,68 @@
 {% set currentMonth = buildDate.getMonth() + 1 %}
 
-<a class="sr-only" href="#site-content">
-  Skip to site content
-</a>
+<a class="sr-only" href="#site-content"> Skip to site content </a>
 
-<header class="relative" x-data="coreNav">
+<header class="header" x-data="coreNav" x-bind:class="navOpen ? 'navOpen' : ''">
+  <div class="topBar">
+    <a href="/" title="The Globe Church" class="">
+      <h1 class="sr-only">The Globe Church</h1>
+      {% svgIcon "tgcLogoFilled", "", "The Globe Church" %}
+    </a>
 
-  <a href="/" title="The Globe Church" class="w-[175px] h-[110px] top-[-3.2rem] uppercase font-bold no-underline fixed right-2 z-10 sm:w-fit sm:top-[-3.2rem] sm:right-4">
-    <h1 class="sr-only">The Globe Church</h1>
-    {% svgIcon "tgcLogoFilled", "w-full", "The Globe Church" %}
-  </a>
-
-  <div class="fixed left-0 top-0 sm:bottom-0 px-2 py-2 z-30 sm:bg-blue sm:p-4 sm:text-cream sm:w-16">
-    <a href="#footer" @click.prevent="toggle" class="rounded bg-cream text-blue p-1 flex items-center no-underline sm:flex-col sm:bg-transparent sm:p-0 sm:mt-2 sm:text-cream sm:hover:text-orange">
-      <div class="w-6 h-6 flex items-center relative mr-1 sm:mb-2 sm:mr-0">
-        <span x-bind:class="navOpen ? 'translate-y-0 rotate-45' : '-translate-y-2'"
-              class="transform transition w-full h-1 rounded bg-current absolute"></span>
-
-        <span x-bind:class="navOpen ? 'opacity-0 translate-x-3' : 'opacity-100'"
-              class="transform transition w-full h-1 rounded bg-current absolute"></span>
-
-        <span x-bind:class="navOpen ? 'translate-y-0 -rotate-45' : 'translate-y-2'"
-              class="transform transition w-full h-1 rounded bg-current absolute"></span>
+    <a href="#footer" @click.prevent="toggle" class="navLink">
+      <div class="navLink__icon" x-bind:class="navOpen ? 'open' : ''">
+        <i></i>
+        <i></i>
+        <i></i>
       </div>
 
-      <span x-text="menuLabel" class="block uppercase sm:font-bold sm:rotate-90 sm:mt-4">
-        Menu
-      </span>
+      <span x-text="menuLabel" class="navLink__text">Menu</span>
     </a>
   </div>
 
   <div
-    class="bg-cream/75 fixed z-10 inset-0"
-    x-show="navOpen"
-    x-transition.opacity
-    x-cloak
-    @click.prevent="toggle">
-  </div>
-
-  <div
-    class="sm:ml-16 w-full sm:max-w-xs max-w-[90%] fixed z-20 top-0 bottom-0 transition-all"
+    class="bg-blue w-full fixed z-20 top-0 bottom-0 transition-all"
     x-show="navOpen"
     x-cloak
     x-transition:enter="transition ease-in-out duration-300"
-    x-transition:enter-start="opacity-0 -translate-x-full"
-    x-transition:enter-end="opacity-100 -translate-x-0"
+    x-transition:enter-start="opacity-0 -translate-y-full"
+    x-transition:enter-end="opacity-100 -translate-y-0"
     x-transition:leave="transition ease-in duration-300"
     x-transition:leave-start="opacity-100"
-    x-transition:leave-end="opacity-0 -translate-x-full"
+    x-transition:leave-end="opacity-0 -translate-y-full"
   >
-    <div class="h-full w-full sm:max-w-xs flex flex-col justify-between bg-blue sm:border-l border-l-cream text-cream">
-      <nav class="mt-10 flex flex-col gap-8 uppercase p-4 sm:mt-2" role="navigation">
-        <a class="text-cream text-xl no-underline hover:underline" href="/about">About</a>
-        <a class="text-cream text-xl no-underline hover:underline" href="/sundays">Sundays</a>
-        <a class="text-cream text-xl no-underline hover:underline" href="/calendar">Calendar</a>
-        <a class="text-cream text-xl no-underline hover:underline" href="/preaching">Preaching</a>
-        <a class="text-cream text-xl no-underline hover:underline" href="/blog">Church Blog</a>
-        <a class="text-white text-xl no-underline hover:underline" href="/get-involved">Get Involved</a>
-        {# conditionally show if July–October #}
-        {% if (currentMonth > 7) and (currentMonth < 11) %}
-        <a class="text-cream text-xl no-underline hover:underline" href="/get-involved/students/">Students</a>
+    <div class="h-full w-full flex flex-col justify-between bg-blue text-cream">
+      <nav role="navigation">
+        <a class="text-link" href="/about">About</a>
+        <a class="text-link" href="/sundays">Sundays</a>
+        <a class="text-link" href="/calendar">Calendar</a>
+        <a class="text-link" href="/preaching">Preaching</a>
+        <a class="text-link" href="/get-involved">Get Involved</a>
+        {# conditionally show if July–October #} {% if (currentMonth > 7) and
+        (currentMonth < 11) %}
+        <a class="text-link" href="/get-involved/students/">Students</a>
+        {% else %}
+        <a class="text-link" href="/blog">Blog</a>
         {% endif %}
-        <a class="text-cream text-xl no-underline hover:underline" href="/contact">Contact</a>
+        <a class="text-link" href="/contact">Contact</a>
+
+        <div class="gathering">
+          {% if meta.service.overrides %}
+          <span
+            class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-blue inline-block uppercase font-bold"
+          >
+            gathering change
+          </span>
+          {% endif %}
+
+          <p class="font-bold">Sundays at The Globe Church</p>
+          <p class="my-2">
+            Join The Globe Church this Sunday, {{ meta.service.time }} at {{
+            meta.service.locationName }}.
+          </p>
+          <p><a href="/sundays" class="text-blue">Find out more</a></p>
+        </div>
       </nav>
-
-      <div class="bg-lark-green text-blue p-4 m-4">
-
-        {% if meta.service.overrides %}
-        <span class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-blue inline-block uppercase font-bold">
-          gathering change
-        </span>
-        {% endif %}
-
-        <p class="font-bold">Sundays at The Globe Church</p>
-        <p class="my-2">Join The Globe Church this Sunday, {{ meta.service.time }} at {{ meta.service.locationName }}.</p>
-        <p><a href="/sundays" class="text-blue">Find out more</a></p>
-      </div>
     </div>
   </div>
 </header>
-
-
