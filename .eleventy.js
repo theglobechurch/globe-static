@@ -10,7 +10,7 @@ export default async function (eleventyConfig) {
 
   // Plugins
   eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(EleventyRenderPlugin);
+  eleventyConfig.addPlugin(EleventyRenderPlugin);;
 
   eleventyConfig.addPlugin(svgSprite, {
     path: "./src/_assets/svg",
@@ -50,6 +50,8 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/podcast-cover.jpg": "assets/podcast-cover.jpg" });
   eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/the-globe-church-og.jpg": "_assets/img/the-globe-church-og.jpg" });
   eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/**": "assets/img/passThrough" });
+
+  eleventyConfig.addWatchTarget("./src/_assets/css/");
 
   eleventyConfig.addGlobalData("buildDate", new Date());
 }

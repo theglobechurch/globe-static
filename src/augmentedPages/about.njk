@@ -2,65 +2,25 @@
 pagePosition: bottom
 ---
 
-<section class="mt-20 c-church-value c-church-value--relational">
-  <div class="c-church-value__background">
-    {% rwdImg "./src/_assets/img/core/the-globe-church-value-relational.jpg", "", [330], "c-church-value__background__blur", "100vw" %}
+<h2 class="sr-only">Values</h2>
 
-    <div>
-      {% rwdImg "./src/_assets/img/core/the-globe-church-value-relational.jpg", "", [320, 640, 960, 1280, 2560], "c-church-value__background__img", "(min-width: 1200px) 800px, (min-width: 500px) 66%, 100vw" %}
-    </div>
-  </div>
+<ul class="values">
 
-  <div class="c-church-value__body">
-    <div><h1 class="c-church-value__body__title c-church-value__hugged-text"><span class="c-church-value__hugged-text__padded">1. Relational</span></h1></div>
-    <div><p class="c-church-value__body__tag c-church-value__hugged-text">Embracing and overcoming city life to <span class="u-nobr">be family</span></p></div>
-    <div><p class="c-church-value__body__detail c-church-value__hugged-text">We love being a church in the heart of London. And while we might live in different parts of the city, we're committed to living life as family- caring for each other, building relationships, and helping each other live for Christ.</p></div>
-  </div>
-</section>
+  {% for value in values %}
+    <li class="value__{{ value.title | slug }}">
+      {% rwdImg
+        './src/_assets/img/core/values/' + (value.title | slug) + '.jpg',
+        value.imgAlt,
+        [330, 550, 875, 1200],
+        "",
+        "(min-width: 640px) 350px, calc(100vw - 2rem)"
+      %}
 
-<section class="c-church-value c-church-value--discipling">
-  <div class="c-church-value__background">
-    {% rwdImg "./src/_assets/img/core/the-globe-church-value-discipling.jpg", "", [330], "c-church-value__background__blur", "100vw" %}
-    <div>
-      {% rwdImg "./src/_assets/img/core/the-globe-church-value-discipling.jpg", "", [320, 640, 960, 1280, 2560], "c-church-value__background__img", "(min-width: 1200px) 800px, (min-width: 500px) 66%, 100vw" %}
-    </div>
-  </div>
-
-  <div class="c-church-value__body">
-    <div><h1 class="c-church-value__body__title c-church-value__hugged-text"><span class="c-church-value__hugged-text__padded">2. Discipling</span></h1></div>
-    <div><p class="c-church-value__body__tag c-church-value__hugged-text">Equipping a generation to live all of life <span class="u-nobr">for Jesus</span></p></div>
-    <div><p class="c-church-value__body__detail c-church-value__hugged-text">There are two things that we talk a lot about at The Globe Church: Christ and the Bible. We're convinced that by going deeper into who Christ is and what he's done as we discover in the Bible we can grow together and be able to live for him.</p></div>
-  </div>
-</section>
-
-<section class="c-church-value c-church-value--missional">
-  <div class="c-church-value__background">
-    {% rwdImg "./src/_assets/img/core/the-globe-church-value-missional.jpg", "", [330], "c-church-value__background__blur", "100vw" %}
-    <div>
-      {% rwdImg "./src/_assets/img/core/the-globe-church-value-missional.jpg", "", [320, 640, 960, 1280, 2560], "c-church-value__background__img", "(min-width: 1200px) 800px, (min-width: 500px) 66%, 100vw" %}
-    </div>
-  </div>
-
-  <div class="c-church-value__body">
-    <div><h1 class="c-church-value__body__title c-church-value__hugged-text"><span class="c-church-value__hugged-text__padded">3. Missional</span></h1></div>
-    <div><p class="c-church-value__body__tag c-church-value__hugged-text">Confidently living to make Christ known to <span class="u-nobr">all people</span></p></div>
-    <div><p class="c-church-value__body__detail c-church-value__hugged-text">The good news about Jesus is the only thing that can change people's lives and bring them life with God. So, we're passionate about telling people about Jesus through our everyday lives and together as a church.</p></div>
-  </div>
-</section>
-
-<section class="c-church-value c-church-value--generous">
-  <div class="c-church-value__background">
-    {% rwdImg "./src/_assets/img/core/the-globe-church-value-generous.jpg", "", [330], "c-church-value__background__blur", "100vw" %}
-    <div>
-      {% rwdImg "./src/_assets/img/core/the-globe-church-value-generous.jpg", "", [320, 640, 960, 1280, 2560], "c-church-value__background__img", "(min-width: 1200px) 800px, (min-width: 500px) 66%, 100vw" %}
-    </div>
-  </div>
-
-  <div class="c-church-value__body">
-    <div><h1 class="c-church-value__body__title c-church-value__hugged-text"><span class="c-church-value__hugged-text__padded">4. Generous</span></h1></div>
-    <div><p class="c-church-value__body__tag c-church-value__hugged-text">Committed to sharing resources to be a blessing <span class="u-nobr">to others</span></p></div>
-    <div><p class="c-church-value__body__detail c-church-value__hugged-text">We don't exist to build a name for ourselves, but to be part of God's wider church to make Christ known. God's generosity in Christ drives us to want to be generous in prayer, with our people, and any other resources that can serve the wider church.</p></div>
-  </div>
-</section>
-
-<br style="clear: both" />
+      <div>
+        <h3>{{ value.title }}</h3>
+        <p>{{ value.tag }}</p>
+        <p>{{ value.description }}</p>
+      </div>
+    </li>
+  {% endfor %}
+</ul>

@@ -47,7 +47,7 @@ export const shortcodes = {
       loading: lazy ? "lazy" : "eager",
       decoding: "async",
       sizes: sizes,
-      class: classes,
+      class: classes
     });
   },
 

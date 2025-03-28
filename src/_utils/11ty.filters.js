@@ -84,11 +84,12 @@ export const filters = {
   // TODO: When 11ty 2.0 released
   // https://www.11ty.dev/docs/filters/#asynchronous-universal-filters
   authorLookup: (authorId, allAuthors) => {
-    if(!allAuthors) { return }
+    if(!allAuthors) { return [] }
     return allAuthors.find((author) => parseInt(author.id) === parseInt(authorId))
   },
 
   augmentedPageCheck: (pages, slug) => {
+    if (!pages || !slug) { return;}
     return pages.find((page) => page.fileSlug === slug)
   },
 

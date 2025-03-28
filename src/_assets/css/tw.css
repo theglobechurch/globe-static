@@ -34,6 +34,19 @@
   font-stretch: normal;
 }
 
+:root {
+  --background: #ffffff;
+  --text: hsl(233, 18%, 9%);
+  --cream: hsl(20, 24%, 93%);
+  --sockeye-orange: hsl(12, 59%, 55%);
+  --petrel-blue: hsl(236, 17%, 19%);
+  --gold-braid: hsl(49, 54%, 51%);
+  --lark-green: 	hsl(152, 35%, 64%);
+  --carol-blue: hsl(196, 52%, 45%);
+  --cherry-pink: hsl(353, 54%, 57%);
+  --sheer-lilac: hsl(290, 25%, 67%);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -368,6 +381,92 @@ footer a {
 
 .glb_peopleList p {
   margin: 0;
+}
+
+.values {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  margin: 3rem 1rem;
+  color: white;
+
+  .value__dependent {
+    --value-color: var(--carol-blue);
+  }
+
+  .value__relational {
+    --value-color: var(--cherry-pink);
+  }
+
+  .value__discipling {
+    --value-color: var(--gold-braid);
+  }
+
+  .value__missional {
+    --value-color: var(--lark-green);
+  }
+
+  .value__generous {
+    --value-color: var(--sheer-lilac);
+  }
+
+  li {
+    list-style: none;
+    border-radius: 0.3rem;
+    background: var(--petrel-blue);
+    /* background: linear-gradient(rgba(209, 83, 101, 0.1), rgba(209, 83, 101, 0.1)), var(--petrel-blue); */
+    overflow: hidden;
+    text-wrap: pretty;
+
+    &:hover{
+      img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  @supports (background: color-mix(in srgb, red, black)) {
+    li {
+      background: color-mix(in hsl, var(--value-color), black 65%);
+    }
+  }
+
+  img {
+    border-bottom: 0.3rem solid var(--value-color);
+    transition: transform 0.3s;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    line-height: 100%;
+    font-size: 1.875rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 + p {
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  div {
+    padding: 1rem;;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .values {
+    overflow-x: scroll;
+    grid-template-columns: repeat(5, 1fr);
+
+    scrollbar-color: var(--sockeye-orange) transparent;
+    scrollbar-gutter: stable;
+
+    li {
+      min-width: 20rem;
+    }
+  }
 }
 
 @layer utilities {
