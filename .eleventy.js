@@ -47,11 +47,13 @@ export default async function (eleventyConfig) {
   ].forEach(path => eleventyConfig.addPassthroughCopy(path));
 
   eleventyConfig.addPassthroughCopy({ "src/_assets/favicon/**": "." });
+  eleventyConfig.addPassthroughCopy("src/_assets/css/**/*.css");
   eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/podcast-cover.jpg": "assets/podcast-cover.jpg" });
   eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/the-globe-church-og.jpg": "_assets/img/the-globe-church-og.jpg" });
   eleventyConfig.addPassthroughCopy({ "src/_assets/img/passThrough/**": "assets/img/passThrough" });
 
   eleventyConfig.addWatchTarget("./src/_assets/css/");
+  eleventyConfig.addWatchTarget("./src/_assets/js/");
 
   eleventyConfig.addGlobalData("buildDate", new Date());
 }

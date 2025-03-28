@@ -26,10 +26,10 @@
     <link rel="preconnect" href="https://use.typekit.net"/>
     <link rel="preconnect" href="https://www.googletagmanager.com/"/>
 
-    <link rel="stylesheet" href="/_assets/css/tw.css?v={{ data.timestamp }}" media="screen" type="text/css">
+    <link rel="stylesheet" href="/_assets/css/styles.css?v={{ data.timestamp }}" media="screen" type="text/css">
+    <link rel="stylesheet" href="/_assets/tw.css?v={{ data.timestamp }}" media="screen" type="text/css">
 
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="view-transition" content="same-origin">
 
     <meta name="description" content="{{ pageDescription | trim }}" />
     <meta itemprop="description" content="{{ pageDescription | trim }}">
@@ -67,7 +67,7 @@
 
     {% include 'blocks/header.njk' %}
 
-    <div id="site-content" class="sm:ml-16">
+    <div id="site-content" class="mt-12">
       {{ content | safe }}
 
       {% include 'blocks/footer.njk' %}
