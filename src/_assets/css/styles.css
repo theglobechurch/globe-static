@@ -1,12 +1,15 @@
 /* BASE */
 @import "0-base/index.css";
 
-/* LAYOUT */
+/* COMPOSITION */
+@import "1-composition/container.css";
 
 /* UTILITIES */
 @import "2-utilities/index.css";
 
 /* BLOCKS */
 @import "3-block/header.css";
+@import "3-block/homeHeader.css";
+@import "3-block/joinOnSunday.css";
 
 /* EXCEPTIONS */

@@ -1,76 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr" class="scroll-smooth">
-  {% set pageTitle %}
-    {% if title %}{{ title | safe }} &middot; {% endif %}{{ meta.title }}
-  {% endset %}
-  {% set pageDescription %}
-    {% if description %}
-      {{ description }}
-    {% else %}
-      {{ content | striptags | truncate(256) }}
-    {% endif %}
-  {% endset %}
-  {% set pageImg %}
-    {% if featuredImage %}
-      {% socialImg featuredImage %}
-    {% else %}
-      https://globe.church/_assets/img/the-globe-church-og.jpg
-    {% endif %}
-  {% endset %}
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% set pageTitle %} {% if title %}{{ title | safe }} &middot; {% endif %}{{
+  meta.title }} {% endset %} {% set pageDescription %} {% if description %} {{
+  description }} {% else %} {{ content | striptags | truncate(256) }} {% endif
+  %} {% endset %} {% set pageImg %} {% if featuredImage %} {% socialImg
+  featuredImage %} {% else %}
+  https://globe.church/_assets/img/the-globe-church-og.jpg {% endif %} {% endset
+  %}
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
 
     <title>{{ pageTitle | safe | trim }}</title>
 
-    <link rel="preconnect" href="https://use.typekit.net"/>
-    <link rel="preconnect" href="https://www.googletagmanager.com/"/>
+    <link rel="preconnect" href="https://use.typekit.net" />
+    <link rel="preconnect" href="https://www.googletagmanager.com/" />
 
-    <link rel="stylesheet" href="/_assets/css/styles.css?v={{ data.timestamp }}" media="screen" type="text/css">
-    <link rel="stylesheet" href="/_assets/tw.css?v={{ data.timestamp }}" media="screen" type="text/css">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link
+      rel="stylesheet"
+      href="/_assets/css/styles.css?v={{ data.timestamp }}"
+      media="screen"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="/_assets/tw.css?v={{ data.timestamp }}"
+      media="screen"
+      type="text/css"
+    />
 
     <meta name="description" content="{{ pageDescription | trim }}" />
-    <meta itemprop="description" content="{{ pageDescription | trim }}">
+    <meta itemprop="description" content="{{ pageDescription | trim }}" />
     <meta property="og:site_name" content="{{ meta.title }}" />
     <meta property="og:title" content="{{ pageTitle | safe | trim }}" />
-    <meta property="og:url" content="https://www.globe.church{{ page.url }}"/>
-    <meta property="og:description" content="{{ pageDescription | trim }}"/>
-    <meta property="og:type" content="website"/>
-    {% if featuredImage %}<meta property="og:image" content="https://www.globe.church{% socialImg featuredImage %}"/>
-    {% else %}<meta property="og:image" content="https://www.globe.church/_assets/img/the-globe-church-og.jpg"/>{% endif %}
+    <meta property="og:url" content="https://www.globe.church{{ page.url }}" />
+    <meta property="og:description" content="{{ pageDescription | trim }}" />
+    <meta property="og:type" content="website" />
+    {% if featuredImage %}
+    <meta
+      property="og:image"
+      content="https://www.globe.church{% socialImg featuredImage %}"
+    />
+    {% else %}
+    <meta
+      property="og:image"
+      content="https://www.globe.church/_assets/img/the-globe-church-og.jpg"
+    />
+    {% endif %}
     <meta property="og:locale" content="en_GB" />
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="manifest" href="/site.webmanifest">
-    <meta name="application-name" content="{{ meta.title }}"/>
-    <meta name="theme-color" content="#d06348">
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="application-name" content="{{ meta.title }}" />
+    <meta name="theme-color" content="#d06348" />
 
-    <meta name="generator" content="{{ eleventy.generator }}"/>
-    <link rel="author" href="/humans.txt"/>
+    <meta name="generator" content="{{ eleventy.generator }}" />
+    <link rel="author" href="/humans.txt" />
 
-    <link rel="me" href="https://instagram.com/{{ meta.instagram }}"/>
-    <link rel="me" href="https://twitter.com/{{ meta.twitter }}"/>
-    <link rel="me" href="https://facebook.com/{{ meta.facebook }}"/>
-    <link rel="me" href="https://youtube.com/{{ meta.youtube }}"/>
-    <link rel="me" href="https://linkedin.com/company/{{ meta.linkedin }}"/>
+    <link rel="me" href="https://instagram.com/{{ meta.instagram }}" />
+    <link rel="me" href="https://twitter.com/{{ meta.twitter }}" />
+    <link rel="me" href="https://facebook.com/{{ meta.facebook }}" />
+    <link rel="me" href="https://youtube.com/{{ meta.youtube }}" />
+    <link rel="me" href="https://linkedin.com/company/{{ meta.linkedin }}" />
 
-    <link rel="alternate" type="application/rss+xml" title="{{ meta.title }} Blog" href="/blog/feed.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="{{ meta.title }} Blog"
+      href="/blog/feed.xml"
+    />
 
-    {% if data.env === "production" %}<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-K5WB4B6');</script>{% endif %}
-
+    {% if data.env === "production" %}
+    <script>
+      ;(function (w, d, s, l, i) {
+        w[l] = w[l] || []
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" })
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : ""
+        j.defer = true
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl
+        f.parentNode.insertBefore(j, f)
+      })(window, document, "script", "dataLayer", "GTM-K5WB4B6")
+    </script>
+    {% endif %}
   </head>
 
   <body>
-    {% if data.env === "production" %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5WB4B6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}
-
-    {% include 'blocks/header.njk' %}
+    {% if data.env === "production" %}<noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K5WB4B6"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe></noscript
+    >{% endif %} {% include 'blocks/header.njk' %}
 
     <div id="site-content" class="mt-12">
-      {{ content | safe }}
-
-      {% include 'blocks/footer.njk' %}
+      {{ content | safe }} {% include 'blocks/footer.njk' %}
     </div>
 
     <!-- last build: {{ data.env }} | {{ data.timestamp | formatDate('ddd, DD MMM YYYY HH:mm:ss ZZ') }} -->
