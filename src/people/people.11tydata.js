@@ -4,7 +4,7 @@ export default {
     size: 1,
     alias: "person",
     before: function (paginationData) {
-      return paginationData.filter(entry => entry.hasProfilePage === "1");
+      return paginationData.filter(entry => entry.hasProfilePage);
     }
   },
   layout: "layouts/base.njk",
