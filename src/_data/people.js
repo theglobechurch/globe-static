@@ -28,7 +28,7 @@ export default async () => {
       person.profile_photo_url = person.profile_photo_url.replace('globe-assets.ams3.digitaloceanspaces.com', 'assets.globe.church');
     }
 
-    person.hasProfilePage = person.hasProfilePage === 1;
+    person.hasProfilePage = person.hasProfilePage === true;
   });
 
   await asset.save(allPeople, "json");
