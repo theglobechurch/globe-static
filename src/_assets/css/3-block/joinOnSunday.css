@@ -1,0 +1,25 @@
+.joinOnSunday {
+  margin: 1rem;
+  display: grid;
+  /* gap: 1rem; */
+  position: relative;
+
+  .joinOnSunday__body {
+    background-color: var(--cream-burnt);
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .joinOnSunday {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+  .joinOnSunday {
+    margin-top: -10%;
+    margin-inline: 1rem;
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+}

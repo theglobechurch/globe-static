@@ -17,3 +17,36 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+.iconLink {
+  text-decoration: none;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  color: var(--text);
+  margin-top: 0.5rem;
+
+  span {
+    text-underline-offset: 0.2rem;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: var(--text);
+    display: inline-block;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    span {
+      text-decoration-color: var(--sockeye-orange);
+    }
+
+    svg {
+      transform: translateX(0.25rem);
+    }
+  }
+}
