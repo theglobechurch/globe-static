@@ -36,3 +36,8 @@ status = 302
 from = "/wonder"
 to = "/"
 status = 302
+
+[[redirects]]
+from = "/christmas"
+to = "/get-involved/christmas/"
+status = 302
