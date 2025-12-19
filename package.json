@@ -47,6 +47,7 @@
     "eleventy-plugin-svg-sprite": {
       "@11ty/eleventy": "^4.0.0-alpha.6"
     },
-    "glob": "^10.3.10"
+    "glob": "^10.3.10",
+    "svgo": "^4.0.0"
   }
 }
