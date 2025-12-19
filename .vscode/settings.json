@@ -1,0 +1,28 @@
+{
+  "workbench.colorCustomizations": {
+    // Status Bar at the bottom of the window
+    "statusBar.background" : "#cf6349",
+    "statusBar.foreground" : "#13141b",
+    "statusBarItem.remoteBackground": "#cf6349",
+    "statusBarItem.remoteForeground": "#13141b",
+
+    // Title bar at the top of the window (macos only I think)
+    "titleBar.activeBackground": "#cf6349",
+    "titleBar.activeForeground": "#13141b",
+    "titleBar.inactiveBackground": "#cf6349",
+    "titleBar.inactiveForeground": "#13141b",
+    "titleBar.border": "#cf6349",
+
+    // Window border around the entire window
+    "window.activeBorder": "#cf6349",
+    "window.inactiveBorder": "#cf6349",
+
+    // Activity bar (left sidebar with the icons)
+    // Might be a little bit overkill
+    // "activityBar.background": "#cf6349",
+    // "activityBar.dropBackground": "#cf6349",
+    // "activityBar.foreground": "#13141b",
+    // "activityBarBadge.background": "#cf6349",
+    // "activityBarBadge.foreground": "#13141b",
+  }
+}
