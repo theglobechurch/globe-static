@@ -7,9 +7,9 @@ pagePosition: bottom
 <ul class="values">
 
   {% for value in values %}
-    <li class="value__{{ value.title | slug }}">
+    <li class="value__{{ value.title | slugify }}">
       {% rwdImg
-        './src/_assets/img/core/values/' + (value.title | slug) + '.jpg',
+        './src/_assets/img/core/values/' + (value.title | slugify) + '.jpg',
         value.imgAlt,
         [330, 550, 875, 1200],
         "",
