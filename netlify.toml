@@ -41,3 +41,8 @@ status = 302
 from = "/christmas"
 to = "/get-involved/christmas/"
 status = 302
+
+[[redirects]]
+from = "/easter"
+to = "/get-involved/easter/"
+status = 302
