@@ -26,7 +26,7 @@ export const shortcodes = {
 
   },
 
-  rwdImg: async function (filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw", lazy = true) {
+  rwdImg: async function (filepath, alt, widths, classes = "", sizes = "(min-width: 22em) 30vw, 100vw", lazy = true, aspectRatio = null) {
 
     let options = {
       formats: ["webp", "jpg"],
@@ -39,6 +39,23 @@ export const shortcodes = {
         removeUrlQueryParams: false,
       },
     };
+
+    if (aspectRatio) {
+      const [ratioW, ratioH] = aspectRatio;
+      const baseWidth = (widths && widths[0]) || 800; // fallback reference width
+      const cropHeight = Math.round(baseWidth * (ratioH / ratioW));
+
+      options.transform = async (sharp) => {
+        const [ratioW, ratioH] = aspectRatio;
+        const meta = await sharp.metadata();
+        const cropHeight = Math.round(meta.width * (ratioH / ratioW));
+
+        sharp.resize(meta.width, cropHeight, {
+          fit: "cover",
+          position: "centre",
+        });
+      };
+    }
 
     let stats = await eleventyImage(filepath, options);
 

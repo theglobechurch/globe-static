@@ -1,0 +1,130 @@
+---
+pagePosition: bottom
+---
+{# {% set uniqueTeams = teams | uniqueFromLists("type") %} #}
+<section class="mt-12 px-4">
+
+  <div class="m-4 mx-auto lg:container">
+    <div class="border-b pb-4">
+      <h2 class="px-4 glbHeading">Find out about a team…</h2>
+    </div>
+
+    {# <ul>
+      {% for team in uniqueTeams %}
+        <li>{{ team }}</li>
+      {% endfor %}
+    </ul> #}
+
+    <div class="mt-4 p-4 grid grid-cols-1 gap-2 xs:grid-cols-2 sm:grid-cols-3 sm:gap-4">
+    {% for team in teams | sort(false, false, "title")  %}
+      {% if team.teamTypes | includesFromKey("slug", "serving-teams") %}
+        <div
+          class="flex flex-col"
+          x-data="{ open: false }"
+          x-init="$watch('open', val => document.body.classList.toggle('overflow-hidden', val))"
+        >
+          {% if team.featuredImage.url %}
+          {% rwdImg team.featuredImage.url, team.featuredImage.alt, [250, 400, 600], "border-b-4 border-orange", "", true, [16, 9] %}
+          {% else %}
+          {% set imgPath = "src/_assets/img/passThrough/placeholder/" + (1 | randomNumber(4)) + ".jpg" %}
+          {% rwdImg imgPath,
+            "", [250, 400, 600], "border-b-4 border-orange", "", true, [16, 9]
+          %}
+          {% endif %}
+          <div class="flex gap-1 flex-col p-4 bg-cream-dark flex-grow">
+            <h3 class="font-bold uppercase">{{ team.title }}</h3>
+            <p>{{ team.summary }}</p>
+
+            {% if team.content and team.content != "" %}
+              <a
+                href="/get-involved/{{ team.teamTypes[0].slug }}/{{ team.slug }}"
+                @click.prevent="open = ! open"
+                @keyup.escape="open = ! open"
+              >Find out more</a>
+            {% endif %}
+
+            <div
+              id="subscribe"
+              x-show="open"
+              @click.self="open = ! open"
+              x-transition.opacity
+              class="fixed p-4 inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+            >
+              <div class="relative bg-cream rounded-md mx-4 overflow-scroll max-w-screen-sm" style="max-height: calc(100vh - 2rem)">
+                <button
+                  @click.prevent="open = ! open"
+                  class="sticky float-right right-2 top-2 bg-white rounded-full aspect-square w-8 h-8 flex items-center justify-center z-10 hover:text-orange hover:rotate-12 hover:bg-cream transition-all"
+                >
+                  {% svgIcon "close", "w-6 h-6", "Close" %}
+                </button>
+
+                {% if team.featuredImage.url %}
+                {% rwdImg team.featuredImage.url,
+                  team.featuredImage.alt, [330, 640], "w-full top-0 sticky float-left mb-4 -mt-8", "(min-width: 640px) 50vw, 640px"
+                %}
+                {% endif %}
+
+                <div class="p-4">
+                  <h1 class="glbHeading mb-4">{{ team.title }}</h1>
+
+                  <div class="flex gap-4 flex-col xs:flex-row mb-4 items-center border-b border-cream-dark pb-4">
+
+                    {% if team.teamLeaders %}
+                    <div class="flex gap-1 items-center">
+                      <div class="avatarList avatarList--small">
+                      {% for leader in team.teamLeaders %}
+                        {% if leader.thumbnail %}
+                        {% rwdImg leader.thumbnail, leader.name, [50, 100], "avatar avatar--small", "50px" %}
+                        {% endif %}
+                      {% endfor %}
+                      </div>
+
+                      <div>
+                        <span class="block text-sm">
+                        {% if team.teamLeaders | length > 1 %}
+                          Team leaders:
+                        {% else %}
+                          Team leader:
+                        {% endif %}
+                        </span>
+
+                        {% for leader in team.teamLeaders %}
+                          {% if not loop.first %}
+                              {% if loop.last %}
+                                  and
+                              {% else %}
+                                  ,
+                              {% endif %}
+                          {% endif %}
+
+                          {{ leader.name }}
+
+                        {% endfor %}
+                      </div>
+
+                    </div>
+                    {% endif %}
+                    {% if team.signups[0].acceptsSignup == true %}
+                      <a
+                        target="_blank"
+                        href="{{ team.signups[0].signUpUrl if team.signups[0].signUpUrl else '/contact' }}"
+                        class="px-2 py-1 mr-2 rounded bg-orange text-white no-underline transition-colors hover:bg-orange-dark"
+                      >
+                        Join the team
+                      </a>
+                    {% endif %}
+                  </div>
+
+                  <div class="prose">
+                    {{ team.content | safe }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+</section>

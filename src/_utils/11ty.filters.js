@@ -17,6 +17,10 @@ dayjs
 .tz.setDefault(localTimezone);
 
 export const filters = {
+
+  // Debugging
+  dump: (obj) => JSON.stringify(obj, null, 2),
+
   formatDate: (dateStr, format = 'YYYY-MM-DD') => {
     if (!dateStr) { return; }
 
@@ -119,5 +123,27 @@ export const filters = {
 
   entEncode: (str) => {
     return ent.encode(str);
-  }
+  },
+
+  includes: (arr, key) => {
+    return arr.includes(key)
+  },
+
+  // Returns true if key:value pair in array of objs
+  // Used on servingTeams page
+  includesFromKey: (arr, key, value) => {
+    return arr.some(item => item[key] === value);
+  },
+
+  // Used in the serving teams page
+  uniqueFromLists: (arr, key) => {
+    // Get all the options
+    const mapped= arr.flatMap(item => item[key]);
+    // Return a unique set
+    return [...new Set(mapped)];
+  },
+
+  randomNumber: function (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
 }

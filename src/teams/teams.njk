@@ -1,0 +1,90 @@
+---
+pagination:
+  data: teams
+  size: 1
+  alias: team
+permalink: "get-involved/{{ team.teamTypes[0].slug }}/{{ team.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ team.title}}"
+  description: "{{ team.summary}}"
+---
+
+
+<section class="glbContainer">
+  <div class="joinOnSunday">
+    <div
+      class="joinOnSunday__img block relative min-h-[200px] sm:min-h-[400px] w-full bg-cover bg-center text-white overflow-hidden"
+    >
+      {% if team.featuredImage %}
+      {% rwdImg team.featuredImage.url,
+      team.featuredImage.alt, [330, 550, 1024, 1500], "block
+      h-full w-full inset-0 absolute object-cover", "(min-width: 640px) 50vw,
+      100vw" %}
+      {% else %}
+      {% rwdImg "./src/_assets/img/passThrough/placeholder/1.jpg",
+      "", [330, 550, 1024], "block
+      h-full w-full inset-0 absolute object-cover", "(min-width: 640px) 50vw,
+      100vw" %}
+      {% endif %}
+    </div>
+
+    <div class="joinOnSunday__body p-4 flex flex-col justify-center">
+      <h2 class="glbHeading">{{ team.title }}</h2>
+
+      <div class="max-w-lg wrap-pretty mt-2">
+        {{ team.summary }}
+      </div>
+
+      {% if team.teamLeaders %}
+      <div class="flex gap-1 items-center my-2">
+        <div class="avatarList avatarList--small">
+        {% for leader in team.teamLeaders %}
+          {% if leader.thumbnail %}
+          {% rwdImg leader.thumbnail, leader.name, [50, 100], "avatar avatar--small", "50px" %}
+          {% endif %}
+        {% endfor %}
+        </div>
+
+        <div>
+          {% if team.teamLeaders | length > 1 %}
+            Team leaders:
+          {% else %}
+            Team leader:
+          {% endif %}
+
+          {% for leader in team.teamLeaders %}
+            {% if not loop.first %}
+                {% if loop.last %}
+                    and
+                {% else %}
+                    ,
+                {% endif %}
+            {% endif %}
+
+            {{ leader.name }}
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if team.signups[0].acceptsSignup == true %}
+      <p class="mt-4">
+        <a
+          target="_blank"
+          href="{{ team.signups[0].signUpUrl if team.signups[0].signUpUrl else '/contact' }}"
+          class="px-2 py-1 mr-2 rounded bg-orange text-white no-underline transition-colors hover:bg-orange-dark"
+        >
+          Join the team
+        </a>
+      </p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="m-4 mx-auto lg:container">
+    <div class="p-8 prose">
+    {{ team.content | safe }}
+    </div>
+  </div>
+</section>

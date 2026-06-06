@@ -1,0 +1,18 @@
+.avatarList {
+  display: inline;
+}
+
+.avatarList img {
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  display: inline;
+  margin-left: -10px;
+}
+
+.avatarList picture:first-of-type img {
+  margin-left: 0;
+}
+
+.avatarList--small img {
+  width: 50px;
+}

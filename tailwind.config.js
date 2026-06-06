@@ -8,10 +8,12 @@ module.exports = {
       'white': '#ffffff',
       'black': '#12131a',
       'cream': {
-        DEFAULT: '#F1EBE8'
+        DEFAULT: '#F1EBE8',
+        'dark': '#EFDDD7'
       },
       'orange': {
-        DEFAULT: '#d06348'
+        DEFAULT: '#d06348',
+        'dark': '#b34b32'
       },
       'blue': {
         DEFAULT: '#282938'
@@ -29,7 +31,8 @@ module.exports = {
           css: {
             h2: {
               'font-size': '1.25em',
-              'text-transform': 'uppercase'
+              'text-transform': 'uppercase',
+              'margin-bottom': '0.25em',
             }
           }
         },
@@ -53,7 +56,10 @@ module.exports = {
             '--tw-prose-td-borders': theme('colors.blue.DEFAULT'),
           }
         }
-      })
+      }),
+      screens: {
+        xs: "480px",
+      },
     }
   },
   plugins: [
