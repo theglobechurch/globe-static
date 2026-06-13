@@ -63,52 +63,44 @@ pagePosition: bottom
                 <div class="p-4">
                   <h1 class="glbHeading mb-4">{{ team.title }}</h1>
 
-                  <div class="flex gap-4 flex-col xs:flex-row mb-4 items-center border-b border-cream-dark pb-4">
+                  <div class="flex gap-4 flex-col mb-4 items-start border-b border-cream-dark pb-4">
 
-                    {% if team.teamLeaders %}
-                    <div class="flex gap-1 items-center">
-                      <div class="avatarList avatarList--small">
-                      {% for leader in team.teamLeaders %}
-                        {% if leader.thumbnail %}
-                        {% rwdImg leader.thumbnail, leader.name, [50, 100], "avatar avatar--small", "50px" %}
-                        {% endif %}
-                      {% endfor %}
-                      </div>
-
-                      <div>
-                        <span class="block text-sm">
-                        {% if team.teamLeaders | length > 1 %}
-                          Team leaders:
-                        {% else %}
-                          Team leader:
-                        {% endif %}
-                        </span>
-
-                        {% for leader in team.teamLeaders %}
-                          {% if not loop.first %}
-                              {% if loop.last %}
-                                  and
-                              {% else %}
-                                  ,
-                              {% endif %}
-                          {% endif %}
-
-                          {{ leader.name }}
-
-                        {% endfor %}
-                      </div>
-
+                  {% if team.teamLeaders %}
+                  <div class="flex flex-col sm:flex-row gap-1 sm:items-center">
+                    <div class="avatarList avatarList--small">
+                    {% for leader in team.teamLeaders %}
+                      {% if leader.thumbnail %}
+                      {% rwdImg leader.thumbnail, leader.name, [50, 100], "avatar avatar--small", "50px" %}
+                      {% endif %}
+                    {% endfor %}
                     </div>
-                    {% endif %}
-                    {% if team.signups[0].acceptsSignup == true %}
-                      <a
-                        target="_blank"
-                        href="{{ team.signups[0].signUpUrl if team.signups[0].signUpUrl else '/contact' }}"
-                        class="px-2 py-1 mr-2 rounded bg-orange text-white no-underline transition-colors hover:bg-orange-dark"
-                      >
-                        Join the team
-                      </a>
-                    {% endif %}
+
+                    <div>
+                      <span class="block text-sm">
+                      {% if team.teamLeaders | length > 1 %}
+                        Team leaders:
+                      {% else %}
+                        Team leader:
+                      {% endif %}
+                      </span>
+
+                      {# Team leader… all on one line to get the commas to play nicely #}
+                      {% for leader in team.teamLeaders %}{% if not loop.first %}{% if loop.last %}, and {% else %}, {% endif %}{% endif %}{{ leader.name }}{% endfor %}
+                    </div>
+
+                  </div>
+                  {% endif %}
+
+                  {% if team.signups[0].acceptsSignup == true %}
+                    <a
+                      target="_blank"
+                      href="{{ team.signups[0].signUpUrl if team.signups[0].signUpUrl else '/contact' }}"
+                      class="px-2 py-1 mr-2 rounded bg-orange text-white no-underline transition-colors hover:bg-orange-dark"
+                    >
+                      Join the team
+                    </a>
+                  {% endif %}
+
                   </div>
 
                   <div class="prose">
