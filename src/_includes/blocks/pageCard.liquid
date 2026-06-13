@@ -11,11 +11,11 @@
 >
   <div class="card__img">
     {% if cardContent.featured_img_url %}
-      {% rwdImg cardContent.featured_img_url, "", "250,400,600", "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true %}
+      {% rwdImg cardContent.featured_img_url, "", "400,600,850", "", "(min-width: 640px) calc(33vw - 6rem), (min-width: 480px) calc(50vw - 4.5rem), calc(100vw - 4rem)", true, "16:9" %}
     {% else %}
       {% assign randomNum = 1 | randomNumber: 4 %}
       {% assign imgPath = "src/_assets/img/passThrough/placeholder/" | append: randomNum | append: ".jpg" %}
-      {% rwdImg imgPath, "", "250,400,600", "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true %}
+      {% rwdImg imgPath, "", "400,600,850", "", "(min-width: 640px) calc(33vw - 6rem), (min-width: 480px) calc(50vw - 4.5rem), calc(100vw - 4rem)", true, "16:9" %}
     {% endif %}
   </div>
 
