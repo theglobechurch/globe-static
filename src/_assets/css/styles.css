@@ -3,6 +3,7 @@
 
 /* COMPOSITION */
 @import "1-composition/container.css";
+@import "1-composition/card-grid.css";
 
 /* UTILITIES */
 @import "2-utilities/index.css";
@@ -12,5 +13,6 @@
 @import "3-block/homeHeader.css";
 @import "3-block/joinOnSunday.css";
 @import "3-block/avatarList.css";
+@import "3-block/card.css";
 
 /* EXCEPTIONS */

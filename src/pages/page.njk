@@ -1,10 +1,11 @@
 ---
 ---
 
-{% set parentPage = p | pageParent(pages) %} {% set childPages = p |
-pageChildren(pages) | sort(false, false, 'menu_order') %} {% if parentPage %} {%
-set siblingPages = parentPage | pageChildren(pages) | sort(false, false,
-'menu_order') %} {% endif %}
+{% set parentPage = p | pageParent(pages) %}
+{% set childPages = p | pageChildren(pages) | sort(false, false, 'menu_order') %}
+{% if parentPage %}
+{% set siblingPages = parentPage | pageChildren(pages) | sort(false, false, 'menu_order') %}
+{% endif %}
 
 <main class="px-4">
   <header class="mx-auto lg:container mb-4">
@@ -48,44 +49,41 @@ set siblingPages = parentPage | pageChildren(pages) | sort(false, false,
   </div>
 </main>
 
-{% set augLocation = "bottom" %} {% include 'blocks/augmentedPages.njk' %} {% if
-childPages | length > 0 or parentPage | length > 0 %}
+{# Drop in any augmented blocks from 11ty #}
+{% set augLocation = "bottom" %}
+{% include 'blocks/augmentedPages.njk' %}
+
+{# Keep reading block pulls in parent, child, and sibling pages #}
+{% if childPages | length > 0 or parentPage | length > 0 %}
 <div class="mt-12 px-4">
   <div class="m-4 mx-auto lg:container">
+
     <div class="border-b pb-4">
-      <h2 class="px-4 glbHeading">Where next?</h2>
+      <h2 class="px-4 glbHeading">Keep reading…</h2>
     </div>
 
-    <div
-      class="w-full grid grid-cols-1 divide-y divide-orange/30 lg:grid-cols-2 gap-x-4"
-    >
-      {% if childPages | length > 0 %} {% for page in childPages %}
-      <a
-        href="/{{page.url}}"
-        class="p-4 no-underline flex justify-between hover:underline"
-      >
-        <div class="uppercase font-bold">{{ page.title }}</div>
-        <div class="hidden sm:block">More information</div>
-      </a>
-      {% endfor %} {% endif %} {% if parentPage %}
-      <a
-        href="/{{ parentPage.url }}"
-        class="p-4 no-underline flex justify-between hover:underline"
-      >
-        <div class="uppercase font-bold">{{ parentPage.title }}</div>
-        <div class="hidden sm:block">More information</div>
-      </a>
+    <div class="card-grid">
+      {# Start with child pages… #}
+      {% if childPages | length > 0 %}
+        {% for page in childPages %}
+          {% renderFile "src/_includes/blocks/pageCard.liquid", { cardContent: page } %}
+        {% endfor %}
+      {% endif %}
 
-      {% if siblingPages | length > 0 %} {% for page in siblingPages %} {% if
-      page.url != p.url %}
-      <a
-        href="/{{page.url}}"
-        class="p-4 no-underline flex justify-between hover:underline"
-      >
-        <div class="uppercase font-bold">{{ page.title }}</div>
-        <div class="hidden sm:block">More information</div>
-      </a>
-      {% endif %} {% endfor %} {% endif %} {% endif %}
+      {# Now the parent pages #}
+      {% if parentPage %}
+        {% renderFile "src/_includes/blocks/pageCard.liquid", { cardContent: parentPage } %}
+
+        {# And finally the sibling pages #}
+        {% if siblingPages | length > 0 %}
+          {% for page in siblingPages %}
+            {# Skip this page… #}
+            {% if page.url != p.url %}
+              {% renderFile "src/_includes/blocks/pageCard.liquid", { cardContent: page } %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
     </div>
   </div>
 </div>

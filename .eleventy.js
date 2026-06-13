@@ -1,6 +1,7 @@
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import svgSprite from "eleventy-plugin-svg-sprite";
 import { shortcodes } from "./src/_utils/11ty.shortcodes.js";
+import { asyncShortcodes } from "./src/_utils/11ty.shortcodes.async.js";
 import { filters } from "./src/_utils/11ty.filters.js";
 import { collections } from "./src/_utils/11ty.collections.js";
 
@@ -19,11 +20,12 @@ export default async function (eleventyConfig) {
 
 
   // Shortcodes
-  eleventyConfig.addNunjucksAsyncShortcode("rwdImg", shortcodes.rwdImg);
-  eleventyConfig.addNunjucksAsyncShortcode("socialImg", shortcodes.socialImg);
-  eleventyConfig.addNunjucksShortcode("mapUrl", shortcodes.mapUrl);
-  eleventyConfig.addNunjucksShortcode("svgIcon", shortcodes.svgIcon);
-  eleventyConfig.addNunjucksShortcode("dateRange", shortcodes.dateRange);
+  Object.keys(asyncShortcodes).forEach((shortcodeName) => {
+    eleventyConfig.addAsyncShortcode(shortcodeName, asyncShortcodes[shortcodeName]);
+  });
+  Object.keys(shortcodes).forEach((shortcodeName) => {
+    eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName]);
+  });
 
   // Filters
   Object.keys(filters).forEach((filterName) => {

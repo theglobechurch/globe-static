@@ -1,7 +1,6 @@
 ---
 pagePosition: bottom
 ---
-{# {% set uniqueTeams = teams | uniqueFromLists("type") %} #}
 <section class="mt-12 px-4">
 
   <div class="m-4 mx-auto lg:container">
@@ -9,56 +8,53 @@ pagePosition: bottom
       <h2 class="px-4 glbHeading">Find out about a team…</h2>
     </div>
 
-    {# <ul>
-      {% for team in uniqueTeams %}
-        <li>{{ team }}</li>
-      {% endfor %}
-    </ul> #}
-
-    <div class="mt-4 p-4 grid grid-cols-1 gap-2 xs:grid-cols-2 sm:grid-cols-3 sm:gap-4">
+    <div class="card-grid">
     {% for team in teams | sort(false, false, "title")  %}
       {% if team.teamTypes | includesFromKey("slug", "serving-teams") %}
         <div
-          class="flex flex-col"
+          class="card"
           x-data="{ open: false }"
           x-init="$watch('open', val => document.body.classList.toggle('overflow-hidden', val))"
         >
-          {% if team.featuredImage.url %}
-          {% rwdImg team.featuredImage.url, team.featuredImage.alt, [250, 400, 600], "border-b-4 border-orange", "", true, [16, 9] %}
-          {% else %}
-          {% set imgPath = "src/_assets/img/passThrough/placeholder/" + (1 | randomNumber(4)) + ".jpg" %}
-          {% rwdImg imgPath,
-            "", [250, 400, 600], "border-b-4 border-orange", "", true, [16, 9]
-          %}
-          {% endif %}
-          <div class="flex gap-1 flex-col p-4 bg-cream-dark flex-grow">
-            <h3 class="font-bold uppercase">{{ team.title }}</h3>
-            <p>{{ team.summary }}</p>
+          <div class="card__img">
+            {% if team.featuredImage.url %}
+            {% rwdImg team.featuredImage.url, team.featuredImage.alt, [250, 400, 600], "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true, [16, 9] %}
+            {% else %}
+            {% set imgPath = "src/_assets/img/passThrough/placeholder/" + (1 | randomNumber(4)) + ".jpg" %}
+            {% rwdImg imgPath, "", [250, 400, 600], "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true, [16, 9] %}
+            {% endif %}
+          </div>
 
+          <div class="card__content">
+            <h3 class="card__title">{{ team.title }}</h3>
+            <p>{{ team.summary }}</p>
             {% if team.content and team.content != "" %}
               <a
                 href="/get-involved/{{ team.teamTypes[0].slug }}/{{ team.slug }}"
-                @click.prevent="open = ! open"
-                @keyup.escape="open = ! open"
-              >Find out more</a>
+                class="card__action"
+                @click.prevent="open = !open"
+                @keyup.window.escape="open = false"
+              >
+                Find out more
+              </a>
             {% endif %}
+          </div>
+          <div
+            x-cloak
+            x-show="open"
+            @click.self="open = false"
+            x-transition.opacity
+            class="fixed p-4 inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+          >
+            <div class="relative bg-cream rounded-md mx-4 overflow-scroll max-w-screen-sm" style="max-height: calc(100vh - 2rem)">
+              <button
+                @click.prevent="open = false"
+                class="sticky float-right right-2 top-2 bg-white rounded-full aspect-square w-8 h-8 flex items-center justify-center z-10 hover:text-orange hover:rotate-12 hover:bg-cream transition-all"
+              >
+                {% svgIcon "close", "w-6 h-6", "Close" %}
+              </button>
 
-            <div
-              id="subscribe"
-              x-show="open"
-              @click.self="open = ! open"
-              x-transition.opacity
-              class="fixed p-4 inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
-            >
-              <div class="relative bg-cream rounded-md mx-4 overflow-scroll max-w-screen-sm" style="max-height: calc(100vh - 2rem)">
-                <button
-                  @click.prevent="open = ! open"
-                  class="sticky float-right right-2 top-2 bg-white rounded-full aspect-square w-8 h-8 flex items-center justify-center z-10 hover:text-orange hover:rotate-12 hover:bg-cream transition-all"
-                >
-                  {% svgIcon "close", "w-6 h-6", "Close" %}
-                </button>
-
-                {% if team.featuredImage.url %}
+              {% if team.featuredImage.url %}
                 {% rwdImg team.featuredImage.url,
                   team.featuredImage.alt, [330, 640], "w-full top-0 sticky float-left mb-4 -mt-8", "(min-width: 640px) 50vw, 640px"
                 %}
@@ -119,7 +115,6 @@ pagePosition: bottom
                     {{ team.content | safe }}
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>

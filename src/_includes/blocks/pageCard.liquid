@@ -1,0 +1,27 @@
+{% comment %}
+  Why is this a liquid template and the rest nunjucks?
+  Because the async shortcode (rwdImg) does not play nicely via an
+  include in nunjucks… but it does in liquid. And 11ty is happy with
+  either templating system.
+{% endcomment %}
+
+<a
+  href="/{{ cardContent.url }}"
+  class="card card--link"
+>
+  <div class="card__img">
+    {% if cardContent.featured_img_url %}
+      {% rwdImg cardContent.featured_img_url, "", "250,400,600", "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true %}
+    {% else %}
+      {% assign randomNum = 1 | randomNumber: 4 %}
+      {% assign imgPath = "src/_assets/img/passThrough/placeholder/" | append: randomNum | append: ".jpg" %}
+      {% rwdImg imgPath, "", "250,400,600", "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true %}
+    {% endif %}
+  </div>
+
+  <div class="card__content">
+    <p class="card__title">{{ cardContent.title }}</p>
+    <p>{{ cardContent.description }}</p>
+    <p class="card__action">More information</p>
+  </div>
+</a>

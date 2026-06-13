@@ -1,6 +1,7 @@
 import { AssetCache } from "@11ty/eleventy-fetch";
 import 'dotenv/config'
 import ent from 'ent';
+import striptags from 'striptags';
 import { wpPaginator } from '../_utils/wp.paginator.js';
 
 const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH || "1d";
@@ -25,7 +26,7 @@ export default async () => {
 
   allTeams.forEach((team) => {
     team.title = ent.decode(team.title.rendered);
-    team.summary = ent.decode(team.excerpt.rendered);
+    team.summary = striptags(ent.decode(team.excerpt.rendered));
     team.content = ent.decode(team.content.rendered).trim();
   });
 
