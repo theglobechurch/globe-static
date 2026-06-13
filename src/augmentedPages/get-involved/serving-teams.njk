@@ -12,33 +12,38 @@ pagePosition: bottom
     {% for team in teams | sort(false, false, "title")  %}
       {% if team.teamTypes | includesFromKey("slug", "serving-teams") %}
         <div
-          class="card"
+          class="flex"
           x-data="{ open: false }"
           x-init="$watch('open', val => document.body.classList.toggle('overflow-hidden', val))"
         >
-          <div class="card__img">
-            {% if team.featuredImage.url %}
-            {% rwdImg team.featuredImage.url, team.featuredImage.alt, [250, 400, 600], "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true, [16, 9] %}
-            {% else %}
-            {% set imgPath = "src/_assets/img/passThrough/placeholder/" + (1 | randomNumber(4)) + ".jpg" %}
-            {% rwdImg imgPath, "", [250, 400, 600], "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true, [16, 9] %}
-            {% endif %}
-          </div>
+          <a
+            class="card card--link flex-grow"
+            href="/get-involved/{{ team.teamTypes[0].slug }}/{{ team.slug }}"
+            @click.prevent="open = !open"
+            @keyup.window.escape="open = false"
+          >
+            <div class="card__img">
+              {% if team.featuredImage.url %}
+              {% rwdImg team.featuredImage.url, team.featuredImage.alt, [250, 400, 600], "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true, [16, 9] %}
+              {% else %}
+              {% set imgPath = "src/_assets/img/passThrough/placeholder/" + (1 | randomNumber(4)) + ".jpg" %}
+              {% rwdImg imgPath, "", [250, 400, 600], "", "(min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw", true, [16, 9] %}
+              {% endif %}
+            </div>
 
-          <div class="card__content">
-            <h3 class="card__title">{{ team.title }}</h3>
-            <p>{{ team.summary }}</p>
-            {% if team.content and team.content != "" %}
-              <a
-                href="/get-involved/{{ team.teamTypes[0].slug }}/{{ team.slug }}"
-                class="card__action"
-                @click.prevent="open = !open"
-                @keyup.window.escape="open = false"
-              >
-                Find out more
-              </a>
-            {% endif %}
-          </div>
+            <div class="card__content">
+              <h3 class="card__title">{{ team.title }}</h3>
+              <p>{{ team.summary }}</p>
+              {% if team.content and team.content != "" %}
+                <p
+                  class="card__action"
+                >
+                  Find out more
+                </p>
+              {% endif %}
+            </div>
+          </a>
+
           <div
             x-cloak
             x-show="open"
