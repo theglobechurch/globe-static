@@ -28,6 +28,59 @@
   }
 }
 
+.topBar__coreNav {
+  display: flex;
+  align-items: center;
+
+  .link {
+    display: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--text);
+    animation: fadeOut linear;
+    animation-timeline: scroll(root);
+    animation-range: 0px 200px;
+    animation-fill-mode: both;
+    padding: 0.25rem 0.75rem;
+    transition: all 0.3s ease;
+    border-radius: 2rem;
+    filter: drop-shadow(0 0 8px var(--white));
+
+    @media screen and (min-width: 640px) {
+      display: block;
+    }
+
+    .page-home & {
+      color: var(--white);
+      filter: drop-shadow(0 0 8px var(--text));
+    }
+  }
+
+  .link:nth-child(1) {
+    margin-right: -0.25rem;
+  }
+
+  .link:nth-child(2) {
+    margin-right: 0.25rem;
+  }
+
+  .link:hover {
+    filter: none;
+    background: var(--white);
+    color: var(--text);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
 .navLink {
   display: flex;
   align-items: center;
@@ -104,6 +157,12 @@
     color: var(--white);
   }
 
+  @media screen and (min-width: 640px) {
+    svg {
+      color: var(--text);
+    }
+  }
+
   .navLink__icon i:nth-child(1) {
     transform: translateY(0) rotate(45deg);
   }
@@ -122,10 +181,16 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.5rem;
   padding: 1rem;
   margin-top: 3.75rem;
+
+  div:first-child {
+    display: grid;
+    flex-grow: 1;
+    gap: 1rem;
+  }
 
   .text-link {
     color: var(--cream);
@@ -155,31 +220,28 @@
   flex-direction: column;
 }
 
+.navOverlay {
+  background-color: var(--petrel-blue);
+  inset: 0;
+  position: fixed;
+  z-index: 20;
+  transition: all;
+  display: flex;
+}
+
 @media screen and (min-width: 640px) {
   .header nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
-    align-items: stretch;
-    margin-top: 2rem;
-
-    .text-link {
-      border: 1px solid rgb(241, 236, 233, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-
-      &:hover {
-        border-color: var(--creeam);
-        text-decoration: none;
-        scale: 1.02;
-      }
-    }
+    width: 320px;
+    display: flex;
   }
 
-  .header .gathering {
-    grid-column: 2 / 4;
-    text-align: left;
+  .header nav {
+    text-align: right
+  }
+
+  .navOverlay {
+    background-color: color-mix(in srgb, var(--petrel-blue) 95%, transparent);
+    left: auto;
+    width: 320px;
   }
 }

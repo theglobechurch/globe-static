@@ -2,37 +2,43 @@
 
 <a class="sr-only" href="#site-content"> Skip to site content </a>
 
-<header class="header" x-data="coreNav" x-bind:class="navOpen ? 'navOpen' : ''">
+<header
+  class="header"
+  x-data="coreNav"
+  x-bind:class="navOpen ? 'navOpen' : ''"
+  @click.outside="close()"
+>
   <div class="topBar glbContainer">
     <a href="/" title="The Globe Church" class="">
       <h1 class="sr-only">The Globe Church</h1>
       {% svgIcon "tgcLogoFilled", "", "The Globe Church" %}
     </a>
 
-    <a href="#footer" @click.prevent="toggle" class="navLink">
-      <div class="navLink__icon" x-bind:class="navOpen ? 'open' : ''">
-        <i></i>
-        <i></i>
-        <i></i>
-      </div>
-      <span x-text="menuLabel" class="navLink__text">Menu</span>
-    </a>
+    <div class="topBar__coreNav">
+      <a href="/about" class="link" x-show="!navOpen">About</a>
+      <a href="/sundays" class="link" x-show="!navOpen">Sundays</a>
+
+      <a href="#footer" @click.prevent="toggle" class="navLink">
+        <div class="navLink__icon" x-bind:class="navOpen ? 'open' : ''">
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+        <span x-text="menuLabel" class="navLink__text">Menu</span>
+      </a>
+    </div>
   </div>
 
-  <div
-    class="bg-blue w-full fixed z-20 top-0 bottom-0 transition-all"
-    x-show="navOpen"
-    x-cloak
+  <div class="navOverlay transition-all" x-show="navOpen" x-cloak
     x-transition:enter="transition ease-in-out duration-300"
-    x-transition:enter-start="opacity-0 -translate-y-full"
-    x-transition:enter-end="opacity-100 -translate-y-0"
+    x-transition:enter-start="opacity-0 translate-x-full"
+    x-transition:enter-end="opacity-100 translate-x-0"
     x-transition:leave="transition ease-in duration-300"
     x-transition:leave-start="opacity-100"
-    x-transition:leave-end="opacity-0 -translate-y-full"
-    style="display: none"
+    x-transition:leave-end="opacity-0 translate-x-full"
   >
-    <div class="h-full w-full flex flex-col justify-between bg-blue text-cream">
-      <nav role="navigation">
+    <nav>
+      <div>
         <a class="text-link" href="/about">About</a>
         <a class="text-link" href="/sundays">Sundays</a>
         <a class="text-link" href="/calendar">Calendar</a>
@@ -45,24 +51,26 @@
         <a class="text-link" href="/blog">Blog</a>
         {% endif %}
         <a class="text-link" href="/contact">Contact</a>
+      </div>
 
-        <div class="gathering">
-          {% if meta.service.overrides %}
-          <span
-            class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-blue inline-block uppercase font-bold"
-          >
-            gathering change
-          </span>
-          {% endif %}
+      <div class="gathering">
+        {% if meta.service.overrides %}
+        <span
+          class="rounded bg-[#dd7f67] px-2 py-1 mb-2 text-xs text-blue inline-block uppercase font-bold"
+        >
+          gathering change
+        </span>
+        {% endif %}
 
-          <p class="font-bold">Sundays at The Globe Church</p>
-          <p class="my-2">
-            Join The Globe Church this Sunday, {{ meta.service.time }} at {{
-            meta.service.locationName }}.
-          </p>
-          <p><a href="/sundays" class="text-blue">Find out more</a></p>
-        </div>
-      </nav>
-    </div>
+        <p class="font-bold">Join us on Sunday…</p>
+        <p class="my-2">
+          The Globe Church meets at {{ meta.service.time }} in {{
+          meta.service.locationName }}.
+        </p>
+        <p><a href="/sundays" class="text-blue">Find out more</a></p>
+      </div>
+    </nav>
+
   </div>
+
 </header>

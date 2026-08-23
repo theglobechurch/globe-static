@@ -89,7 +89,7 @@
     {% endif %}
   </head>
 
-  <body>
+  <body class="{{ page.url }} {% if pageClass %}page-{{ pageClass }}{% endif %}">
     {% if data.env === "production" %}<noscript
       ><iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-K5WB4B6"
