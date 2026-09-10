@@ -5,7 +5,7 @@ const WP_CACHE_LENGTH = process.env.WP_CACHE_LENGTH || "1d";
 const additionalsUrl = `${process.env.API_BASE.replace('wp/v2/', 'globe/v1/')}additionals`;
 
 const defaultLocation = "Ark Globe Academy, Harper Road, London, SE1 6AF";
-const defaultTime = "10.30 and 4pm";
+const defaultTime = "10.30am and 4pm";
 const defaultTube = "Elephant and Castle";
 
 export default async () => {
