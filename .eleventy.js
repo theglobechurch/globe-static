@@ -1,4 +1,5 @@
 import pluginRss from "@11ty/eleventy-plugin-rss";
+import { eleventyImageOnRequestDuringServePlugin } from "@11ty/eleventy-img";
 import svgSprite from "eleventy-plugin-svg-sprite";
 import { shortcodes } from "./src/_utils/11ty.shortcodes.js";
 import { asyncShortcodes } from "./src/_utils/11ty.shortcodes.async.js";
@@ -18,6 +19,15 @@ export default async function (eleventyConfig) {
     outputFilepath: "./dist/_assets/svgSprite.svg"
   });
 
+  eleventyConfig.addPlugin(eleventyImageOnRequestDuringServePlugin, {
+    outputDir: "./dist/_assets/img/built/",
+    urlPath: "/_assets/img/built/",
+    cacheOptions: {
+      duration: "2y",
+      directory: ".imgCache",
+      removeUrlQueryParams: false,
+    },
+  });
 
   // Shortcodes
   Object.keys(asyncShortcodes).forEach((shortcodeName) => {
@@ -43,7 +53,7 @@ export default async function (eleventyConfig) {
   ];
   layouts.forEach(layout => eleventyConfig.addLayoutAlias(layout.name, layout.path));
 
-  // // Copy the files to the right place
+  // Copy the files to the right place
   [
     "src/humans.txt",
     "src/robots.txt",

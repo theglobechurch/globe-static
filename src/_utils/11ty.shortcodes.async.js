@@ -1,4 +1,4 @@
-import eleventyImage from "@11ty/eleventy-img";
+import eleventyImage, { generateHTML } from "@11ty/eleventy-img";
 
 export const asyncShortcodes = {
   socialImg: async function (filepath) {
@@ -16,6 +16,7 @@ export const asyncShortcodes = {
         directory: ".imgCache",
         removeUrlQueryParams: false,
       },
+      transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve",
     }
 
     let metadata = await eleventyImage(filepath, options);
@@ -77,27 +78,36 @@ export const asyncShortcodes = {
       filepath = Object.values(cropped)[0]?.[0]?.outputPath;
     }
 
-    let html = await eleventyImage(filepath, {
-      returnType: "html",
+    // Note: we build the HTML with `generateHTML()` below rather than
+    // passing `returnType: "html"` here, because eleventy-img skips its
+    // normal HTML-building step for statsOnly results (which is what
+    // `transformOnRequest` produces) and would otherwise hand back the
+    // raw stats object instead of a string.
+    let stats = await eleventyImage(filepath, {
       widths: imgWidths,
       urlPath: "/_assets/img/built/",
       outputDir: "./dist/_assets/img/built/",
       formats: ['webp', 'jpg'],
-      htmlOptions: {
-        imgAttributes: {
-          "eleventy:ignore": "",
-          alt,
-          sizes,
-          class: cssClasses,
-          loading : lazy ? "lazy" : "eager",
-          decoding: "async",
-        }
-      },
       cacheOptions: {
         duration: "2y",
         directory: ".imgCache",
         removeUrlQueryParams: false,
       },
+
+      // Defer the (expensive) multi-width/multi-format generation until
+      // the browser requests the image, instead of doing it eagerly on
+      // every dev build. Not applied to the aspect-ratio crop step above,
+      // which needs a real file on disk for this call to read from.
+      transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve",
+    });
+
+    let html = generateHTML(stats, {
+      "eleventy:ignore": "",
+      alt,
+      sizes,
+      class: cssClasses,
+      loading: lazy ? "lazy" : "eager",
+      decoding: "async",
     });
 
     return html;
