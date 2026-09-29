@@ -5,6 +5,7 @@ import { shortcodes } from "./src/_utils/11ty.shortcodes.js";
 import { asyncShortcodes } from "./src/_utils/11ty.shortcodes.async.js";
 import { filters } from "./src/_utils/11ty.filters.js";
 import { collections } from "./src/_utils/11ty.collections.js";
+import { IMAGE_URL_PATH, IMAGE_OUTPUT_DIR, IMAGE_CACHE_OPTIONS } from "./src/_utils/11ty.image-config.js";
 
 export default async function (eleventyConfig) {
   const { EleventyRenderPlugin } = await import("@11ty/eleventy");
@@ -20,13 +21,9 @@ export default async function (eleventyConfig) {
   });
 
   eleventyConfig.addPlugin(eleventyImageOnRequestDuringServePlugin, {
-    outputDir: "./dist/_assets/img/built/",
-    urlPath: "/_assets/img/built/",
-    cacheOptions: {
-      duration: "2y",
-      directory: ".imgCache",
-      removeUrlQueryParams: false,
-    },
+    outputDir: IMAGE_OUTPUT_DIR,
+    urlPath: IMAGE_URL_PATH,
+    cacheOptions: IMAGE_CACHE_OPTIONS,
   });
 
   // Shortcodes

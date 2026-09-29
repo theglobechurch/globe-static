@@ -1,4 +1,5 @@
 import eleventyImage, { generateHTML } from "@11ty/eleventy-img";
+import { IMAGE_URL_PATH, IMAGE_OUTPUT_DIR, IMAGE_CACHE_OPTIONS } from "./11ty.image-config.js";
 
 export const asyncShortcodes = {
   socialImg: async function (filepath) {
@@ -9,13 +10,9 @@ export const asyncShortcodes = {
     let options = {
       formats: ["jpeg"],
       widths: [1200],
-      urlPath: "/_assets/img/built/",
-      outputDir: "./dist/_assets/img/built/",
-      cacheOptions: {
-        duration: "2y",
-        directory: ".imgCache",
-        removeUrlQueryParams: false,
-      },
+      urlPath: IMAGE_URL_PATH,
+      outputDir: IMAGE_OUTPUT_DIR,
+      cacheOptions: IMAGE_CACHE_OPTIONS,
       transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve",
     }
 
@@ -85,14 +82,10 @@ export const asyncShortcodes = {
     // raw stats object instead of a string.
     let stats = await eleventyImage(filepath, {
       widths: imgWidths,
-      urlPath: "/_assets/img/built/",
-      outputDir: "./dist/_assets/img/built/",
+      urlPath: IMAGE_URL_PATH,
+      outputDir: IMAGE_OUTPUT_DIR,
       formats: ['webp', 'jpg'],
-      cacheOptions: {
-        duration: "2y",
-        directory: ".imgCache",
-        removeUrlQueryParams: false,
-      },
+      cacheOptions: IMAGE_CACHE_OPTIONS,
 
       // Defer the (expensive) multi-width/multi-format generation until
       // the browser requests the image, instead of doing it eagerly on
