@@ -5,8 +5,9 @@ import globeCal from "./calendarFeed.js";
 import slugify from "@sindresorhus/slugify";
 import ical from "node-ical";
 import frontMatter from "front-matter";
-import striptags from "striptags";
 import ent from "ent";
+
+import { stripEventHtml } from "../_utils/eventDescription.js";
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
@@ -115,23 +116,11 @@ function parseEvents(icalRaw) {
   return returnEvents;
 }
 
-// Some event descriptions have <html-blob>s
-// We need to get rid of that
-function removeHtmlForParsing(input) {
-  if (input === undefined || input[0] !== "<") {
-    return input;
-  }
-
-  let eventDesc = striptags(input, ["br"]);
-  return eventDesc.replaceAll("<br>", "\r\n");
-}
-
 function eventBuilder(event, recurring = false) {
   const start = dayjs(event.start).tz("Etc/UTC");
   const end = dayjs(event.end).tz("Etc/UTC");
 
-  let eventDesc = removeHtmlForParsing(event.description);
-  eventDesc = frontMatter(eventDesc);
+  const eventDesc = frontMatter(stripEventHtml(event.description));
 
   const slug = slugify(event.summary, {
     lower: true,
