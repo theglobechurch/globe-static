@@ -11,3 +11,10 @@ export const IMAGE_CACHE_OPTIONS = {
   directory: ".imgCache",
   removeUrlQueryParams: false,
 };
+
+// Many images come from the WordPress API at build time (featured images,
+// author photos, leader thumbnails). If one of those URLs is broken or gone,
+// falling back to a local placeholder keeps a single bad CMS image from
+// failing the entire build.
+export const PLACEHOLDER_IMAGE_PATH = "./src/_assets/img/passThrough/placeholder/1.jpg";
+export const SOCIAL_IMAGE_FALLBACK_URL = "/_assets/img/the-globe-church-og.jpg";
