@@ -3,10 +3,7 @@
   {% set pageTitle %} {% if title %}{{ title | safe }} &middot; {% endif %}{{
   meta.title }} {% endset %} {% set pageDescription %} {% if description %} {{
   description }} {% else %} {{ content | striptags | truncate(256) }} {% endif
-  %} {% endset %} {% set pageImg %} {% if featuredImage %} {% socialImg
-  featuredImage %} {% else %}
-  https://globe.church/_assets/img/the-globe-church-og.jpg {% endif %} {% endset
-  %}
+  %} {% endset %}
   <head>
     <meta charset="utf-8" />
     <meta
