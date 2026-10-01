@@ -1,0 +1,62 @@
+<main class="px-4">
+  {% if tree.featuredImage %}
+  <div class="mx-auto lg:container sm:aspect-[16/7] w-full sm:overflow-hidden relative">
+    {% rwdImg tree.featuredImage, "", [550, 1024, 1512, 2056], "sm:inset-0
+    sm:absolute sm:h-full sm:object-cover min-w-full", "100vw", false %}
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-transparent from-20% via-cream/80 via-55% to-cream to-80%"
+    ></div>
+  </div>
+  {% endif %}
+
+  <div class="mx-auto max-w-md pb-10 {% if tree.featuredImage %}relative -mt-24 sm:-mt-40{% endif %}">
+    <h1 class="px-4 text-center glbHeading {% if not tree.featuredImage %}py-10{% else %}pb-4{% endif %}">{{ tree.title }}</h1>
+    {% if tree.description %}
+    <p class="mb-6 px-4 text-center">{{ tree.description }}</p>
+    {% endif %}
+
+  <ul class="space-y-3">
+    {% for link in tree.links %} {% set external = link.url.startsWith("http")
+    and "globe.church" not in link.url %}
+    <li>
+      <a
+        href="{{ link.url }}"
+        {%
+        if
+        external
+        %}target="_blank"
+        rel="noopener"
+        {%
+        endif
+        %}
+        class="block overflow-hidden rounded-2xl bg-white text-center font-normal text-blue no-underline transition hover:bg-orange hover:text-white"
+      >
+        {% if link.img and not link.img_square %} {% rwdImg link.img, "", [448,
+        896], "w-full", "448px", true, "16:9" %} {% endif %}
+        <span class="flex items-center gap-3 p-3">
+          {% if link.img_square %}
+          <span class="block size-14 shrink-0 overflow-hidden rounded-lg">
+            {% rwdImg link.img_square, "", [56, 112, 168], "size-full
+            object-cover", "56px", true, "1:1" %}
+          </span>
+          {% endif %}
+          <span class="grow px-2 py-1">
+            <span class="block font-normal">{{ link.title }}</span>
+            {% if link.description %}
+            <span class="block text-sm font-normal"
+              >{{ link.description }}</span
+            >
+            {% endif %}
+          </span>
+          {% if link.img_square %}<span
+            class="size-14 shrink-0"
+            aria-hidden="true"
+          ></span
+          >{% endif %}
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  </div>
+</main>
