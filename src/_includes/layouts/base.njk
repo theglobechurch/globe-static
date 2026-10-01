@@ -29,6 +29,7 @@
       type="text/css"
     />
 
+    {% if noindex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
     <meta name="description" content="{{ pageDescription | trim }}" />
     <meta itemprop="description" content="{{ pageDescription | trim }}" />
     <meta property="og:site_name" content="{{ meta.title }}" />

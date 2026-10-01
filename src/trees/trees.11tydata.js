@@ -5,6 +5,8 @@ export default {
     alias: "tree"
   },
   layout: "default",
+  noindex: true,
+  eleventyExcludeFromCollections: true,
   eleventyComputed: {
     title: (data) => data.tree.title,
     featuredImage: (data) => data.tree.featuredImage,
