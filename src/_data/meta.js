@@ -33,7 +33,7 @@ export default async () => {
     youtube: "theglobechurch",
     linkedin: "theglobechurch",
     email: "info@globe.church",
-    registeredAddress: additionals['registeredAddress'] || "GlobeOffice, 83b Mill Lofts, County St, London SE1 4AD",
+    registeredAddress: additionals['registeredAddress'] || "Globe Office, 83b Mill Lofts, County Street, London SE1 4AD",
     overrides: additionals['overrides'] || null,
     service: serviceDetails(additionals['overrides'] || {})
   };
